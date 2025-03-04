@@ -131,7 +131,7 @@ const AstronomyStars = () => {
             </Button>
             <Button
               variant="outline"
-              className="border-white text-white hover:bg-indigo-700"
+              className="text-indigo-700"
               onClick={() => scrollToSection("intro")}
             >
               Learn More
