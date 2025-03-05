@@ -225,7 +225,11 @@ const SidebarComponent = () => {
           }
         >
           <a href={item.url}>
-            {item.icon && <item.icon size={16} />}
+            {item.icon &&
+              React.createElement(
+                item.icon as React.ComponentType<{ size?: number }>,
+                { size: 16 }
+              )}
             <span>{item.title}</span>
           </a>
         </SidebarMenuButton>
@@ -250,7 +254,7 @@ const SidebarComponent = () => {
   const renderCategory = (
     categoryName: string,
     category: {
-      icon: React.ComponentType;
+      icon: React.ComponentType<{ size?: number }>;
       items?: Array<{ title: string; url: string }>;
       subCategories?: Record<string, Array<{ title: string; url: string }>>;
     }
