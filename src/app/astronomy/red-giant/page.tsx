@@ -2,7 +2,6 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Star,
   ChevronRight,
   Sun,
   BookOpen,
@@ -23,7 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 const RedGiantAstronomy = () => {
   const [activeSection, setActiveSection] = useState("intro");
@@ -188,15 +186,19 @@ const RedGiantAstronomy = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    A red giant is a fascinating stage in a star's life cycle, 
-                    representing the final dramatic transformation of stars like our Sun.
+                    A red giant is a fascinating stage in a star's life cycle,
+                    representing the final dramatic transformation of stars like
+                    our Sun.
                   </p>
                   <div className="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-100 dark:border-orange-800">
                     <h3 className="font-bold text-lg mb-3">
                       What is a Red Giant?
                     </h3>
                     <p>
-                      As stars age, they undergo remarkable transformations. Our Sun is destined to become a red giant, dramatically expanding and potentially engulfing the inner planets, including Earth and the moon.
+                      As stars age, they undergo remarkable transformations. Our
+                      Sun is destined to become a red giant, dramatically
+                      expanding and potentially engulfing the inner planets,
+                      including Earth and the moon.
                     </p>
                   </div>
                 </CardContent>
@@ -217,10 +219,14 @@ const RedGiantAstronomy = () => {
                 <CardContent className="pt-4 space-y-4">
                   <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
                     <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Scientific Explanation
+                      <Quote size={16} className="text-blue-500" /> Scientific
+                      Explanation
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
-                      "A red giant is a dying star in the final stages of stellar evolution. In about five billion years, our own sun will turn into a red giant, expand and engulf the inner planets — including Earth."
+                      "A red giant is a dying star in the final stages of
+                      stellar evolution. In about five billion years, our own
+                      sun will turn into a red giant, expand and engulf the
+                      inner planets — including Earth."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
@@ -229,7 +235,8 @@ const RedGiantAstronomy = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Space.com, Red Giant Stars: Facts, Definition & The Future of the Sun, 2023
+                        Space.com, Red Giant Stars: Facts, Definition & The
+                        Future of the Sun, 2023
                       </a>
                     </div>
                   </div>
@@ -267,9 +274,7 @@ const RedGiantAstronomy = () => {
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٩ وَجُمِعَ الشَّمْسُ وَالْقَمَرُ
-                        </p>
+                        <p dir="rtl">٩ وَجُمِعَ الشَّمْسُ وَالْقَمَرُ</p>
                       </div>
                     </div>
                   </div>
@@ -291,15 +296,21 @@ const RedGiantAstronomy = () => {
                 <CardContent className="pt-4 space-y-4">
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have known the sun will merge with the moon?
+                      How could an illiterate man who lived 1400 years ago have
+                      known the sun will merge with the moon?
                     </h3>
                     <p>
-                      Modern science confirms that the sun will eventually expand and engulf the inner planets, including Earth and the moon. This was unknown 1400 years ago, yet referenced in ancient text with remarkable precision.
+                      Modern science confirms that the sun will eventually
+                      expand and engulf the inner planets, including Earth and
+                      the moon. This was unknown 1400 years ago, yet referenced
+                      in ancient text with remarkable precision.
                     </p>
                   </div>
 
                   <p>
-                    The alignment between ancient text and modern scientific understanding continues to inspire wonder about our universe and the nature of knowledge.
+                    The alignment between ancient text and modern scientific
+                    understanding continues to inspire wonder about our universe
+                    and the nature of knowledge.
                   </p>
                 </CardContent>
               </Card>
@@ -350,7 +361,8 @@ const RedGiantAstronomy = () => {
             <h3 className="text-lg font-medium">Exploring Stellar Evolution</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            From our current understanding to ancient insights, the story of stars continues to unfold.
+            From our current understanding to ancient insights, the story of
+            stars continues to unfold.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button
