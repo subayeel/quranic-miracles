@@ -120,6 +120,7 @@ const SidebarComponent = () => {
       },
       items: [
         { title: "Bioluminescence", url: "/biology/bioluminescence" },
+        { title: "Colors", url: "/biology/colors" },
         { title: "Honey", url: "/biology/honey" },
         { title: "Evolution", url: "/biology/evolution" },
       ],
