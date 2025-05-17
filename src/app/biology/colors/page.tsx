@@ -29,7 +29,7 @@ import { Badge } from "@/components/ui/badge";
 
 const BiologyColors = () => {
   const [activeSection, setActiveSection] = useState("intro");
-  const sectionRefs = useRef({});
+  const sectionRefs = useRef<Record<string, HTMLElement>>({});
 
   const contents = useMemo(() => {
     return [
@@ -102,7 +102,7 @@ const BiologyColors = () => {
     };
   }, [contents]);
 
-  const scrollToSection = (id) => {
+  const scrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
@@ -119,9 +119,7 @@ const BiologyColors = () => {
             <Eye className="text-blue-200" size={32} />
             <h1 className="text-4xl font-bold">Colors</h1>
           </div>
-          <p className="text-xl max-w-2xl text-blue-100">
-            Biology - Advanced
-          </p>
+          <p className="text-xl max-w-2xl text-blue-100">Biology - Advanced</p>
           <div className="flex gap-4 mt-8">
             <Button
               className="bg-white text-blue-700 hover:bg-blue-50"
@@ -196,7 +194,12 @@ const BiologyColors = () => {
                       Humans cannot see colors in dim light
                     </h3>
                     <p>
-                      In the Quran, there's a reference to seeing only in black and white during dim light conditions. Skeptics have claimed that whoever wrote the Quran made a mistake, suggesting that humans always see in color, never in black and white. However, modern science has confirmed that in dim light, humans can indeed only see in black and white.
+                      In the Quran, there's a reference to seeing only in black
+                      and white during dim light conditions. Skeptics have
+                      claimed that whoever wrote the Quran made a mistake,
+                      suggesting that humans always see in color, never in black
+                      and white. However, modern science has confirmed that in
+                      dim light, humans can indeed only see in black and white.
                     </p>
                   </div>
                 </CardContent>
@@ -217,14 +220,25 @@ const BiologyColors = () => {
                 <CardContent className="pt-4 space-y-4">
                   <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
                     <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Modern Understanding of Vision
+                      <Quote size={16} className="text-blue-500" /> Modern
+                      Understanding of Vision
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
                       "Sensing Light
-                      <br /><br />
-                      There are two kinds of light-sensitive organs located in the backs of our eyes: rod-shaped and cone-shaped. Both rods and cones are sensitive to light. The difference between them is that the rods allow us to see in very dim light but don't permit detection of color, while the cones let us see color but they don't work in dim light.
-                      <br /><br />
-                      When it gets dark the cones lose their ability to respond to light. The rods continue to respond to available light, but since they cannot see color, so to speak, everything appears to be various shades of black and white and gray."
+                      <br />
+                      <br />
+                      There are two kinds of light-sensitive organs located in
+                      the backs of our eyes: rod-shaped and cone-shaped. Both
+                      rods and cones are sensitive to light. The difference
+                      between them is that the rods allow us to see in very dim
+                      light but don't permit detection of color, while the cones
+                      let us see color but they don't work in dim light.
+                      <br />
+                      <br />
+                      When it gets dark the cones lose their ability to respond
+                      to light. The rods continue to respond to available light,
+                      but since they cannot see color, so to speak, everything
+                      appears to be various shades of black and white and gray."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
@@ -233,7 +247,8 @@ const BiologyColors = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Indiana Public Media, Night Vision And Humans: Why Can't We See Color?, 2012
+                        Indiana Public Media, Night Vision And Humans: Why Can't
+                        We See Color?, 2012
                       </a>
                     </div>
                   </div>
@@ -244,7 +259,10 @@ const BiologyColors = () => {
                         <Moon size={16} className="text-gray-500" /> Rod Cells
                       </h3>
                       <p>
-                        Rod cells are highly sensitive to light and allow us to see in very dim light conditions. However, they don't detect color, which is why our night vision is essentially black and white.
+                        Rod cells are highly sensitive to light and allow us to
+                        see in very dim light conditions. However, they don't
+                        detect color, which is why our night vision is
+                        essentially black and white.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
@@ -252,13 +270,21 @@ const BiologyColors = () => {
                         <Sun size={16} className="text-yellow-500" /> Cone Cells
                       </h3>
                       <p>
-                        Cone cells are responsible for color vision but require more light to function properly. In dim light conditions, these cells become ineffective, leaving only rod cells to process visual information.
+                        Cone cells are responsible for color vision but require
+                        more light to function properly. In dim light
+                        conditions, these cells become ineffective, leaving only
+                        rod cells to process visual information.
                       </p>
                     </div>
                   </div>
 
                   <p className="font-medium mt-4">
-                    "Rods allow us to see in very dim light but don't permit detection of color, while the cones let us see color but they don't work in dim light." So in dim light we can only see in black and white. This was known recently; however, this was portrayed in the Quran 1400 years before it was discovered.
+                    "Rods allow us to see in very dim light but don't permit
+                    detection of color, while the cones let us see color but
+                    they don't work in dim light." So in dim light we can only
+                    see in black and white. This was known recently; however,
+                    this was portrayed in the Quran 1400 years before it was
+                    discovered.
                   </p>
                 </CardContent>
               </Card>
@@ -290,12 +316,35 @@ const BiologyColors = () => {
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "Permitted for you is intercourse with your wives on the night of the fast. They are a garment for you, and you are a garment for them. Allah knows that you used to betray yourselves, but He turned to you and pardoned you. So approach them now, and seek what Allah has ordained for you, and eat and drink until the white streak of dawn can be distinguished from the black streak. Then complete the fast until nightfall. But do not approach them while you are in retreat at the mosques. These are the limits of Allah, so do not come near them. Allah thus clarifies His revelations to the people, that they may attain piety."
+                          "Permitted for you is intercourse with your wives on
+                          the night of the fast. They are a garment for you, and
+                          you are a garment for them. Allah knows that you used
+                          to betray yourselves, but He turned to you and
+                          pardoned you. So approach them now, and seek what
+                          Allah has ordained for you, and eat and drink until
+                          the white streak of dawn can be distinguished from the
+                          black streak. Then complete the fast until nightfall.
+                          But do not approach them while you are in retreat at
+                          the mosques. These are the limits of Allah, so do not
+                          come near them. Allah thus clarifies His revelations
+                          to the people, that they may attain piety."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          ١٨٧ أُحِلَّ لَكُمْ لَيْلَةَ الصِّيَامِ الرَّفَثُ إِلَىٰ نِسَائِكُمْ ۚ هُنَّ لِبَاسٌ لَكُمْ وَأَنْتُمْ لِبَاسٌ لَهُنَّ ۗ عَلِمَ اللَّهُ أَنَّكُمْ كُنْتُمْ تَخْتَانُونَ أَنْفُسَكُمْ فَتَابَ عَلَيْكُمْ وَعَفَا عَنْكُمْ ۖ فَالْآنَ بَاشِرُوهُنَّ وَابْتَغُوا مَا كَتَبَ اللَّهُ لَكُمْ ۚ وَكُلُوا وَاشْرَبُوا حَتَّىٰ يَتَبَيَّنَ لَكُمُ الْخَيْطُ الْأَبْيَضُ مِنَ الْخَيْطِ الْأَسْوَدِ مِنَ الْفَجْرِ ۖ ثُمَّ أَتِمُّوا الصِّيَامَ إِلَى اللَّيْلِ ۚ وَلَا تُبَاشِرُوهُنَّ وَأَنْتُمْ عَاكِفُونَ فِي الْمَسَاجِدِ ۗ تِلْكَ حُدُودُ اللَّهِ فَلَا تَقْرَبُوهَا ۗ كَذَٰلِكَ يُبَيِّنُ اللَّهُ آيَاتِهِ لِلنَّاسِ لَعَلَّهُمْ يَتَّقُونَ
+                          ١٨٧ أُحِلَّ لَكُمْ لَيْلَةَ الصِّيَامِ الرَّفَثُ
+                          إِلَىٰ نِسَائِكُمْ ۚ هُنَّ لِبَاسٌ لَكُمْ وَأَنْتُمْ
+                          لِبَاسٌ لَهُنَّ ۗ عَلِمَ اللَّهُ أَنَّكُمْ كُنْتُمْ
+                          تَخْتَانُونَ أَنْفُسَكُمْ فَتَابَ عَلَيْكُمْ وَعَفَا
+                          عَنْكُمْ ۖ فَالْآنَ بَاشِرُوهُنَّ وَابْتَغُوا مَا
+                          كَتَبَ اللَّهُ لَكُمْ ۚ وَكُلُوا وَاشْرَبُوا حَتَّىٰ
+                          يَتَبَيَّنَ لَكُمُ الْخَيْطُ الْأَبْيَضُ مِنَ
+                          الْخَيْطِ الْأَسْوَدِ مِنَ الْفَجْرِ ۖ ثُمَّ أَتِمُّوا
+                          الصِّيَامَ إِلَى اللَّيْلِ ۚ وَلَا تُبَاشِرُوهُنَّ
+                          وَأَنْتُمْ عَاكِفُونَ فِي الْمَسَاجِدِ ۗ تِلْكَ
+                          حُدُودُ اللَّهِ فَلَا تَقْرَبُوهَا ۗ كَذَٰلِكَ
+                          يُبَيِّنُ اللَّهُ آيَاتِهِ لِلنَّاسِ لَعَلَّهُمْ
+                          يَتَّقُونَ
                         </p>
                       </div>
                     </div>
@@ -306,7 +355,13 @@ const BiologyColors = () => {
                       Key Point
                     </Badge>
                     <p className="mt-3">
-                      Note that the verse specifically mentions "white streak of dawn can be distinguished from the black streak." This indicates that humans can only see black and white in dim light conditions, with no mention of colors. Today we know this is scientifically accurate - our rod cells allow us to see in very dim light but don't permit detection of color.
+                      Note that the verse specifically mentions "white streak of
+                      dawn can be distinguished from the black streak." This
+                      indicates that humans can only see black and white in dim
+                      light conditions, with no mention of colors. Today we know
+                      this is scientifically accurate - our rod cells allow us
+                      to see in very dim light but don't permit detection of
+                      color.
                     </p>
                   </div>
                 </CardContent>
@@ -326,20 +381,33 @@ const BiologyColors = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The alignment between the Quranic reference to seeing only black and white in dim light conditions and our modern understanding of human vision raises intriguing questions:
+                    The alignment between the Quranic reference to seeing only
+                    black and white in dim light conditions and our modern
+                    understanding of human vision raises intriguing questions:
                   </p>
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have known about colors?
+                      How could an illiterate man who lived 1400 years ago have
+                      known about colors?
                     </h3>
                     <p>
-                      The verse in the Quran accurately describes a biological phenomenon that was only scientifically understood in recent times. The specific mention of distinguishing between white and black streaks at dawn - a time of dim light - aligns perfectly with our modern understanding of how human rod and cone cells function under different lighting conditions.
+                      The verse in the Quran accurately describes a biological
+                      phenomenon that was only scientifically understood in
+                      recent times. The specific mention of distinguishing
+                      between white and black streaks at dawn - a time of dim
+                      light - aligns perfectly with our modern understanding of
+                      how human rod and cone cells function under different
+                      lighting conditions.
                     </p>
                   </div>
 
                   <p>
-                    For many, this connection between ancient text and modern science invites contemplation about knowledge, revelation, and the world we inhabit. Whether approached from a scientific or spiritual perspective, the complexity of human vision continues to inspire wonder and discovery.
+                    For many, this connection between ancient text and modern
+                    science invites contemplation about knowledge, revelation,
+                    and the world we inhabit. Whether approached from a
+                    scientific or spiritual perspective, the complexity of human
+                    vision continues to inspire wonder and discovery.
                   </p>
                 </CardContent>
               </Card>
@@ -390,7 +458,8 @@ const BiologyColors = () => {
             <h3 className="text-lg font-medium">Exploring Human Vision</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The human eye continues to reveal its complexity, connecting ancient wisdom with modern scientific discovery.
+            The human eye continues to reveal its complexity, connecting ancient
+            wisdom with modern scientific discovery.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button
