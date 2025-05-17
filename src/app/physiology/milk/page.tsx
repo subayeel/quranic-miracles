@@ -2,14 +2,15 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
+  Droplet,
   ChevronRight,
+  FlaskConical,
   BookOpen,
   Quote,
   HelpCircle,
+  RotateCcw,
   ArrowUp,
   Sparkles,
-  Waves,
-  Fish,
 } from "lucide-react";
 import {
   Popover,
@@ -26,7 +27,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const BioluminescenceComponent = () => {
+const MilkMiracle = () => {
   const [activeSection, setActiveSection] = useState("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
@@ -34,24 +35,24 @@ const BioluminescenceComponent = () => {
     return [
       {
         id: "intro",
-        title: "Lights in the Deep",
-        icon: Waves,
+        title: "The Miracle of Milk",
+        icon: Droplet,
         color: "bg-blue-100 dark:bg-blue-900",
         iconColor: "text-blue-500",
       },
       {
         id: "science",
-        title: "Scientific Evidence",
-        icon: Fish,
-        color: "bg-green-100 dark:bg-green-900",
-        iconColor: "text-green-500",
+        title: "Scientific Understanding",
+        icon: FlaskConical,
+        color: "bg-purple-100 dark:bg-purple-900",
+        iconColor: "text-purple-500",
       },
       {
         id: "quran",
         title: "Quranic Reference",
         icon: BookOpen,
-        color: "bg-purple-100 dark:bg-purple-900",
-        iconColor: "text-purple-500",
+        color: "bg-green-100 dark:bg-green-900",
+        iconColor: "text-green-500",
       },
       {
         id: "reflection",
@@ -112,13 +113,15 @@ const BioluminescenceComponent = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-teal-800 dark:from-blue-700 dark:to-teal-900 text-white py-12">
+      <div className="bg-gradient-to-r from-blue-500 to-indigo-700 dark:from-blue-700 dark:to-indigo-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-4">
-            <Fish className="text-blue-200" size={32} />
-            <h1 className="text-4xl font-bold">Bioluminescence</h1>
+            <Droplet className="text-blue-200" size={32} />
+            <h1 className="text-4xl font-bold">Milk</h1>
           </div>
-          <p className="text-xl max-w-2xl text-blue-100">Biology - Extreme</p>
+          <p className="text-xl max-w-2xl text-blue-100">
+            A Nutritional Miracle Mentioned in the Quran
+          </p>
           <div className="flex gap-4 mt-8">
             <Button
               className="bg-white text-blue-700 hover:bg-blue-50"
@@ -146,7 +149,7 @@ const BioluminescenceComponent = () => {
                 <CardHeader>
                   <CardTitle className="text-lg">Topic Guide</CardTitle>
                   <CardDescription>
-                    Explore the phenomenon of bioluminescence
+                    Explore the miracle of milk production
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -178,85 +181,70 @@ const BioluminescenceComponent = () => {
           <div className="lg:col-span-3 space-y-12">
             {/* Introduction */}
             <section id="intro" className="scroll-mt-20">
-              <Card className={`border-l-4 border-blue-500`}>
+              <Card className="border-l-4 border-blue-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Waves className="text-blue-500" size={24} />
+                      <Droplet className="text-blue-500" size={24} />
                     </div>
-                    <CardTitle>Lights in the Deep</CardTitle>
+                    <CardTitle>The Miracle of Milk</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    In the darkest depths of the ocean, where sunlight cannot
-                    reach, a remarkable phenomenon occurs: living organisms
-                    create their own light.
+                    1400 years ago, people didn't understand where milk came
+                    from, yet the Quran accurately described its production
+                    process - long before modern science confirmed it.
                   </p>
                   <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
                     <h3 className="font-bold text-lg mb-3">
-                      Light Beyond Sunlight
+                      Ancient Misconceptions About Milk
                     </h3>
                     <p>
-                      In the Quran, there's a fascinating reference to deep
-                      waters where a person cannot see their own hand, yet Allah
-                      can still provide light. Skeptics once claimed this was
-                      impossible—sunlight can only penetrate about 200 meters
-                      into the ocean. Below this depth, there is no sunlight or
-                      traditional fire source, so how could there be light?
-                    </p>
-                    <p className="mt-3">
-                      Modern science has discovered the answer:
-                      bioluminescence—the ability of living organisms to produce
-                      their own light, even thousands of meters below the
-                      surface.
+                      In ancient times, people believed milk came from the white
+                      fat near the nipples. Modern science has revealed this to
+                      be incorrect. Milk is actually produced in mammary glands
+                      which derive their nutrients directly from the
+                      bloodstream.
                     </p>
                   </div>
                 </CardContent>
               </Card>
             </section>
 
-            {/* Scientific Evidence */}
+            {/* Scientific Understanding */}
             <section id="science" className="scroll-mt-20">
-              <Card className={`border-l-4 border-green-500`}>
+              <Card className="border-l-4 border-purple-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
-                      <Fish className="text-green-500" size={24} />
+                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
+                      <FlaskConical className="text-purple-500" size={24} />
                     </div>
-                    <CardTitle>Scientific Evidence</CardTitle>
+                    <CardTitle>Scientific Understanding</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
+                  <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
                     <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-green-500" />{" "}
-                      Distribution of Bioluminescent Life
+                      <Quote size={16} className="text-purple-500" /> Scientific
+                      Confirmation
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
-                      "Bioluminescence occurs widely among animals, especially
-                      in the open sea, including fish, jellyfish, comb jellies,
-                      crustaceans, and cephalopod molluscs; in some fungi and
-                      bacteria; and in various terrestrial invertebrates
-                      including insects. In marine coastal habitats, about 2.5%
-                      of organisms are estimated to be bioluminescent, whereas
-                      in pelagic habitats in the eastern Pacific, about 76% of
-                      the main taxa of deep-sea animals have been found to be
-                      capable of producing light. More than 700 animal genera
-                      have been recorded with light-producing species. Most
-                      marine light-emission is in the blue and green light
-                      spectrum. However, some loose-jawed fish emit red and
-                      infrared light, and the genus Tomopteris emits yellow
-                      light."
+                      "A mammary gland is an exocrine gland in humans and other
+                      mammals that produces milk to feed young offspring.
+                      Mammals get their name from the Latin word mamma,
+                      'breast'. The mammary glands are arranged in organs such
+                      as the breasts in primates, the udder in ruminants, and
+                      the dugs of other animals."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
-                        href="https://en.wikipedia.org/wiki/Bioluminescence"
-                        className="text-green-600 dark:text-green-400 hover:underline"
+                        href="https://en.wikipedia.org/wiki/Mammary_gland"
+                        className="text-purple-600 dark:text-purple-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Wikipedia, Bioluminescence, 2023
+                        Wikipedia, Mammary gland, 2021
                       </a>
                     </div>
                   </div>
@@ -264,34 +252,33 @@ const BioluminescenceComponent = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Sparkles size={16} className="text-yellow-500" /> Ocean
-                        Depths
+                        <RotateCcw size={16} className="text-purple-500" /> Milk
+                        Production
                       </h3>
                       <p>
-                        While sunlight typically can only penetrate to about 200
-                        meters in the clearest ocean waters, bioluminescent
-                        organisms create their own light through chemical
-                        reactions in their bodies, illuminating the ocean
-                        depths.
+                        Milk is produced in mammary glands which get nutrients
+                        directly from the bloodstream. The bloodstream in turn
+                        gets its nutrients from the digestive system.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Fish size={16} className="text-blue-500" /> Deep Sea
-                        Prevalence
+                        <FlaskConical size={16} className="text-gray-500" />{" "}
+                        Modern Discovery
                       </h3>
                       <p>
-                        In the deep sea, where sunlight cannot reach, an
-                        astonishing 76% of animals can produce their own light—a
-                        natural adaptation to the perpetual darkness.
+                        This scientific understanding was only discovered
+                        recently, yet it was accurately described in the Quran
+                        1400 years ago.
                       </p>
                     </div>
                   </div>
 
-                  <p className="mt-4">
-                    Animals can produce their own light through bioluminescence.
-                    This scientific understanding was only recently discovered,
-                    yet it appears to be referenced in the Quran 1400 years ago.
+                  <p>
+                    The Quran's description of milk production from between
+                    digested food and blood matches exactly with modern
+                    scientific understanding - a fact that would have been
+                    impossible to know in the 7th century.
                   </p>
                 </CardContent>
               </Card>
@@ -299,63 +286,54 @@ const BioluminescenceComponent = () => {
 
             {/* Quranic Reference */}
             <section id="quran" className="scroll-mt-20">
-              <Card className={`border-l-4 border-purple-500`}>
+              <Card className="border-l-4 border-green-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-                      <BookOpen className="text-purple-500" size={24} />
+                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
+                      <BookOpen className="text-green-500" size={24} />
                     </div>
                     <CardTitle>Quranic Reference</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
-                  <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
+                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/24/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/40"
-                        className="text-purple-600 dark:text-purple-400 hover:underline"
+                        href="https://www.quranwow.com/#/ch/16/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/66"
+                        className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Quran 24:40
+                        Quran 16:66
                       </a>
                     </h3>
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "Or like the depths of darkness in a vast deep ocean,
-                          overwhelmed with waves topped by waves, topped by
-                          clouds: depths of darkness, one above another: if a
-                          man stretches out his hand, he will not see it! If
-                          Allah does not give light to a person he will not have
-                          light!"
+                          "And in cattle there is a lesson for you, We give you
+                          drink, from their bellies digested food and blood,
+                          pure liquid milk for those who drink."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          ٤٠ أَوْ كَظُلُمَاتٍ فِي بَحْرٍ لُجِّيٍّ يَغْشَاهُ
-                          مَوْجٌ مِنْ فَوْقِهِ مَوْجٌ مِنْ فَوْقِهِ سَحَابٌ ۚ
-                          ظُلُمَاتٌ بَعْضُهَا فَوْقَ بَعْضٍ إِذَا أَخْرَجَ
-                          يَدَهُ لَمْ يَكَدْ يَرَاهَا ۗ وَمَنْ لَمْ يَجْعَلِ
-                          اللَّهُ لَهُ نُورًا فَمَا لَهُ مِنْ نُورٍ
+                          ٦٦ وَإِنَّ لَكُمْ فِي الْأَنْعَامِ لَعِبْرَةً ۖ
+                          نُسْقِيكُمْ مِمَّا فِي بُطُونِهِ مِنْ بَيْنِ فَرْثٍ
+                          وَدَمٍ لَبَنًا خَالِصًا سَائِغًا لِلشَّارِبِينَ
                         </p>
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-6">
-                    <Badge className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100">
-                      Key Insight
+                    <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
+                      Key Phrase
                     </Badge>
                     <p className="mt-3">
-                      The verse specifically mentions that in deep waters, where
-                      a person cannot see their own hand, Allah can still
-                      provide light. This implies that in the depths of the
-                      ocean, where sunlight cannot penetrate, there is still a
-                      source of light—but not from the sun. Modern science has
-                      confirmed this through the discovery of bioluminescent
-                      organisms that produce their own light through chemical
-                      reactions.
+                      "From their bellies digested food and blood" precisely
+                      describes the modern scientific understanding that milk
+                      production involves nutrients from digested food being
+                      carried by the bloodstream to the mammary glands.
                     </p>
                   </div>
                 </CardContent>
@@ -364,7 +342,7 @@ const BioluminescenceComponent = () => {
 
             {/* Reflection */}
             <section id="reflection" className="scroll-mt-20">
-              <Card className={`border-l-4 border-amber-500`}>
+              <Card className="border-l-4 border-amber-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
@@ -375,42 +353,30 @@ const BioluminescenceComponent = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The connection between the Quranic verse and modern
-                    scientific discoveries about bioluminescence raises
-                    interesting questions about ancient knowledge:
+                    The accuracy of the Quran's description of milk production
+                    raises an important question:
                   </p>
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about bioluminescence?
+                      How could an illiterate man in the 7th century have known
+                      about the biological process of milk production?
                     </h3>
                     <p>
-                      The Quranic verse describes a phenomenon that science only
-                      recently confirmed—that in the deepest parts of the ocean
-                      where no sunlight can reach and a person cannot see their
-                      own hand, there can still be light. This light comes not
-                      from the sun or fire, but from living organisms that
-                      produce their own illumination through biochemical
-                      processes.
-                    </p>
-                    <p className="mt-3">
-                      This precise description of deep-sea conditions and the
-                      possibility of light in these extreme environments
-                      predates scientific discovery by over a millennium. The
-                      verse specifically mentions that "if Allah does not give
-                      light to a person he will not have light," suggesting an
-                      alternative source of light distinct from what humans
-                      typically create or harness.
+                      The Quran's precise description of milk originating from
+                      between digested food and blood - matching exactly with
+                      modern scientific understanding - was impossible knowledge
+                      for that time. This remarkable accuracy invites deep
+                      reflection about the source of this knowledge.
                     </p>
                   </div>
 
                   <p>
-                    For many, this alignment between ancient text and modern
-                    scientific understanding invites reflection on the nature of
-                    knowledge, revelation, and the complex biological
-                    adaptations that allow life to thrive even in the most
-                    extreme environments on our planet.
+                    At a time when people believed milk came from fat near the
+                    nipples, the Quran accurately described the complex
+                    biological process involving digestion and blood circulation
+                    - facts that would only be discovered centuries later with
+                    advanced scientific instruments.
                   </p>
                 </CardContent>
               </Card>
@@ -424,7 +390,7 @@ const BioluminescenceComponent = () => {
         <Popover>
           <PopoverTrigger asChild>
             <Button className="rounded-full h-14 w-14 shadow-lg bg-blue-600 hover:bg-blue-700">
-              <Fish size={24} />
+              <Droplet size={24} />
             </Button>
           </PopoverTrigger>
           <PopoverContent side="top" className="w-64 p-0 mr-6 mb-2">
@@ -457,13 +423,12 @@ const BioluminescenceComponent = () => {
       <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-blue-600" size={18} />
-            <h3 className="text-lg font-medium">Marvels of the Deep</h3>
+            <Sparkles className="text-blue-500" size={18} />
+            <h3 className="text-lg font-medium">Exploring Nature's Miracles</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The ocean's depths continue to reveal their secrets, bridging
-            ancient wisdom with modern scientific discovery. May we always look
-            upon nature with wonder and curiosity.
+            The Quran's accurate descriptions of natural phenomena continue to
+            inspire wonder and reflection.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button
@@ -480,4 +445,4 @@ const BioluminescenceComponent = () => {
   );
 };
 
-export default BioluminescenceComponent;
+export default MilkMiracle;
