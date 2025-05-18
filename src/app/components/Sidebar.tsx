@@ -28,6 +28,7 @@ import {
   Mountain,
   History,
   Bug,
+  Book,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -242,6 +243,32 @@ const SidebarComponent = () => {
         { title: "Earthquake", url: "/geology/earthquake" },
         { title: "Volcano", url: "/geology/volcano" },
         { title: "Tectonics", url: "/geology/tectonics" },
+      ],
+    },
+
+    History: {
+      icon: Book,
+      items: [
+        { title: "Calendar", url: "/history/calendar" },
+        { title: "Crucifixtion", url: "/history/crucifixtion" },
+        { title: "dieties", url: "/history/dieties" },
+        { title: "Door Locks", url: "/history/door-locks" },
+        { title: "Dried River", url: "/history/dried-river" },
+        { title: "Flight", url: "/history/flight" },
+        { title: "Haman", url: "/history/haman" },
+        { title: "Karnak Temple", url: "/history/karnak-temple" },
+        { title: "Moses", url: "/history/moses" },
+        { title: "Mourning of Pharoah", url: "/history/mourning-of-pharoah" },
+        { title: "Noah", url: "/history/noah" },
+        { title: "North", url: "/history/north" },
+        { title: "Paper Money", url: "/history/paper-money" },
+        { title: "Petra", url: "/history/petra" },
+        { title: "Pharoah", url: "/history/pharoah" },
+        { title: "Pharoah Mummy", url: "/history/pharoah-mummy" },
+        { title: "Pompiee", url: "/history/pomipee" },
+        { title: "Prostrations", url: "/history/prostrations" },
+        { title: "Skydiving", url: "/history/skydiving" },
+        { title: "Ubar", url: "/history/ubar" },
       ],
     },
     Math: {

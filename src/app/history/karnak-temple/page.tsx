@@ -2,9 +2,9 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Sun,
+  Landmark,
   ChevronRight,
-  Clock,
+  History,
   BookOpen,
   Quote,
   HelpCircle,
@@ -23,25 +23,38 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const AstronomyDay = () => {
-  const [activeSection, setActiveSection] = useState("intro");
-  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+// TypeScript interfaces
+interface ContentSection {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  color: string;
+  iconColor: string;
+}
 
-  const contents = useMemo(() => {
+interface SectionRefs {
+  [key: string]: HTMLElement | null;
+}
+
+const KarnakTemple: React.FC = () => {
+  const [activeSection, setActiveSection] = useState<string>("intro");
+  const sectionRefs = useRef<SectionRefs>({});
+
+  const contents = useMemo<ContentSection[]>(() => {
     return [
       {
         id: "intro",
-        title: "Days Getting Longer",
-        icon: Sun,
-        color: "bg-orange-100 dark:bg-orange-900",
-        iconColor: "text-orange-500",
+        title: "Pharaohs and Pillars",
+        icon: Landmark,
+        color: "bg-amber-100 dark:bg-amber-900",
+        iconColor: "text-amber-500",
       },
       {
         id: "science",
-        title: "Scientific Evidence",
-        icon: Clock,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
+        title: "Archaeological Evidence",
+        icon: History,
+        color: "bg-indigo-100 dark:bg-indigo-900",
+        iconColor: "text-indigo-500",
       },
       {
         id: "quran",
@@ -54,8 +67,8 @@ const AstronomyDay = () => {
         id: "reflection",
         title: "Reflection",
         icon: HelpCircle,
-        color: "bg-amber-100 dark:bg-amber-900",
-        iconColor: "text-amber-500",
+        color: "bg-rose-100 dark:bg-rose-900",
+        iconColor: "text-rose-500",
       },
     ];
   }, []);
@@ -98,7 +111,7 @@ const AstronomyDay = () => {
     };
   }, [contents]);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: string): void => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
@@ -109,25 +122,25 @@ const AstronomyDay = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-amber-700 dark:from-orange-700 dark:to-amber-900 text-white py-12">
+      <div className="bg-gradient-to-r from-amber-600 to-amber-800 dark:from-amber-700 dark:to-amber-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-4">
-            <Sun className="text-yellow-200" size={32} />
-            <h1 className="text-4xl font-bold">Day</h1>
+            <Landmark className="text-amber-200" size={32} />
+            <h1 className="text-4xl font-bold">Karnak Temple</h1>
           </div>
           <p className="text-xl max-w-2xl text-amber-100">
-            Astronomy - Advanced
+            Archaeology - Advanced
           </p>
           <div className="flex gap-4 mt-8">
             <Button
-              className="bg-white text-orange-700 hover:bg-orange-50"
+              className="bg-white text-amber-700 hover:bg-amber-50"
               onClick={() => scrollToSection("science")}
             >
               Continue <ChevronRight size={16} />
             </Button>
             <Button
               variant="outline"
-              className="text-orange-700"
+              className="text-amber-50 border-amber-200 hover:bg-amber-800/50"
               onClick={() => scrollToSection("intro")}
             >
               Learn More
@@ -145,7 +158,7 @@ const AstronomyDay = () => {
                 <CardHeader>
                   <CardTitle className="text-lg">Topic Guide</CardTitle>
                   <CardDescription>
-                    Explore Earth's changing day
+                    Explore Karnak Temple history
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -177,77 +190,81 @@ const AstronomyDay = () => {
           <div className="lg:col-span-3 space-y-12">
             {/* Introduction */}
             <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-orange-500">
+              <Card className="border-l-4 border-amber-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-                      <Sun className="text-orange-500" size={24} />
+                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
+                      <Landmark className="text-amber-500" size={24} />
                     </div>
-                    <CardTitle>Day Getting Longer</CardTitle>
+                    <CardTitle>Pillars Built by Pharaohs</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    In the Quran days on earth are getting longer. Skeptics
-                    claim that whoever wrote the Quran made a mistake; a day was
-                    and will always be 24 hours. Today scientists confirm that
-                    days are getting longer.
+                    In the Quran, the pillars were attributed to Pharaohs.
+                    Skeptics claim that whoever wrote the Quran made a mistake;
+                    arguing that the pillars and obelisks were built before the
+                    time of Pharaohs. Today, Egyptologists confirm that the
+                    pillars and obelisks were indeed built later by Pharaohs.
                   </p>
-                  <div className="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-100 dark:border-orange-800">
+                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-lg mb-3">
-                      Earth's Rotation is Slowing Down
+                      Karnak Temple Chronology
                     </h3>
                     <p>
-                      The rotation of Earth is slowing down, which means days
-                      were shorter in the past. This gradual change continues
-                      today, with our planet's rotation becoming incrementally
-                      slower over time.
+                      Construction of Karnak temple began in the Middle Kingdom,
+                      but the iconic pillars and obelisks were actually built
+                      later during the New Kingdom period. This distinction in
+                      timing is crucial to understanding who constructed these
+                      magnificent structures.
                     </p>
                   </div>
                 </CardContent>
               </Card>
             </section>
 
-            {/* Scientific Evidence */}
+            {/* Archaeological Evidence */}
             <section id="science" className="scroll-mt-20">
-              <Card className="border-l-4 border-blue-500">
+              <Card className="border-l-4 border-indigo-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Clock className="text-blue-500" size={24} />
+                    <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900">
+                      <History className="text-indigo-500" size={24} />
                     </div>
-                    <CardTitle>Scientific Evidence</CardTitle>
+                    <CardTitle>Archaeological Evidence</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <div className="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-lg border border-indigo-100 dark:border-indigo-800">
                     <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Scientific
+                      <Quote size={16} className="text-indigo-500" /> Historical
                       Confirmation
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
-                      "Earth's Rotation:
+                      "Great Hypostyle Hall
                       <br />
-                      Earth rotates once in about 24 hours with respect to the
-                      Sun, but once every 23 hours, 56 minutes, and 4 seconds
-                      with respect to other, distant, stars. Earth's rotation is
-                      slowing slightly with time; thus, a day was shorter in the
-                      past. This is due to the tidal effects the Moon has on
-                      Earth's rotation. Atomic clocks show that a modern-day is
-                      longer by about 1.7 milliseconds than a century ago,
-                      slowly increasing the rate at which UTC is adjusted by
-                      leap seconds. Analysis of historical astronomical records
-                      shows a slowing trend of about 2.3 milliseconds per
-                      century since the 8th century BCE."
+                      Architecture and Construction The Great Hypostyle Hall
+                      covers an area of 5,000 m² (54,000 sq ft). The roof, now
+                      fallen, was supported by 134 columns in 16 rows; the 2
+                      middle rows are higher than the others (being 10 metres
+                      (33 ft) in circumference and 24 metres (79 ft) high). The
+                      134 papyrus columns represent the primeval papyrus swamp
+                      from which Amun; a self-created deity, arose from the
+                      waters of chaos at the beginning of creating. The hall was
+                      not constructed by Horemheb, or Amenhotep III as earlier
+                      scholars had thought but was built entirely by Seti I who
+                      engraved the northern wing of the hall with inscriptions.
+                      Decoration of the southern wing was completed by the 19th
+                      dynasty pharaoh Ramesses II."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
-                        href="https://en.wikipedia.org/wiki/Earth's_rotation"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        href="https://en.wikipedia.org/wiki/Great_Hypostyle_Hall"
+                        className="text-indigo-600 dark:text-indigo-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Wikipedia, Earth's Rotation, 2019
+                        Wikipedia, Great Hypostyle Hall, 2019
                       </a>
                     </div>
                   </div>
@@ -255,33 +272,36 @@ const AstronomyDay = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <RotateCcw size={16} className="text-blue-500" />{" "}
-                        Slowing Rotation
+                        <RotateCcw size={16} className="text-indigo-500" />{" "}
+                        Middle Kingdom Origins
                       </h3>
                       <p>
-                        The rotation of Earth is slowing down, making days
-                        slightly longer over time. This occurs primarily due to
-                        tidal friction caused by the Moon's gravitational pull.
+                        The initial construction of Karnak temple began during
+                        the Middle Kingdom period (c. 2055-1650 BCE), when the
+                        ruler of Egypt was called "king" rather than "Pharaoh."
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Clock size={16} className="text-gray-500" /> Measurable
-                        Change
+                        <Landmark size={16} className="text-amber-500" /> New
+                        Kingdom Expansion
                       </h3>
                       <p>
-                        Modern atomic clocks can measure this change with
-                        precision, showing that a day is approximately 1.7
-                        milliseconds longer now than it was a century ago.
+                        The Great Hypostyle Hall with its 134 massive pillars
+                        was built during the New Kingdom (c. 1550-1070 BCE),
+                        specifically by Pharaoh Seti I and completed by Pharaoh
+                        Ramesses II.
                       </p>
                     </div>
                   </div>
 
                   <p>
-                    The rotation of Earth is slowing down, that is, days were
-                    shorter in the past; but the few milliseconds per century
-                    would have been impossible to detect 1400 years ago. However
-                    the Quran said that the days are getting longer.
+                    The construction chronology reveals a crucial distinction:
+                    the temple complex began in the Middle Kingdom era before
+                    the title "Pharaoh" was used, but the grand pillars and
+                    obelisks that made Karnak famous were built later by rulers
+                    who were indeed called Pharaohs. This historical timeline
+                    was only confirmed by modern archaeological research.
                   </p>
                 </CardContent>
               </Card>
@@ -302,35 +322,25 @@ const AstronomyDay = () => {
                   <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/7/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/54"
+                        href="https://www.quranwow.com/#/ch/38/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/12"
                         className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Quran 7:54
+                        Quran 38:12
                       </a>
                     </h3>
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "And your Lord, Allah, who created the Heavens and the
-                          Earth in six days and then settled on the Throne.
-                          [Allah] Covers the night with the day, asks for it
-                          persistently; and the sun and the moon and the stars
-                          enslaved by His orders. Is this not His creation and
-                          His command? Blessed be Allah the Lord of all the
-                          worlds."
+                          "Before them the people of Noah denied the truth; as
+                          did Aad, and Pharaoh of pillars."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          ٥٤ إِنَّ رَبَّكُمُ اللَّهُ الَّذِي خَلَقَ
-                          السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ
-                          اسْتَوَىٰ عَلَى الْعَرْشِ يُغْشِي اللَّيْلَ النَّهَارَ
-                          يَطْلُبُهُ حَثِيثًا وَالشَّمْسَ وَالْقَمَرَ
-                          وَالنُّجُومَ مُسَخَّرَاتٍ بِأَمْرِهِ ۗ أَلَا لَهُ
-                          الْخَلْقُ وَالْأَمْرُ ۗ تَبَارَكَ اللَّهُ رَبُّ
-                          الْعَالَمِينَ
+                          كَذَّبَتْ قَبْلَهُمْ قَوْمُ نُوحٍ وَعَادٌ وَفِرْعَوْنُ
+                          ذُو الْأَوْتَادِ
                         </p>
                       </div>
                     </div>
@@ -341,10 +351,13 @@ const AstronomyDay = () => {
                       Key Phrase
                     </Badge>
                     <p className="mt-3">
-                      "Yatlubuhu hatheethan يَطْلُبُهُ حَثِيثًا" means asks for
-                      it persistently; more of the day and more of the night. If
-                      God asks more of the day and more of the night then this
-                      means the days are getting longer.
+                      "Al-awtad الْأَوْتَادِ" means stakes or pillars. The
+                      phrase "Pharaoh of pillars" is particularly significant
+                      because we now know that the title "Pharaoh" was given to
+                      Egyptian rulers specifically during the New Kingdom
+                      period, not before. This aligns perfectly with
+                      archaeological findings about when the massive pillars at
+                      Karnak were constructed.
                     </p>
                   </div>
                 </CardContent>
@@ -353,43 +366,46 @@ const AstronomyDay = () => {
 
             {/* Reflection */}
             <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-amber-500">
+              <Card className="border-l-4 border-rose-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
-                      <HelpCircle className="text-amber-500" size={24} />
+                    <div className="p-2 rounded-lg bg-rose-100 dark:bg-rose-900">
+                      <HelpCircle className="text-rose-500" size={24} />
                     </div>
                     <CardTitle>Reflection</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The correlation between modern scientific findings and the
-                    Quranic verse raises an intriguing question:
+                    The correlation between modern archaeological findings and
+                    the Quranic verse raises an intriguing question:
                   </p>
 
-                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
+                  <div className="bg-rose-50 dark:bg-rose-900/30 p-6 rounded-lg border border-rose-100 dark:border-rose-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
                       How could an illiterate man who lived 1400 years ago have
-                      known that days are getting longer?
+                      known about Karnak Temple's chronology?
                     </h3>
                     <p>
-                      The subtle lengthening of Earth's day—a phenomenon that
-                      requires atomic clocks and centuries of astronomical data
-                      to measure accurately—appears to be referenced in a text
-                      from the 7th century. This connection between ancient
-                      scripture and modern scientific discovery invites
-                      contemplation about the origins of knowledge.
+                      The precise attribution of pillars to Pharaohs—a
+                      historical detail that aligns with modern archaeological
+                      discoveries about the construction timeline of Karnak
+                      Temple—appears in a text from the 7th century. This
+                      connection between ancient scripture and archaeological
+                      evidence invites contemplation about the origins of such
+                      historical knowledge.
                     </p>
                   </div>
 
                   <p>
-                    This phenomenon—that Earth's rotation is gradually slowing,
-                    causing days to lengthen over time—was completely unknown in
-                    the ancient world and would have been impossible to detect
-                    without modern scientific instruments. The reference in the
-                    Quran to the persistent extension of day and night aligns
-                    remarkably with what science has only recently confirmed.
+                    The distinction between the Middle Kingdom origins of Karnak
+                    Temple and the New Kingdom construction of its famous
+                    pillars by rulers properly called "Pharaohs" is a nuanced
+                    historical detail. This chronological accuracy in the
+                    Quranic reference to "Pharaoh of pillars" represents
+                    historical precision that would have been impossible to know
+                    in 7th century Arabia, far removed from the scholarly
+                    understanding of ancient Egyptian history and titles.
                   </p>
                 </CardContent>
               </Card>
@@ -402,12 +418,14 @@ const AstronomyDay = () => {
       <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-orange-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Time and Cosmos</h3>
+            <Sparkles className="text-amber-500" size={18} />
+            <h3 className="text-lg font-medium">
+              Exploring Ancient Civilizations
+            </h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The mysteries of our planet continue to unfold, connecting ancient
-            texts with modern scientific discoveries.
+            Discovering connections between ancient texts and archaeological
+            findings reveals the depth of historical knowledge across time.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button
@@ -424,4 +442,4 @@ const AstronomyDay = () => {
   );
 };
 
-export default AstronomyDay;
+export default KarnakTemple;
