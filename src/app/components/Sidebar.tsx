@@ -247,10 +247,19 @@ const SidebarComponent = () => {
     Math: {
       icon: Hash,
       items: [
-        { title: "Prime Numbers", url: "/math/prime-numbers" },
-        { title: "Pi", url: "/math/pi" },
-        { title: "Encoding", url: "/math/encoding" },
+        { title: "Abjad Numerals", url: "/math/abjad-numerals" },
+        { title: "Base 19", url: "/math/base-19" },
         { title: "Digital Books", url: "/math/digital-books" },
+        { title: "Encoding", url: "/math/encoding" },
+        { title: "Euler", url: "/math/euler" },
+        { title: "Hypersonic", url: "/math/hypersonic" },
+        { title: "Kilometer", url: "/math/kilometer" },
+        { title: "Light Year", url: "/math/light-year" },
+        { title: "Meter", url: "/math/meter" },
+        { title: "Miles", url: "/math/miles" },
+        { title: "Pi", url: "/math/pi" },
+        { title: "Prime Numbers", url: "/math/prime-number" },
+        { title: "Pulsar Navigation", url: "/math/pulsar-navigation" },
       ],
     },
     Meteorology: {
