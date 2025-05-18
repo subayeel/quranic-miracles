@@ -228,21 +228,31 @@ const SidebarComponent = () => {
     },
     Geology: {
       icon: Mountain,
-      subCategories: {
-        Hydrology: [
-          { title: "Porous Rocks", url: "/geology/hydrology/porous-rocks" },
-          {
-            title: "Steam Explosions",
-            url: "/geology/hydrology/steam-explosions",
-          },
-          { title: "Dead Sea", url: "/geology/hydrology/dead-sea" },
-        ],
-      },
+
       items: [
-        { title: "Mountains", url: "/geology/mountains" },
+        { title: "Aftershocks", url: "/geology/aftershocks" },
+        { title: "Asthenosphere", url: "/geology/asthenosphere" },
+        { title: "Coal", url: "/geology/coal" },
+        { title: "Dead Sea", url: "/geology/dead-sea" },
+        { title: "Earth", url: "/geology/earth" },
         { title: "Earthquake", url: "/geology/earthquake" },
+        { title: "Fault Line", url: "/geology/fault-lines" },
+        { title: "Hydrothermal Vents", url: "/geology/hydrothermal-vents" },
+        { title: "Internal Mountains", url: "/geology/internal-mountains" },
+        { title: "Internal Waves", url: "/geology/internal-waves" },
+        { title: "Landslide", url: "/geology/landslides" },
+        { title: "Minerals", url: "/geology/minerals" },
+        { title: "Mountain", url: "/geology/mountain" },
+        { title: "Photic Zone", url: "/geology/photic-zone" },
+        { title: "Porous Rocks", url: "/geology/porous-rocks" },
+        { title: "Pumice", url: "/geology/pumice" },
+        { title: "Sinkhole", url: "/geology/sinkhole" },
+        { title: "Soil Expansion", url: "/geology/soil-expansion" },
+        { title: "Steam Explosion", url: "/geology/steam-explosion" },
+        { title: "Subduction", url: "/geology/subduction" },
+        { title: "Tectonic", url: "/geology/tectonic" },
         { title: "Volcano", url: "/geology/volcano" },
-        { title: "Tectonics", url: "/geology/tectonics" },
+        { title: "Weathering & Erosions", url: "/geology/weathering-erosions" },
       ],
     },
 
