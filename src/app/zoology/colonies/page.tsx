@@ -130,7 +130,7 @@ const AnimalColonies = () => {
             </Button>
             <Button
               variant="outline"
-              className="text-white border-white hover:bg-green-700"
+              className="text-green-700 hover:text-white border-white hover:bg-green-700"
               onClick={() => scrollToSection("intro")}
             >
               Learn More
