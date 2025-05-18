@@ -10,7 +10,7 @@ import SidebarComponent from "./components/Sidebar";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Quranic Verses",
+  title: "Quranic Miracles",
   description: "A short compilation of all Miraculous verses of the Quran",
   keywords: "quran,miracles,quranicmiracles,islam",
 };

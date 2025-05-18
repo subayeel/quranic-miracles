@@ -174,7 +174,9 @@ const SidebarComponent = () => {
               />{" "}
             </Link>
             <div className="text-core flex flex-col font-semibold text-lg leading-3">
-              <span className="tracking-wide text-lg m-0">Quranic Verses</span>
+              <span className="tracking-wide text-lg m-0">
+                Quranic Miracles
+              </span>
             </div>
             <ModeToggle />
           </SidebarMenuItem>
