@@ -282,6 +282,28 @@ const SidebarComponent = () => {
         { title: "Spider Web", url: "/zoology/spider-web" },
       ],
     },
+    Physics: {
+      icon: Settings,
+      items: [
+        { title: "Armor Piercing", url: "/physics/armor-piercing" },
+        { title: "Atom", url: "/physics/atom" },
+        { title: "Cold Plasma", url: "/physics/cold-plasma" },
+        { title: "Light", url: "/physics/light" },
+        { title: "Mass", url: "/physics/mass" },
+        { title: "Pairs", url: "/physics/pairs" },
+        { title: "Pulsar", url: "/physics/pulsar" },
+        { title: "Rayleigh Scattering", url: "/physics/rayleigh-scattering" },
+
+        { title: "Singularity", url: "/physics/singularity" },
+        { title: "Solar Energy", url: "/physics/solar-energy" },
+        { title: "Sonic Weapons", url: "/physics/sonic-weapons" },
+        { title: "Speed of Light", url: "/physics/speed-of-light" },
+        { title: "String Theory", url: "/physics/string-theory" },
+        { title: "Terminal Velocity", url: "/physics/terminal-velocity" },
+        { title: "Work", url: "/physics/work" },
+        { title: "Wormhole", url: "/physics/wormhole" },
+      ],
+    },
   };
 
   // Function to determine if a link is currently active
