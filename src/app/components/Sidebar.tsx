@@ -111,6 +111,69 @@ const SidebarComponent = () => {
             title: "Brain Functions",
             url: "/biology/physiology/brain-functions",
           },
+
+          {
+            title: "AMD",
+            url: "/biology/physiology/amd",
+          },
+          {
+            title: "Bedsores",
+            url: "/biology/physiology/bedsores",
+          },
+          {
+            title: "Brain Cells",
+            url: "/biology/physiology/brain-cells",
+          },
+          {
+            title: "Brain Stem",
+            url: "/biology/physiology/brain-stem",
+          },
+
+          {
+            title: "Cataracts",
+            url: "/biology/physiology/cataracts",
+          },
+          {
+            title: "Cholesterol",
+            url: "/biology/physiology/cholesterol",
+          },
+          {
+            title: "Ear Drum",
+            url: "/biology/physiology/ear-drum",
+          },
+          {
+            title: "Finger Prints",
+            url: "/biology/physiology/fingerprints",
+          },
+          {
+            title: "Flash Blindness",
+            url: "/biology/physiology/flash-blindness",
+          },
+          {
+            title: "Inner Ear",
+            url: "/biology/physiology/inner-ear",
+          },
+
+          {
+            title: "Milk",
+            url: "/biology/physiology/milk",
+          },
+          {
+            title: "Pupils",
+            url: "/biology/physiology/pupils",
+          },
+          {
+            title: "Reading",
+            url: "/biology/physiology/reading-wisdom",
+          },
+          {
+            title: "Skin Nerves",
+            url: "/biology/physiology/skin-nerves",
+          },
+          {
+            title: "Vision Space",
+            url: "/biology/physiology/vision-space",
+          },
         ],
         Botany: [
           { title: "Chlorophyll", url: "/biology/botany/chlorophyll" },
@@ -203,11 +266,20 @@ const SidebarComponent = () => {
     Zoology: {
       icon: Bug,
       items: [
+        { title: "Ants", url: "/zoology/ants" },
+        { title: "Animal Language", url: "/zoology/animal-language" },
+
+        { title: "Camels", url: "/zoology/camels" },
+        { title: "Colonies", url: "/zoology/colonies" },
+        { title: "Crow", url: "/zoology/crow" },
+        { title: "Exoskeleton", url: "/zoology/exoskeleton" },
+        { title: "Fossils", url: "/zoology/fossils" },
+        { title: "Honey Bees", url: "/zoology/honer-bees" },
+        { title: "Housefly", url: "/zoology/housefly" },
+        { title: "Magnetoreception", url: "/zoology/magnetoreception" },
+        { title: "Mosquito", url: "/zoology/mosquito" },
         { title: "Raptors", url: "/zoology/raptors" },
         { title: "Spider Web", url: "/zoology/spider-web" },
-        { title: "Ants", url: "/zoology/ants" },
-        { title: "Honey Bees", url: "/zoology/honey-bees" },
-        { title: "Animal Languages", url: "/zoology/animal-languages" },
       ],
     },
   };
