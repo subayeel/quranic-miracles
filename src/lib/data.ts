@@ -3,13 +3,13 @@ import {
   Microscope,
   Earth,
   FlaskConical,
-  Atom,
   Hash,
   Cloud,
   Mountain,
   Bug,
   Book,
   Baby,
+  Torus,
 } from "lucide-react";
 
 export const scienceCategories = {
@@ -171,14 +171,32 @@ export const scienceCategories = {
       { title: "Pyritized Fossils", url: "/chemistry/pyritized-fossils" },
     ],
   },
+
   Cosmology: {
-    icon: Atom,
+    icon: Torus,
     items: [
-      { title: "Big Bang", url: "/cosmology/big-bang" },
-      { title: "Expanding Universe", url: "/cosmology/expanding-universe" },
       { title: "Age Of Universe", url: "/cosmology/age-of-universe" },
+      { title: "Big Bang", url: "/cosmology/big-bang" },
+      { title: "Big Crunch", url: "/cosmology/big-crunch" },
       { title: "Dark Energy", url: "/cosmology/dark-energy" },
+      { title: "Expanding Universe", url: "/cosmology/expanding-universe" },
+
+      {
+        title: "Equivalence Principle",
+        url: "/cosmology/equivalence-principle",
+      },
+      { title: "Expanding Universe", url: "/cosmology/expanding-universe" },
+      { title: "Galaxy Filaments", url: "/cosmology/galaxy-filaments" },
+      { title: "Gravitation Waves", url: "/cosmology/gravitation-waves" },
       { title: "Gravity", url: "/cosmology/gravity" },
+      { title: "Isotropy", url: "/cosmology/isotropy" },
+      { title: "Primordial Smoke", url: "/cosmology/primordial-smoke" },
+      { title: "Red Shifting", url: "/cosmology/red-shifting" },
+      { title: "Seven Heavens", url: "/cosmology/seven-heavens" },
+      { title: "Shape of Universe", url: "/cosmology/shape-of-universe" },
+      { title: "Sound Waves", url: "/cosmology/sound-waves" },
+      { title: "Spacetime", url: "/cosmology/spacetime" },
+      { title: "Time Dilation", url: "/cosmology/time-dilation" },
     ],
   },
   Embryology: {
