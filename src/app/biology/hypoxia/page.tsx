@@ -141,7 +141,7 @@ const Hypoxia = () => {
                         </Button>
                         <Button
                             variant="outline"
-                            className="text-white border-white hover:bg-blue-600"
+                            className="text-blue-700 border-white hover:bg-blue-600"
                             onClick={() => scrollToSection("intro")}
                         >
                             Learn More
