@@ -2,13 +2,13 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Sun,
+  Flame,
   ChevronRight,
-  Clock,
+  Mountain,
   BookOpen,
   Quote,
   HelpCircle,
-  RotateCcw,
+  Pickaxe,
   ArrowUp,
   Sparkles,
 } from "lucide-react";
@@ -23,25 +23,33 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const AstronomyDay = () => {
-  const [activeSection, setActiveSection] = useState("intro");
+type SectionType = {
+  id: string;
+  title: string;
+  icon: React.FC<{ className?: string; size?: number }>;
+  color: string;
+  iconColor: string;
+};
+
+const CoalMiracle = () => {
+  const [activeSection, setActiveSection] = useState<string>("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents = useMemo(() => {
+  const contents = useMemo<SectionType[]>(() => {
     return [
       {
         id: "intro",
-        title: "Days Getting Longer",
-        icon: Sun,
-        color: "bg-orange-100 dark:bg-orange-900",
-        iconColor: "text-orange-500",
+        title: "Combustible Rock",
+        icon: Flame,
+        color: "bg-red-100 dark:bg-red-900",
+        iconColor: "text-red-500",
       },
       {
         id: "science",
         title: "Scientific Evidence",
-        icon: Clock,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
+        icon: Mountain,
+        color: "bg-slate-100 dark:bg-slate-900",
+        iconColor: "text-slate-500",
       },
       {
         id: "quran",
@@ -62,7 +70,7 @@ const AstronomyDay = () => {
 
   // Set up Intersection Observer to track which section is in view
   useEffect(() => {
-    const options = {
+    const options: IntersectionObserverInit = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
@@ -107,27 +115,27 @@ const AstronomyDay = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+    <div
+      className={`min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 `}
+    >
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-amber-700 dark:from-orange-700 dark:to-amber-900 text-white py-12">
+      <div className="bg-gradient-to-r from-red-600 to-orange-700 dark:from-red-800 dark:to-orange-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-4">
-            <Sun className="text-yellow-200" size={32} />
-            <h1 className="text-4xl font-bold">Day</h1>
+            <Flame className="text-yellow-200" size={32} />
+            <h1 className="text-4xl font-bold">Coal</h1>
           </div>
-          <p className="text-xl max-w-2xl text-amber-100">
-            Astronomy - Advanced
-          </p>
+          <p className="text-xl max-w-2xl text-amber-100">Geology - Advanced</p>
           <div className="flex gap-4 mt-8">
             <Button
-              className="bg-white text-orange-700 hover:bg-orange-50"
+              className="bg-white text-red-700 hover:bg-red-50"
               onClick={() => scrollToSection("science")}
             >
               Continue <ChevronRight size={16} />
             </Button>
             <Button
               variant="outline"
-              className="text-orange-700"
+              className="text-white border-white hover:bg-red-700"
               onClick={() => scrollToSection("intro")}
             >
               Learn More
@@ -145,7 +153,7 @@ const AstronomyDay = () => {
                 <CardHeader>
                   <CardTitle className="text-lg">Topic Guide</CardTitle>
                   <CardDescription>
-                    Explore Earth's changing day
+                    Explore the miracle of combustible stones
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -177,31 +185,32 @@ const AstronomyDay = () => {
           <div className="lg:col-span-3 space-y-12">
             {/* Introduction */}
             <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-orange-500">
+              <Card className="border-l-4 border-red-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-                      <Sun className="text-orange-500" size={24} />
+                    <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900">
+                      <Flame className="text-red-500" size={24} />
                     </div>
-                    <CardTitle>Day Getting Longer</CardTitle>
+                    <CardTitle>Combustible Rock</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    In the Quran days on earth are getting longer. Skeptics
-                    claim that whoever wrote the Quran made a mistake; a day was
-                    and will always be 24 hours. Today scientists confirm that
-                    days are getting longer.
+                    The Quran mentions stones that can be used as fuel for fire.
+                    Skeptics claim this is scientifically inaccurate since
+                    stones don't burn. However, we now know that coal - a
+                    combustible rock - exists and is widely used as fuel.
                   </p>
-                  <div className="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-100 dark:border-orange-800">
+                  <div className="bg-red-50 dark:bg-red-900/30 p-6 rounded-lg border border-red-100 dark:border-red-800">
                     <h3 className="font-bold text-lg mb-3">
-                      Earth's Rotation is Slowing Down
+                      Coal - A Rock That Burns
                     </h3>
                     <p>
-                      The rotation of Earth is slowing down, which means days
-                      were shorter in the past. This gradual change continues
-                      today, with our planet's rotation becoming incrementally
-                      slower over time.
+                      In 7th century Arabia, people primarily used wood as fuel
+                      for fire. The concept of rocks that could burn would have
+                      been foreign to them. Today, coal is recognized as one of
+                      the world's most important fossil fuels - literally a
+                      stone that burns.
                     </p>
                   </div>
                 </CardContent>
@@ -210,44 +219,40 @@ const AstronomyDay = () => {
 
             {/* Scientific Evidence */}
             <section id="science" className="scroll-mt-20">
-              <Card className="border-l-4 border-blue-500">
+              <Card className="border-l-4 border-slate-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Clock className="text-blue-500" size={24} />
+                    <div className="p-2 rounded-lg bg-slate-100 dark:bg-slate-900">
+                      <Mountain className="text-slate-500" size={24} />
                     </div>
                     <CardTitle>Scientific Evidence</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <div className="bg-slate-50 dark:bg-slate-900/30 p-6 rounded-lg border border-slate-100 dark:border-slate-800">
                     <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Scientific
+                      <Quote size={16} className="text-slate-500" /> Scientific
                       Confirmation
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
-                      "Earth's Rotation:
+                      "What is Coal?
                       <br />
-                      Earth rotates once in about 24 hours with respect to the
-                      Sun, but once every 23 hours, 56 minutes, and 4 seconds
-                      with respect to other, distant, stars. Earth's rotation is
-                      slowing slightly with time; thus, a day was shorter in the
-                      past. This is due to the tidal effects the Moon has on
-                      Earth's rotation. Atomic clocks show that a modern-day is
-                      longer by about 1.7 milliseconds than a century ago,
-                      slowly increasing the rate at which UTC is adjusted by
-                      leap seconds. Analysis of historical astronomical records
-                      shows a slowing trend of about 2.3 milliseconds per
-                      century since the 8th century BCE."
+                      Coal is an organic sedimentary rock that forms from the
+                      accumulation and preservation of plant materials, usually
+                      in a swamp environment. Coal is a combustible rock and,
+                      along with oil and natural gas, it is one of the three
+                      most important fossil fuels. Coal has a wide range of
+                      uses; the most important use is for the generation of
+                      electricity."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
-                        href="https://en.wikipedia.org/wiki/Earth's_rotation"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
+                        href="#"
+                        className="text-slate-600 dark:text-slate-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Wikipedia, Earth's Rotation, 2019
+                        Geology, Coal, 2020
                       </a>
                     </div>
                   </div>
@@ -255,33 +260,36 @@ const AstronomyDay = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <RotateCcw size={16} className="text-blue-500" />{" "}
-                        Slowing Rotation
+                        <Pickaxe size={16} className="text-slate-500" /> Coal
+                        Formation
                       </h3>
                       <p>
-                        The rotation of Earth is slowing down, making days
-                        slightly longer over time. This occurs primarily due to
-                        tidal friction caused by the Moon's gravitational pull.
+                        Coal forms over millions of years as plant material is
+                        buried, compressed, and transformed by heat and
+                        pressure. This process creates a carbon-rich rock that
+                        can be burned as fuel.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Clock size={16} className="text-gray-500" /> Measurable
-                        Change
+                        <Flame size={16} className="text-red-500" /> Historical
+                        Usage
                       </h3>
                       <p>
-                        Modern atomic clocks can measure this change with
-                        precision, showing that a day is approximately 1.7
-                        milliseconds longer now than it was a century ago.
+                        While coal has been used in various parts of the world
+                        since ancient times, it was not known or used in 7th
+                        century Arabia. Wood was the primary fuel source in that
+                        region and era.
                       </p>
                     </div>
                   </div>
 
                   <p>
-                    The rotation of Earth is slowing down, that is, days were
-                    shorter in the past; but the few milliseconds per century
-                    would have been impossible to detect 1400 years ago. However
-                    the Quran said that the days are getting longer.
+                    The scientific description of coal as a "combustible rock"
+                    is significant because this knowledge was not available to
+                    the people of Arabia during the time the Quran was revealed.
+                    The concept of stones that could burn would have seemed
+                    contradictory to common experience.
                   </p>
                 </CardContent>
               </Card>
@@ -302,35 +310,27 @@ const AstronomyDay = () => {
                   <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/7/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/54"
+                        href="https://quran.com/2/24"
                         className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Quran 7:54
+                        Quran 2:24
                       </a>
                     </h3>
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "And your Lord, Allah, who created the Heavens and the
-                          Earth in six days and then settled on the Throne.
-                          [Allah] Covers the night with the day, asks for it
-                          persistently; and the sun and the moon and the stars
-                          enslaved by His orders. Is this not His creation and
-                          His command? Blessed be Allah the Lord of all the
-                          worlds."
+                          "But if you do not-and you will not-then beware the
+                          Fire whose fuel is people and stones, prepared for the
+                          disbelievers."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          ٥٤ إِنَّ رَبَّكُمُ اللَّهُ الَّذِي خَلَقَ
-                          السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ
-                          اسْتَوَىٰ عَلَى الْعَرْشِ يُغْشِي اللَّيْلَ النَّهَارَ
-                          يَطْلُبُهُ حَثِيثًا وَالشَّمْسَ وَالْقَمَرَ
-                          وَالنُّجُومَ مُسَخَّرَاتٍ بِأَمْرِهِ ۗ أَلَا لَهُ
-                          الْخَلْقُ وَالْأَمْرُ ۗ تَبَارَكَ اللَّهُ رَبُّ
-                          الْعَالَمِينَ
+                          فَإِنْ لَمْ تَفْعَلُوا وَلَنْ تَفْعَلُوا فَاتَّقُوا
+                          النَّارَ الَّتِي وَقُودُهَا النَّاسُ وَالْحِجَارَةُ ۖ
+                          أُعِدَّتْ لِلْكَافِرِينَ
                         </p>
                       </div>
                     </div>
@@ -341,10 +341,11 @@ const AstronomyDay = () => {
                       Key Phrase
                     </Badge>
                     <p className="mt-3">
-                      "Yatlubuhu hatheethan يَطْلُبُهُ حَثِيثًا" means asks for
-                      it persistently; more of the day and more of the night. If
-                      God asks more of the day and more of the night then this
-                      means the days are getting longer.
+                      The key phrase "وَقُودُهَا النَّاسُ وَالْحِجَارَةُ"
+                      (waqooduha an-nasu wal-hijarah) means "whose fuel is
+                      people and stones." The word "حِجَارَةُ" (hijarah)
+                      specifically refers to stones or rocks. This description
+                      indicates rocks that can burn - precisely what coal is.
                     </p>
                   </div>
                 </CardContent>
@@ -364,32 +365,32 @@ const AstronomyDay = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The correlation between modern scientific findings and the
-                    Quranic verse raises an intriguing question:
+                    The correlation between modern scientific understanding of
+                    coal and the Quranic verse raises an intriguing question:
                   </p>
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
                       How could an illiterate man who lived 1400 years ago have
-                      known that days are getting longer?
+                      known about coal?
                     </h3>
                     <p>
-                      The subtle lengthening of Earth's day—a phenomenon that
-                      requires atomic clocks and centuries of astronomical data
-                      to measure accurately—appears to be referenced in a text
-                      from the 7th century. This connection between ancient
-                      scripture and modern scientific discovery invites
-                      contemplation about the origins of knowledge.
+                      In 7th century Arabia, the concept of rocks that could
+                      burn as fuel would have been counterintuitive and unknown.
+                      Coal was not mined or used in that region, and the Arabs
+                      primarily used wood for fire. Yet the Quran specifically
+                      mentions stones as fuel for fire - a scientific fact that
+                      matches our modern understanding of coal as a combustible
+                      rock.
                     </p>
                   </div>
 
                   <p>
-                    This phenomenon—that Earth's rotation is gradually slowing,
-                    causing days to lengthen over time—was completely unknown in
-                    the ancient world and would have been impossible to detect
-                    without modern scientific instruments. The reference in the
-                    Quran to the persistent extension of day and night aligns
-                    remarkably with what science has only recently confirmed.
+                    This alignment between the Quranic description and
+                    scientific knowledge invites thoughtful consideration about
+                    the source of this information. The mention of stones that
+                    burn as fuel represents knowledge that was not part of the
+                    common understanding in 7th century Arabia.
                   </p>
                 </CardContent>
               </Card>
@@ -402,12 +403,12 @@ const AstronomyDay = () => {
       <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-orange-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Time and Cosmos</h3>
+            <Sparkles className="text-red-500" size={18} />
+            <h3 className="text-lg font-medium">Exploring Earth's Resources</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The mysteries of our planet continue to unfold, connecting ancient
-            texts with modern scientific discoveries.
+            The wonders of our planet's natural resources continue to affirm
+            connections between ancient texts and modern scientific discoveries.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button
@@ -424,4 +425,4 @@ const AstronomyDay = () => {
   );
 };
 
-export default AstronomyDay;
+export default CoalMiracle;

@@ -2,15 +2,16 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Sun,
+  Droplets,
   ChevronRight,
-  Clock,
+  GlassWater,
   BookOpen,
   Quote,
   HelpCircle,
-  RotateCcw,
+  ArrowUpDown,
   ArrowUp,
   Sparkles,
+  Mountain,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -23,23 +24,32 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const AstronomyDay = () => {
-  const [activeSection, setActiveSection] = useState("intro");
+// Define types for our content items
+type ContentItem = {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  color: string;
+  iconColor: string;
+};
+
+const SoilExpansion = () => {
+  const [activeSection, setActiveSection] = useState<string>("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents = useMemo(() => {
+  const contents = useMemo<ContentItem[]>(() => {
     return [
       {
         id: "intro",
-        title: "Days Getting Longer",
-        icon: Sun,
-        color: "bg-orange-100 dark:bg-orange-900",
-        iconColor: "text-orange-500",
+        title: "Expanding Soil",
+        icon: Mountain,
+        color: "bg-brown-100 dark:bg-brown-900",
+        iconColor: "text-amber-700",
       },
       {
         id: "science",
         title: "Scientific Evidence",
-        icon: Clock,
+        icon: GlassWater,
         color: "bg-blue-100 dark:bg-blue-900",
         iconColor: "text-blue-500",
       },
@@ -109,25 +119,23 @@ const AstronomyDay = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-amber-700 dark:from-orange-700 dark:to-amber-900 text-white py-12">
+      <div className="bg-gradient-to-r from-amber-600 to-brown-700 dark:from-amber-800 dark:to-brown-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-4">
-            <Sun className="text-yellow-200" size={32} />
-            <h1 className="text-4xl font-bold">Day</h1>
+            <Mountain className="text-amber-200" size={32} />
+            <h1 className="text-4xl font-bold">Soil</h1>
           </div>
-          <p className="text-xl max-w-2xl text-amber-100">
-            Astronomy - Advanced
-          </p>
+          <p className="text-xl max-w-2xl text-amber-100">Geology - Advanced</p>
           <div className="flex gap-4 mt-8">
             <Button
-              className="bg-white text-orange-700 hover:bg-orange-50"
+              className="bg-white text-amber-700 hover:bg-amber-50"
               onClick={() => scrollToSection("science")}
             >
               Continue <ChevronRight size={16} />
             </Button>
             <Button
               variant="outline"
-              className="text-orange-700"
+              className="text-amber-50 border-amber-50 hover:bg-amber-800/20"
               onClick={() => scrollToSection("intro")}
             >
               Learn More
@@ -145,7 +153,7 @@ const AstronomyDay = () => {
                 <CardHeader>
                   <CardTitle className="text-lg">Topic Guide</CardTitle>
                   <CardDescription>
-                    Explore Earth's changing day
+                    Explore soil's expanding nature
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
@@ -177,31 +185,32 @@ const AstronomyDay = () => {
           <div className="lg:col-span-3 space-y-12">
             {/* Introduction */}
             <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-orange-500">
+              <Card className="border-l-4 border-amber-600">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-                      <Sun className="text-orange-500" size={24} />
+                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
+                      <Mountain className="text-amber-700" size={24} />
                     </div>
-                    <CardTitle>Day Getting Longer</CardTitle>
+                    <CardTitle>Expanding Soil</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    In the Quran days on earth are getting longer. Skeptics
-                    claim that whoever wrote the Quran made a mistake; a day was
-                    and will always be 24 hours. Today scientists confirm that
-                    days are getting longer.
+                    In the Quran, there's a reference to soil that expands when
+                    exposed to water. Skeptics have questioned this statement,
+                    but modern science has confirmed that certain soils do
+                    indeed expand significantly when wet.
                   </p>
-                  <div className="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-100 dark:border-orange-800">
+                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-lg mb-3">
-                      Earth's Rotation is Slowing Down
+                      Soil Expansion Causes Infrastructure Damage
                     </h3>
                     <p>
-                      The rotation of Earth is slowing down, which means days
-                      were shorter in the past. This gradual change continues
-                      today, with our planet's rotation becoming incrementally
-                      slower over time.
+                      When certain soils absorb water, they can increase in
+                      volume significantly. This expansion and subsequent
+                      contraction when drying causes countless potholes on
+                      roadways and damage to building foundations around the
+                      world each year.
                     </p>
                   </div>
                 </CardContent>
@@ -214,7 +223,7 @@ const AstronomyDay = () => {
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Clock className="text-blue-500" size={24} />
+                      <GlassWater className="text-blue-500" size={24} />
                     </div>
                     <CardTitle>Scientific Evidence</CardTitle>
                   </div>
@@ -226,28 +235,24 @@ const AstronomyDay = () => {
                       Confirmation
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
-                      "Earth's Rotation:
+                      "What is an 'Expansive Soil'?
                       <br />
-                      Earth rotates once in about 24 hours with respect to the
-                      Sun, but once every 23 hours, 56 minutes, and 4 seconds
-                      with respect to other, distant, stars. Earth's rotation is
-                      slowing slightly with time; thus, a day was shorter in the
-                      past. This is due to the tidal effects the Moon has on
-                      Earth's rotation. Atomic clocks show that a modern-day is
-                      longer by about 1.7 milliseconds than a century ago,
-                      slowly increasing the rate at which UTC is adjusted by
-                      leap seconds. Analysis of historical astronomical records
-                      shows a slowing trend of about 2.3 milliseconds per
-                      century since the 8th century BCE."
+                      Expansive soils contain minerals such as smectite clays
+                      that are capable of absorbing water. When they absorb
+                      water, they increase in volume. The more water they
+                      absorb, the more their volume increases. Expansions of ten
+                      percent or more are not uncommon. This change in volume
+                      can exert enough force on a building or other structure to
+                      cause damage."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
-                        href="https://en.wikipedia.org/wiki/Earth's_rotation"
+                        href="#"
                         className="text-blue-600 dark:text-blue-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Wikipedia, Earth's Rotation, 2019
+                        Geology, Expansive Soil and Expansive Clay, 2019
                       </a>
                     </div>
                   </div>
@@ -255,33 +260,38 @@ const AstronomyDay = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <RotateCcw size={16} className="text-blue-500" />{" "}
-                        Slowing Rotation
+                        <ArrowUpDown size={16} className="text-blue-500" />{" "}
+                        Swelling Phenomenon
                       </h3>
                       <p>
-                        The rotation of Earth is slowing down, making days
-                        slightly longer over time. This occurs primarily due to
-                        tidal friction caused by the Moon's gravitational pull.
+                        When water penetrates certain clay minerals, it causes
+                        them to dramatically expand. This expansion can exert
+                        forces strong enough to lift concrete slabs, crack
+                        foundations, and damage roadways.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Clock size={16} className="text-gray-500" /> Measurable
-                        Change
+                        <Droplets size={16} className="text-blue-500" /> Water
+                        Absorption
                       </h3>
                       <p>
-                        Modern atomic clocks can measure this change with
-                        precision, showing that a day is approximately 1.7
-                        milliseconds longer now than it was a century ago.
+                        Expansive soils can increase their volume up to 10% or
+                        more when absorbing water. When they dry out, they
+                        contract, creating a cycle of expansion and contraction
+                        that damages structures built on them.
                       </p>
                     </div>
                   </div>
 
                   <p>
-                    The rotation of Earth is slowing down, that is, days were
-                    shorter in the past; but the few milliseconds per century
-                    would have been impossible to detect 1400 years ago. However
-                    the Quran said that the days are getting longer.
+                    Potholes on asphalt roads are often caused by this expansion
+                    and contraction cycle. When water causes the soil beneath to
+                    expand, it pushes the asphalt upward. When the soil dries
+                    and contracts, the unsupported asphalt collapses, forming a
+                    pothole. This scientific understanding is relatively recent,
+                    yet remarkably, the Quran described this phenomenon 1400
+                    years ago.
                   </p>
                 </CardContent>
               </Card>
@@ -302,35 +312,29 @@ const AstronomyDay = () => {
                   <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/7/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/54"
+                        href="https://www.quranwow.com/#/ch/41/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/39"
                         className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Quran 7:54
+                        Quran 41:39
                       </a>
                     </h3>
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "And your Lord, Allah, who created the Heavens and the
-                          Earth in six days and then settled on the Throne.
-                          [Allah] Covers the night with the day, asks for it
-                          persistently; and the sun and the moon and the stars
-                          enslaved by His orders. Is this not His creation and
-                          His command? Blessed be Allah the Lord of all the
-                          worlds."
+                          "And of His signs is that you see the land still. But
+                          when We send down water upon it, it shakes and rises.
+                          Surely, He Who revived it will revive the dead. He is
+                          Able to do all things."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          ٥٤ إِنَّ رَبَّكُمُ اللَّهُ الَّذِي خَلَقَ
-                          السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ
-                          اسْتَوَىٰ عَلَى الْعَرْشِ يُغْشِي اللَّيْلَ النَّهَارَ
-                          يَطْلُبُهُ حَثِيثًا وَالشَّمْسَ وَالْقَمَرَ
-                          وَالنُّجُومَ مُسَخَّرَاتٍ بِأَمْرِهِ ۗ أَلَا لَهُ
-                          الْخَلْقُ وَالْأَمْرُ ۗ تَبَارَكَ اللَّهُ رَبُّ
-                          الْعَالَمِينَ
+                          وَمِنْ آيَاتِهِ أَنَّكَ تَرَى الْأَرْضَ خَاشِعَةً
+                          فَإِذَا أَنْزَلْنَا عَلَيْهَا الْمَاءَ اهْتَزَّتْ
+                          وَرَبَتْ ۚ إِنَّ الَّذِي أَحْيَاهَا لَمُحْيِي
+                          الْمَوْتَىٰ ۚ إِنَّهُ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ
                         </p>
                       </div>
                     </div>
@@ -341,10 +345,18 @@ const AstronomyDay = () => {
                       Key Phrase
                     </Badge>
                     <p className="mt-3">
-                      "Yatlubuhu hatheethan يَطْلُبُهُ حَثِيثًا" means asks for
-                      it persistently; more of the day and more of the night. If
-                      God asks more of the day and more of the night then this
-                      means the days are getting longer.
+                      The Arabic word "Rabat رَبَتْ" used in this verse means
+                      "rose higher" or "increased in height." It comes from
+                      "Rabua رَبْوَة" meaning high ground, and its verb "Yarbu
+                      يَربُو" means to rise higher. This same word appears in
+                      Quran 13:17 referring to something that floats or rises to
+                      the top of water.
+                    </p>
+                    <p className="mt-2">
+                      The verse clearly describes how water causes the soil to
+                      "shake" (اهْتَزَّتْ - ihtazzat) and "rise" (رَبَتْ -
+                      rabat), precisely describing the expansion property of
+                      certain soils when they absorb water.
                     </p>
                   </div>
                 </CardContent>
@@ -364,32 +376,37 @@ const AstronomyDay = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The correlation between modern scientific findings and the
-                    Quranic verse raises an intriguing question:
+                    The correlation between modern scientific understanding of
+                    expansive soils and the Quranic verse raises an intriguing
+                    question:
                   </p>
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
                       How could an illiterate man who lived 1400 years ago have
-                      known that days are getting longer?
+                      known about soil expansion?
                     </h3>
                     <p>
-                      The subtle lengthening of Earth's day—a phenomenon that
-                      requires atomic clocks and centuries of astronomical data
-                      to measure accurately—appears to be referenced in a text
-                      from the 7th century. This connection between ancient
-                      scripture and modern scientific discovery invites
-                      contemplation about the origins of knowledge.
+                      The detailed description in the Quran of soil rising when
+                      water falls upon it—a phenomenon that requires modern
+                      scientific knowledge to fully understand—appears in a text
+                      from the 7th century, long before the development of
+                      modern geology. This connection between ancient scripture
+                      and contemporary scientific discovery invites
+                      contemplation about the origins of such precise knowledge.
                     </p>
                   </div>
 
                   <p>
-                    This phenomenon—that Earth's rotation is gradually slowing,
-                    causing days to lengthen over time—was completely unknown in
-                    the ancient world and would have been impossible to detect
-                    without modern scientific instruments. The reference in the
-                    Quran to the persistent extension of day and night aligns
-                    remarkably with what science has only recently confirmed.
+                    The scientific understanding of expansive soils and their
+                    behavior when exposed to water is relatively recent. Modern
+                    engineering and geology have only in the past century begun
+                    to fully document and understand the significant forces
+                    these soils can exert when they absorb water. Yet, the
+                    Quranic verse directly describes this process of soil
+                    shaking and rising when water falls upon it, using
+                    terminology that accurately captures the physical phenomenon
+                    now recognized by science.
                   </p>
                 </CardContent>
               </Card>
@@ -402,12 +419,12 @@ const AstronomyDay = () => {
       <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-orange-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Time and Cosmos</h3>
+            <Sparkles className="text-amber-600" size={18} />
+            <h3 className="text-lg font-medium">Exploring Earth Sciences</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The mysteries of our planet continue to unfold, connecting ancient
-            texts with modern scientific discoveries.
+            The remarkable properties of our planet continue to unfold,
+            connecting ancient wisdom with modern scientific discoveries.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button
@@ -424,4 +441,4 @@ const AstronomyDay = () => {
   );
 };
 
-export default AstronomyDay;
+export default SoilExpansion;

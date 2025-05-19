@@ -14,21 +14,7 @@ import {
   SidebarHeader,
   SidebarFooter,
 } from "@/components/ui/sidebar";
-import {
-  Settings,
-  ChevronUp,
-  ChevronDown,
-  Home,
-  Microscope,
-  Earth,
-  FlaskConical,
-  Atom,
-  Hash,
-  Cloud,
-  Mountain,
-  History,
-  Bug,
-} from "lucide-react";
+import { Settings, ChevronUp, ChevronDown, Home } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,6 +28,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { scienceCategories } from "@/lib/data";
 
 const SidebarComponent = () => {
   const [currentPath, setCurrentPath] = useState("");
@@ -59,245 +46,6 @@ const SidebarComponent = () => {
       ...prev,
       [category]: !prev[category],
     }));
-  };
-
-  // New categories from the first document
-  const scienceCategories = {
-    Astronomy: {
-      icon: Earth,
-      items: [
-        { title: "Stars", url: "/astronomy/stars" },
-        { title: "Red Giant", url: "/astronomy/red-giant" },
-        { title: "Venus", url: "/astronomy/venus" },
-        { title: "Axial Tilt", url: "/astronomy/axial-tilt" },
-        { title: "Tidal Locking", url: "/astronomy/tidal-locking" },
-        { title: "Full Moon", url: "/astronomy/full-moon" },
-        { title: "Exoplanets", url: "/astronomy/exoplanets" },
-        { title: "Meteorites", url: "/astronomy/meteorites" },
-        { title: "Planets", url: "/astronomy/planets" },
-        { title: "Planetary Orbits", url: "/astronomy/planetary-orbits" },
-        { title: "Magnetosphere", url: "/astronomy/magnetosphere" },
-        { title: "Moonlight", url: "/astronomy/moonlight" },
-        { title: "Day", url: "/astronomy/day" },
-        { title: "Solar Flare", url: "/astronomy/solar-flare" },
-        { title: "Sunlight", url: "/astronomy/sunlight" },
-        { title: "Multi-Star System", url: "/astronomy/multi-star" },
-        { title: "Starlight", url: "/astronomy/starlight" },
-        { title: "Sirius", url: "/astronomy/sirius" },
-        { title: "Stars Wobble", url: "/astronomy/stars-wobble" },
-        { title: "Kelvin", url: "/astronomy/kelvin" },
-      ],
-    },
-    Biology: {
-      icon: Microscope,
-      subCategories: {
-        Embryology: [
-          { title: "Meiosis", url: "/biology/embryology/meiosis" },
-          {
-            title: "Male Fertility",
-            url: "/biology/embryology/male-fertility",
-          },
-          {
-            title: "Fetal Development",
-            url: "/biology/embryology/fetal-development",
-          },
-          { title: "Human Embryo", url: "/biology/embryology/human-embryo" },
-        ],
-        Physiology: [
-          { title: "Neurons", url: "/biology/physiology/neurons" },
-          { title: "Brain Cells", url: "/biology/physiology/brain-cells" },
-          { title: "Vision", url: "/biology/physiology/vision" },
-          {
-            title: "Brain Functions",
-            url: "/biology/physiology/brain-functions",
-          },
-
-          {
-            title: "AMD",
-            url: "/biology/physiology/amd",
-          },
-          {
-            title: "Bedsores",
-            url: "/biology/physiology/bedsores",
-          },
-          {
-            title: "Brain Cells",
-            url: "/biology/physiology/brain-cells",
-          },
-          {
-            title: "Brain Stem",
-            url: "/biology/physiology/brain-stem",
-          },
-
-          {
-            title: "Cataracts",
-            url: "/biology/physiology/cataracts",
-          },
-          {
-            title: "Cholesterol",
-            url: "/biology/physiology/cholesterol",
-          },
-          {
-            title: "Ear Drum",
-            url: "/biology/physiology/ear-drum",
-          },
-          {
-            title: "Finger Prints",
-            url: "/biology/physiology/fingerprints",
-          },
-          {
-            title: "Flash Blindness",
-            url: "/biology/physiology/flash-blindness",
-          },
-          {
-            title: "Inner Ear",
-            url: "/biology/physiology/inner-ear",
-          },
-
-          {
-            title: "Milk",
-            url: "/biology/physiology/milk",
-          },
-          {
-            title: "Pupils",
-            url: "/biology/physiology/pupils",
-          },
-          {
-            title: "Reading",
-            url: "/biology/physiology/reading-wisdom",
-          },
-          {
-            title: "Skin Nerves",
-            url: "/biology/physiology/skin-nerves",
-          },
-          {
-            title: "Vision Space",
-            url: "/biology/physiology/vision-space",
-          },
-        ],
-        Botany: [
-          { title: "Chlorophyll", url: "/biology/botany/chlorophyll" },
-          { title: "Pollination", url: "/biology/botany/pollination" },
-          { title: "Plant Stress", url: "/biology/botany/plant-stress" },
-        ],
-      },
-      items: [
-        { title: "Bioluminescence", url: "/biology/bioluminescence" },
-        { title: "Colors", url: "/biology/colors" },
-        { title: "Honey", url: "/biology/honey" },
-        { title: "Fats", url: "/biology/fats" },
-        { title: "Hypoxia", url: "/biology/hypoxia" },
-        { title: "White Hair", url: "/biology/white-hair" },
-        { title: "Alzheimer's", url: "/biology/alzheimer" },
-        { title: "Fear", url: "/biology/fear" },
-        { title: "Keraunoparalysis", url: "/biology/keraunoparalysis" },
-        { title: "Bacteria", url: "/biology/bacteria" },
-        { title: "Fasting", url: "/biology/fasting" },
-        { title: "Breastfeeding", url: "/biology/breastfeeding" },
-        { title: "Evolution", url: "/biology/evolution" },
-        { title: "Nutrient Cycle", url: "/biology/nutrient-cycle" },
-        { title: "Pollination", url: "/biology/pollination" },
-        { title: "Anti-Oxidants", url: "/biology/antioxidants" },
-        { title: "Plant Stress", url: "/biology/plant-stress" },
-        { title: "Frost", url: "/biology/frost" },
-        { title: "Gardens", url: "/biology/gardens" },
-        { title: "Fig", url: "/biology/fig" },
-      ],
-    },
-    Chemistry: {
-      icon: FlaskConical,
-      items: [
-        { title: "Hydrogen Peroxide", url: "/chemistry/hydrogen-peroxide" },
-        { title: "Viscosity", url: "/chemistry/viscosity" },
-        { title: "Hydrogen", url: "/chemistry/hydrogen" },
-        { title: "Iron", url: "/chemistry/iron" },
-        { title: "Rust", url: "/chemistry/rust" },
-      ],
-    },
-    Cosmology: {
-      icon: Atom,
-      items: [
-        { title: "Big Bang", url: "/cosmology/big-bang" },
-        { title: "Expanding Universe", url: "/cosmology/expanding-universe" },
-        { title: "Age Of Universe", url: "/cosmology/age-of-universe" },
-        { title: "Dark Energy", url: "/cosmology/dark-energy" },
-        { title: "Gravity", url: "/cosmology/gravity" },
-      ],
-    },
-    Egyptology: {
-      icon: History,
-      subCategories: {
-        History: [
-          { title: "Paper Money", url: "/egyptology/history/paper-money" },
-          { title: "Flight", url: "/egyptology/history/flight" },
-          { title: "Noah", url: "/egyptology/history/noah" },
-          { title: "Pompeii", url: "/egyptology/history/pompeii" },
-        ],
-      },
-      items: [
-        { title: "Pharaoh's Mummy", url: "/egyptology/mummy" },
-        { title: "Haman", url: "/egyptology/haman" },
-        { title: "Moses", url: "/egyptology/moses" },
-        { title: "Pharaoh", url: "/egyptology/pharaoh" },
-      ],
-    },
-    Geology: {
-      icon: Mountain,
-      subCategories: {
-        Hydrology: [
-          { title: "Porous Rocks", url: "/geology/hydrology/porous-rocks" },
-          {
-            title: "Steam Explosions",
-            url: "/geology/hydrology/steam-explosions",
-          },
-          { title: "Dead Sea", url: "/geology/hydrology/dead-sea" },
-        ],
-      },
-      items: [
-        { title: "Mountains", url: "/geology/mountains" },
-        { title: "Earthquake", url: "/geology/earthquake" },
-        { title: "Volcano", url: "/geology/volcano" },
-        { title: "Tectonics", url: "/geology/tectonics" },
-      ],
-    },
-    Math: {
-      icon: Hash,
-      items: [
-        { title: "Prime Numbers", url: "/math/prime-numbers" },
-        { title: "Pi", url: "/math/pi" },
-        { title: "Encoding", url: "/math/encoding" },
-        { title: "Digital Books", url: "/math/digital-books" },
-      ],
-    },
-    Meteorology: {
-      icon: Cloud,
-      items: [
-        { title: "Atmosphere", url: "/meteorology/atmosphere" },
-        { title: "Water", url: "/meteorology/water" },
-        { title: "Desertification", url: "/meteorology/desertification" },
-        { title: "Wind", url: "/meteorology/wind" },
-        { title: "Water Cycle", url: "/meteorology/water-cycle" },
-      ],
-    },
-    Zoology: {
-      icon: Bug,
-      items: [
-        { title: "Ants", url: "/zoology/ants" },
-        { title: "Animal Language", url: "/zoology/animal-language" },
-
-        { title: "Camels", url: "/zoology/camels" },
-        { title: "Colonies", url: "/zoology/colonies" },
-        { title: "Crow", url: "/zoology/crow" },
-        { title: "Exoskeleton", url: "/zoology/exoskeleton" },
-        { title: "Fossils", url: "/zoology/fossils" },
-        { title: "Honey Bees", url: "/zoology/honer-bees" },
-        { title: "Housefly", url: "/zoology/housefly" },
-        { title: "Magnetoreception", url: "/zoology/magnetoreception" },
-        { title: "Mosquito", url: "/zoology/mosquito" },
-        { title: "Raptors", url: "/zoology/raptors" },
-        { title: "Spider Web", url: "/zoology/spider-web" },
-      ],
-    },
   };
 
   // Function to determine if a link is currently active
@@ -426,7 +174,9 @@ const SidebarComponent = () => {
               />{" "}
             </Link>
             <div className="text-core flex flex-col font-semibold text-lg leading-3">
-              <span className="tracking-wide text-lg m-0">Quranic Verses</span>
+              <span className="tracking-wide text-lg m-0">
+                Quranic Miracles
+              </span>
             </div>
             <ModeToggle />
           </SidebarMenuItem>

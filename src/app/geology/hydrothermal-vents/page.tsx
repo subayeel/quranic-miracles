@@ -2,13 +2,13 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Sun,
+  Flame,
   ChevronRight,
-  Clock,
+  Droplets,
   BookOpen,
   Quote,
   HelpCircle,
-  RotateCcw,
+  Thermometer,
   ArrowUp,
   Sparkles,
 } from "lucide-react";
@@ -23,23 +23,31 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const AstronomyDay = () => {
-  const [activeSection, setActiveSection] = useState("intro");
+interface SectionContent {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  color: string;
+  iconColor: string;
+}
+
+const HydrothermalVents: React.FC = () => {
+  const [activeSection, setActiveSection] = useState<string>("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents = useMemo(() => {
+  const contents = useMemo<SectionContent[]>(() => {
     return [
       {
         id: "intro",
-        title: "Days Getting Longer",
-        icon: Sun,
-        color: "bg-orange-100 dark:bg-orange-900",
-        iconColor: "text-orange-500",
+        title: "Ocean Heating Discovery",
+        icon: Flame,
+        color: "bg-red-100 dark:bg-red-900",
+        iconColor: "text-red-500",
       },
       {
         id: "science",
         title: "Scientific Evidence",
-        icon: Clock,
+        icon: Thermometer,
         color: "bg-blue-100 dark:bg-blue-900",
         iconColor: "text-blue-500",
       },
@@ -98,7 +106,7 @@ const AstronomyDay = () => {
     };
   }, [contents]);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: string): void => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
@@ -109,14 +117,14 @@ const AstronomyDay = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-amber-700 dark:from-orange-700 dark:to-amber-900 text-white py-12">
+      <div className="bg-gradient-to-r from-red-500 to-orange-600 dark:from-red-800 dark:to-orange-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-4">
-            <Sun className="text-yellow-200" size={32} />
-            <h1 className="text-4xl font-bold">Day</h1>
+            <Flame className="text-yellow-200" size={32} />
+            <h1 className="text-4xl font-bold">Hydrothermal Vents</h1>
           </div>
           <p className="text-xl max-w-2xl text-amber-100">
-            Astronomy - Advanced
+            Oceanography - Advanced
           </p>
           <div className="flex gap-4 mt-8">
             <Button
@@ -127,7 +135,7 @@ const AstronomyDay = () => {
             </Button>
             <Button
               variant="outline"
-              className="text-orange-700"
+              className="text-white border-white hover:bg-red-700"
               onClick={() => scrollToSection("intro")}
             >
               Learn More
@@ -144,9 +152,7 @@ const AstronomyDay = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Explore Earth's changing day
-                  </CardDescription>
+                  <CardDescription>Explore deep ocean heating</CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
                   <nav className="space-y-1">
@@ -177,31 +183,33 @@ const AstronomyDay = () => {
           <div className="lg:col-span-3 space-y-12">
             {/* Introduction */}
             <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-orange-500">
+              <Card className="border-l-4 border-red-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-                      <Sun className="text-orange-500" size={24} />
+                    <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900">
+                      <Flame className="text-red-500" size={24} />
                     </div>
-                    <CardTitle>Day Getting Longer</CardTitle>
+                    <CardTitle>Hot Water from Deep Underground</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    In the Quran days on earth are getting longer. Skeptics
-                    claim that whoever wrote the Quran made a mistake; a day was
-                    and will always be 24 hours. Today scientists confirm that
-                    days are getting longer.
+                    In the Quran, there is a reference to oceans being heated.
+                    Skeptics might question how a 7th-century text could
+                    reference deep-sea thermal activity that was only discovered
+                    by modern science. Today, oceanographers confirm the
+                    existence of hydrothermal vents.
                   </p>
-                  <div className="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-100 dark:border-orange-800">
+                  <div className="bg-red-50 dark:bg-red-900/30 p-6 rounded-lg border border-red-100 dark:border-red-800">
                     <h3 className="font-bold text-lg mb-3">
-                      Earth's Rotation is Slowing Down
+                      Underwater Heat Sources
                     </h3>
                     <p>
-                      The rotation of Earth is slowing down, which means days
-                      were shorter in the past. This gradual change continues
-                      today, with our planet's rotation becoming incrementally
-                      slower over time.
+                      Hydrothermal vents are fissures in the Earth's surface
+                      from which geothermally heated water erupts. While geysers
+                      on land were observable to ancient civilizations, deep-sea
+                      hydrothermal vents remained completely unknown until their
+                      discovery in the late 20th century.
                     </p>
                   </div>
                 </CardContent>
@@ -214,7 +222,7 @@ const AstronomyDay = () => {
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Clock className="text-blue-500" size={24} />
+                      <Thermometer className="text-blue-500" size={24} />
                     </div>
                     <CardTitle>Scientific Evidence</CardTitle>
                   </div>
@@ -226,28 +234,21 @@ const AstronomyDay = () => {
                       Confirmation
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
-                      "Earth's Rotation:
-                      <br />
-                      Earth rotates once in about 24 hours with respect to the
-                      Sun, but once every 23 hours, 56 minutes, and 4 seconds
-                      with respect to other, distant, stars. Earth's rotation is
-                      slowing slightly with time; thus, a day was shorter in the
-                      past. This is due to the tidal effects the Moon has on
-                      Earth's rotation. Atomic clocks show that a modern-day is
-                      longer by about 1.7 milliseconds than a century ago,
-                      slowly increasing the rate at which UTC is adjusted by
-                      leap seconds. Analysis of historical astronomical records
-                      shows a slowing trend of about 2.3 milliseconds per
-                      century since the 8th century BCE."
+                      "Hydrothermal Vents:
+                      <br />A vent site in the Cayman Trough named Beebe, which
+                      is the world's deepest known hydrothermal site at ~5,000 m
+                      (16,000 ft) below sea level, has shown sustained
+                      supercritical venting at 401 ºC (754 ºF) and 2.3 wt%
+                      NaCl."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
-                        href="https://en.wikipedia.org/wiki/Earth's_rotation"
+                        href="https://en.wikipedia.org/wiki/Hydrothermal_vent"
                         className="text-blue-600 dark:text-blue-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Wikipedia, Earth's Rotation, 2019
+                        Wikipedia, Hydrothermal Vent, 2018
                       </a>
                     </div>
                   </div>
@@ -255,33 +256,36 @@ const AstronomyDay = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <RotateCcw size={16} className="text-blue-500" />{" "}
-                        Slowing Rotation
+                        <Droplets size={16} className="text-blue-500" /> Extreme
+                        Temperatures
                       </h3>
                       <p>
-                        The rotation of Earth is slowing down, making days
-                        slightly longer over time. This occurs primarily due to
-                        tidal friction caused by the Moon's gravitational pull.
+                        These remarkable underwater features can expel water at
+                        temperatures exceeding 400°C (754°F), far above the
+                        boiling point of water at sea level, but remain liquid
+                        due to the immense pressure at ocean depths.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Clock size={16} className="text-gray-500" /> Measurable
-                        Change
+                        <Thermometer size={16} className="text-blue-500" />{" "}
+                        Modern Discovery
                       </h3>
                       <p>
-                        Modern atomic clocks can measure this change with
-                        precision, showing that a day is approximately 1.7
-                        milliseconds longer now than it was a century ago.
+                        Hydrothermal vents were first discovered in 1977 near
+                        the Galapagos Islands. This relatively recent scientific
+                        finding has revolutionized our understanding of ocean
+                        ecosystems and geothermal activity.
                       </p>
                     </div>
                   </div>
 
                   <p>
-                    The rotation of Earth is slowing down, that is, days were
-                    shorter in the past; but the few milliseconds per century
-                    would have been impossible to detect 1400 years ago. However
-                    the Quran said that the days are getting longer.
+                    The discovery of these deep-sea heat sources was completely
+                    beyond the technological capabilities of the ancient world.
+                    No one in the 7th century could have personally observed or
+                    verified the existence of heated water at the bottom of the
+                    ocean.
                   </p>
                 </CardContent>
               </Card>
@@ -302,49 +306,36 @@ const AstronomyDay = () => {
                   <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/7/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/54"
+                        href="https://www.quranwow.com/#/ch/81/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/6"
                         className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Quran 7:54
+                        Quran 81:6
                       </a>
                     </h3>
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "And your Lord, Allah, who created the Heavens and the
-                          Earth in six days and then settled on the Throne.
-                          [Allah] Covers the night with the day, asks for it
-                          persistently; and the sun and the moon and the stars
-                          enslaved by His orders. Is this not His creation and
-                          His command? Blessed be Allah the Lord of all the
-                          worlds."
+                          "And if the oceans were heated."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٥٤ إِنَّ رَبَّكُمُ اللَّهُ الَّذِي خَلَقَ
-                          السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ
-                          اسْتَوَىٰ عَلَى الْعَرْشِ يُغْشِي اللَّيْلَ النَّهَارَ
-                          يَطْلُبُهُ حَثِيثًا وَالشَّمْسَ وَالْقَمَرَ
-                          وَالنُّجُومَ مُسَخَّرَاتٍ بِأَمْرِهِ ۗ أَلَا لَهُ
-                          الْخَلْقُ وَالْأَمْرُ ۗ تَبَارَكَ اللَّهُ رَبُّ
-                          الْعَالَمِينَ
-                        </p>
+                        <p dir="rtl">٦ وَإِذَا الْبِحَارُ سُجِّرَتْ</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-6">
                     <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                      Key Phrase
+                      Key Term
                     </Badge>
                     <p className="mt-3">
-                      "Yatlubuhu hatheethan يَطْلُبُهُ حَثِيثًا" means asks for
-                      it persistently; more of the day and more of the night. If
-                      God asks more of the day and more of the night then this
-                      means the days are getting longer.
+                      "Sujirat سُجِّرَتْ" in Arabic means "heated" or "caused to
+                      become hot." This specific term refers to the process of
+                      heating or igniting, which remarkably aligns with the
+                      modern discovery of hydrothermal vents where water reaches
+                      temperatures of over 400°C.
                     </p>
                   </div>
                 </CardContent>
@@ -364,32 +355,34 @@ const AstronomyDay = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The correlation between modern scientific findings and the
-                    Quranic verse raises an intriguing question:
+                    The correlation between modern oceanographic discoveries and
+                    the Quranic verse raises a profound question:
                   </p>
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
                       How could an illiterate man who lived 1400 years ago have
-                      known that days are getting longer?
+                      known about hydrothermal vents?
                     </h3>
                     <p>
-                      The subtle lengthening of Earth's day—a phenomenon that
-                      requires atomic clocks and centuries of astronomical data
-                      to measure accurately—appears to be referenced in a text
-                      from the 7th century. This connection between ancient
-                      scripture and modern scientific discovery invites
-                      contemplation about the origins of knowledge.
+                      The existence of heated water at ocean depths—a phenomenon
+                      that requires advanced submersibles and modern technology
+                      to observe—appears to be referenced in a text from the 7th
+                      century. This remarkable connection between ancient
+                      scripture and 20th-century scientific discovery invites
+                      contemplation about the sources of knowledge in historical
+                      texts.
                     </p>
                   </div>
 
                   <p>
-                    This phenomenon—that Earth's rotation is gradually slowing,
-                    causing days to lengthen over time—was completely unknown in
-                    the ancient world and would have been impossible to detect
-                    without modern scientific instruments. The reference in the
-                    Quran to the persistent extension of day and night aligns
-                    remarkably with what science has only recently confirmed.
+                    In the 7th century, when the Quran was revealed, human
+                    knowledge of the deep ocean was extremely limited. The
+                    technology to explore ocean depths exceeding 5,000 meters
+                    would not be developed for another 1,300 years. Yet the
+                    reference to heated oceans aligns precisely with what modern
+                    science has discovered about hydrothermal vents—underwater
+                    heat sources that can reach temperatures well above 400°C.
                   </p>
                 </CardContent>
               </Card>
@@ -402,11 +395,13 @@ const AstronomyDay = () => {
       <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-orange-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Time and Cosmos</h3>
+            <Sparkles className="text-red-500" size={18} />
+            <h3 className="text-lg font-medium">
+              Exploring Deep Ocean Wonders
+            </h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The mysteries of our planet continue to unfold, connecting ancient
+            The mysteries of our oceans continue to unfold, connecting ancient
             texts with modern scientific discoveries.
           </p>
           <div className="flex justify-center gap-4 mt-6">
@@ -424,4 +419,4 @@ const AstronomyDay = () => {
   );
 };
 
-export default AstronomyDay;
+export default HydrothermalVents;

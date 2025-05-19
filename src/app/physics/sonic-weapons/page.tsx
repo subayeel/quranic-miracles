@@ -2,17 +2,21 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Sun,
+  Volume2,
   ChevronRight,
-  Clock,
+  Shield,
   BookOpen,
   Quote,
   HelpCircle,
-  RotateCcw,
+  Radio,
   ArrowUp,
   Sparkles,
 } from "lucide-react";
-
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -23,23 +27,32 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const AstronomyDay = () => {
+// Define the content item type
+type ContentItem = {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  color: string;
+  iconColor: string;
+};
+
+const SonicWeapons = () => {
   const [activeSection, setActiveSection] = useState("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents = useMemo(() => {
+  const contents = useMemo<ContentItem[]>(() => {
     return [
       {
         id: "intro",
-        title: "Days Getting Longer",
-        icon: Sun,
-        color: "bg-orange-100 dark:bg-orange-900",
-        iconColor: "text-orange-500",
+        title: "Sonic Weapons",
+        icon: Volume2,
+        color: "bg-indigo-100 dark:bg-indigo-900",
+        iconColor: "text-indigo-500",
       },
       {
         id: "science",
         title: "Scientific Evidence",
-        icon: Clock,
+        icon: Shield,
         color: "bg-blue-100 dark:bg-blue-900",
         iconColor: "text-blue-500",
       },
@@ -109,25 +122,25 @@ const AstronomyDay = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       {/* Header */}
-      <div className="bg-gradient-to-r from-orange-500 to-amber-700 dark:from-orange-700 dark:to-amber-900 text-white py-12">
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-700 dark:from-indigo-800 dark:to-purple-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-3 mb-4">
-            <Sun className="text-yellow-200" size={32} />
-            <h1 className="text-4xl font-bold">Day</h1>
+            <Volume2 className="text-indigo-200" size={32} />
+            <h1 className="text-4xl font-bold">Sonic Weapons</h1>
           </div>
-          <p className="text-xl max-w-2xl text-amber-100">
-            Astronomy - Advanced
+          <p className="text-xl max-w-2xl text-indigo-100">
+            Physics - Advanced
           </p>
           <div className="flex gap-4 mt-8">
             <Button
-              className="bg-white text-orange-700 hover:bg-orange-50"
+              className="bg-white text-indigo-700 hover:bg-indigo-50"
               onClick={() => scrollToSection("science")}
             >
               Continue <ChevronRight size={16} />
             </Button>
             <Button
               variant="outline"
-              className="text-orange-700"
+              className="text-indigo-200 border-indigo-300 hover:bg-indigo-800/20"
               onClick={() => scrollToSection("intro")}
             >
               Learn More
@@ -144,9 +157,7 @@ const AstronomyDay = () => {
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Explore Earth's changing day
-                  </CardDescription>
+                  <CardDescription>Explore sound as a weapon</CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
                   <nav className="space-y-1">
@@ -177,31 +188,33 @@ const AstronomyDay = () => {
           <div className="lg:col-span-3 space-y-12">
             {/* Introduction */}
             <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-orange-500">
+              <Card className="border-l-4 border-indigo-500">
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-                      <Sun className="text-orange-500" size={24} />
+                    <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900">
+                      <Volume2 className="text-indigo-500" size={24} />
                     </div>
-                    <CardTitle>Day Getting Longer</CardTitle>
+                    <CardTitle>Sonic Weapons</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    In the Quran days on earth are getting longer. Skeptics
-                    claim that whoever wrote the Quran made a mistake; a day was
-                    and will always be 24 hours. Today scientists confirm that
-                    days are getting longer.
+                    In the Quran, there's a description of people being killed
+                    by a sound wave. Skeptics argue this is impossible, as in
+                    the 7th century, no one believed sound could injure or kill.
+                    Today, scientists confirm that sound waves can indeed
+                    injure, incapacitate, or even kill.
                   </p>
-                  <div className="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-100 dark:border-orange-800">
+                  <div className="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-lg border border-indigo-100 dark:border-indigo-800">
                     <h3 className="font-bold text-lg mb-3">
-                      Earth's Rotation is Slowing Down
+                      Sound as a Deadly Force
                     </h3>
                     <p>
-                      The rotation of Earth is slowing down, which means days
-                      were shorter in the past. This gradual change continues
-                      today, with our planet's rotation becoming incrementally
-                      slower over time.
+                      Modern science has confirmed that certain sound
+                      frequencies and amplitudes can cause physical harm to
+                      living beings. This understanding forms the basis of what
+                      we now know as sonic weapons - devices that use sound to
+                      injure, incapacitate, or potentially kill an opponent.
                     </p>
                   </div>
                 </CardContent>
@@ -214,7 +227,7 @@ const AstronomyDay = () => {
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Clock className="text-blue-500" size={24} />
+                      <Shield className="text-blue-500" size={24} />
                     </div>
                     <CardTitle>Scientific Evidence</CardTitle>
                   </div>
@@ -222,32 +235,27 @@ const AstronomyDay = () => {
                 <CardContent className="pt-4 space-y-4">
                   <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
                     <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Scientific
-                      Confirmation
+                      <Quote size={16} className="text-blue-500" /> Modern
+                      Science on Sonic Weapons
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
-                      "Earth's Rotation:
-                      <br />
-                      Earth rotates once in about 24 hours with respect to the
-                      Sun, but once every 23 hours, 56 minutes, and 4 seconds
-                      with respect to other, distant, stars. Earth's rotation is
-                      slowing slightly with time; thus, a day was shorter in the
-                      past. This is due to the tidal effects the Moon has on
-                      Earth's rotation. Atomic clocks show that a modern-day is
-                      longer by about 1.7 milliseconds than a century ago,
-                      slowly increasing the rate at which UTC is adjusted by
-                      leap seconds. Analysis of historical astronomical records
-                      shows a slowing trend of about 2.3 milliseconds per
-                      century since the 8th century BCE."
+                      "Sonic and ultrasonic weapons (USW) are weapons of various
+                      types that use sound to injure, incapacitate, or kill an
+                      opponent. Some sonic weapons are currently in limited use
+                      or in research and development by military and police
+                      forces. Some of these weapons have been described as sonic
+                      bullets, sonic grenades, sonic mines, or sonic cannons.
+                      Some make a focused beam of sound or ultrasound; some make
+                      an area field of sound."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
-                        href="https://en.wikipedia.org/wiki/Earth's_rotation"
+                        href="https://en.wikipedia.org/wiki/Sonic_weapon"
                         className="text-blue-600 dark:text-blue-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Wikipedia, Earth's Rotation, 2019
+                        Wikipedia, Sonic Weapon, 2019
                       </a>
                     </div>
                   </div>
@@ -255,33 +263,38 @@ const AstronomyDay = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <RotateCcw size={16} className="text-blue-500" />{" "}
-                        Slowing Rotation
+                        <Radio size={16} className="text-blue-500" /> Types of
+                        Sonic Weapons
                       </h3>
                       <p>
-                        The rotation of Earth is slowing down, making days
-                        slightly longer over time. This occurs primarily due to
-                        tidal friction caused by the Moon's gravitational pull.
+                        Modern militaries have developed various sonic weapons
+                        including sonic bullets, grenades, mines, and cannons.
+                        These weapons can either create a focused beam of
+                        sound/ultrasound or generate an area field of sound that
+                        affects everyone in range.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Clock size={16} className="text-gray-500" /> Measurable
-                        Change
+                        <Shield size={16} className="text-gray-500" />{" "}
+                        Applications
                       </h3>
                       <p>
-                        Modern atomic clocks can measure this change with
-                        precision, showing that a day is approximately 1.7
-                        milliseconds longer now than it was a century ago.
+                        Sonic weapons have applications in both military and law
+                        enforcement scenarios. They can be used for crowd
+                        control, area denial, or targeted incapacitation without
+                        the lethality of conventional weapons.
                       </p>
                     </div>
                   </div>
 
                   <p>
-                    The rotation of Earth is slowing down, that is, days were
-                    shorter in the past; but the few milliseconds per century
-                    would have been impossible to detect 1400 years ago. However
-                    the Quran said that the days are getting longer.
+                    The concept that sound waves could be powerful enough to
+                    cause physical harm or death was unknown in the 7th century.
+                    People of that time had no understanding of the physics
+                    behind sound waves or their potential destructive
+                    capabilities. Yet, remarkably, this phenomenon appears to be
+                    described in the Quran.
                   </p>
                 </CardContent>
               </Card>
@@ -302,35 +315,25 @@ const AstronomyDay = () => {
                   <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/7/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/54"
+                        href="https://www.quranwow.com/#/ch/11/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/67"
                         className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Quran 7:54
+                        Quran 11:67
                       </a>
                     </h3>
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "And your Lord, Allah, who created the Heavens and the
-                          Earth in six days and then settled on the Throne.
-                          [Allah] Covers the night with the day, asks for it
-                          persistently; and the sun and the moon and the stars
-                          enslaved by His orders. Is this not His creation and
-                          His command? Blessed be Allah the Lord of all the
-                          worlds."
+                          "And the shout struck those who transgressed, and they
+                          became motionless bodies in their homes."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          ٥٤ إِنَّ رَبَّكُمُ اللَّهُ الَّذِي خَلَقَ
-                          السَّمَاوَاتِ وَالْأَرْضَ فِي سِتَّةِ أَيَّامٍ ثُمَّ
-                          اسْتَوَىٰ عَلَى الْعَرْشِ يُغْشِي اللَّيْلَ النَّهَارَ
-                          يَطْلُبُهُ حَثِيثًا وَالشَّمْسَ وَالْقَمَرَ
-                          وَالنُّجُومَ مُسَخَّرَاتٍ بِأَمْرِهِ ۗ أَلَا لَهُ
-                          الْخَلْقُ وَالْأَمْرُ ۗ تَبَارَكَ اللَّهُ رَبُّ
-                          الْعَالَمِينَ
+                          ٦٧ وَأَخَذَ الَّذِينَ ظَلَمُوا الصَّيْحَةُ
+                          فَأَصْبَحُوا فِي دِيَارِهِمْ جَاثِمِينَ
                         </p>
                       </div>
                     </div>
@@ -338,13 +341,15 @@ const AstronomyDay = () => {
 
                   <div className="mt-6">
                     <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                      Key Phrase
+                      Key Term
                     </Badge>
                     <p className="mt-3">
-                      "Yatlubuhu hatheethan يَطْلُبُهُ حَثِيثًا" means asks for
-                      it persistently; more of the day and more of the night. If
-                      God asks more of the day and more of the night then this
-                      means the days are getting longer.
+                      "Saiha صَّيْحَةُ" means shout or scream. In the story of
+                      Thamud, the verse describes that the people were killed by
+                      a shout (sound wave) from the angels, leaving them
+                      motionless in their homes. This account depicts sound as a
+                      lethal force - a concept that aligns with our modern
+                      understanding of sonic weapons.
                     </p>
                   </div>
                 </CardContent>
@@ -364,32 +369,34 @@ const AstronomyDay = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The correlation between modern scientific findings and the
-                    Quranic verse raises an intriguing question:
+                    The parallels between the Quranic description and modern
+                    scientific understanding raise an important question:
                   </p>
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
                       How could an illiterate man who lived 1400 years ago have
-                      known that days are getting longer?
+                      known about sonic weapons?
                     </h3>
                     <p>
-                      The subtle lengthening of Earth's day—a phenomenon that
-                      requires atomic clocks and centuries of astronomical data
-                      to measure accurately—appears to be referenced in a text
-                      from the 7th century. This connection between ancient
-                      scripture and modern scientific discovery invites
-                      contemplation about the origins of knowledge.
+                      The concept that sound could be deadly enough to kill
+                      people instantly was completely foreign to the
+                      understanding of the 7th century world. No scientific
+                      knowledge or technology of that era could have suggested
+                      that sound waves could cause lethal harm to humans. Yet,
+                      the Quranic account of the people of Thamud describes
+                      precisely this phenomenon - people struck dead by a sound.
                     </p>
                   </div>
 
                   <p>
-                    This phenomenon—that Earth's rotation is gradually slowing,
-                    causing days to lengthen over time—was completely unknown in
-                    the ancient world and would have been impossible to detect
-                    without modern scientific instruments. The reference in the
-                    Quran to the persistent extension of day and night aligns
-                    remarkably with what science has only recently confirmed.
+                    This correlation between the Quranic narrative and modern
+                    scientific understanding of sonic weapons presents a
+                    striking example of knowledge that appears in ancient text
+                    long before its scientific confirmation. In the 7th century
+                    Arabian peninsula, there was no basis for understanding
+                    sound as a physical force capable of causing death, yet this
+                    concept is clearly presented in the story of Thamud.
                   </p>
                 </CardContent>
               </Card>
@@ -398,16 +405,50 @@ const AstronomyDay = () => {
         </div>
       </div>
 
+      {/* Mobile Navigation */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button className="rounded-full h-14 w-14 shadow-lg bg-indigo-600 hover:bg-indigo-700">
+              <Volume2 size={24} />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent side="top" className="w-64 p-0 mr-6 mb-2">
+            <nav className="max-h-80 overflow-y-auto">
+              {contents.map(({ id, title, icon: Icon, iconColor }) => (
+                <button
+                  key={id}
+                  onClick={() => {
+                    scrollToSection(id);
+                  }}
+                  className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                    activeSection === id
+                      ? "bg-gray-100 dark:bg-gray-800 font-medium"
+                      : ""
+                  }`}
+                >
+                  <Icon className={iconColor} size={18} />
+                  <span>{title}</span>
+                  {activeSection === id && (
+                    <ChevronRight className="ml-auto" size={16} />
+                  )}
+                </button>
+              ))}
+            </nav>
+          </PopoverContent>
+        </Popover>
+      </div>
+
       {/* Footer */}
       <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-orange-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Time and Cosmos</h3>
+            <Sparkles className="text-indigo-500" size={18} />
+            <h3 className="text-lg font-medium">Exploring Sound and Physics</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The mysteries of our planet continue to unfold, connecting ancient
-            texts with modern scientific discoveries.
+            Discovering connections between ancient texts and modern scientific
+            understandings of sound as a physical force.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button
@@ -424,4 +465,4 @@ const AstronomyDay = () => {
   );
 };
 
-export default AstronomyDay;
+export default SonicWeapons;
