@@ -9,6 +9,7 @@ import {
   Mountain,
   Bug,
   Book,
+  Baby,
 } from "lucide-react";
 
 export const scienceCategories = {
@@ -155,6 +156,22 @@ export const scienceCategories = {
       { title: "Age Of Universe", url: "/cosmology/age-of-universe" },
       { title: "Dark Energy", url: "/cosmology/dark-energy" },
       { title: "Gravity", url: "/cosmology/gravity" },
+    ],
+  },
+  Embryology: {
+    icon: Baby,
+    items: [
+      { title: "Amniotic Fluids", url: "/embryology/amniotic-fluid" },
+      { title: "Bones", url: "/embryology/bones" },
+      { title: "Fetal Development", url: "/embryology/fetal-development" },
+      { title: "Gender", url: "/embryology/gender" },
+      { title: "Human Embryo", url: "/embryology/human-embryo" },
+      { title: "Human Senses", url: "/embryology/human-senses" },
+      { title: "Male Fertility", url: "/embryology/male-fertility" },
+      { title: "Meiosis", url: "/embryology/meiosis" },
+      { title: "Miscarriage", url: "/embryology/miscarriage" },
+      { title: "Sperm", url: "/embryology/sperm" },
+      { title: "Womb", url: "/embryology/womb" },
     ],
   },
   Geology: {
