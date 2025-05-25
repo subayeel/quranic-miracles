@@ -125,11 +125,6 @@ export const scienceCategories = {
           url: "/biology/physiology/vision-space",
         },
       ],
-      Botany: [
-        { title: "Chlorophyll", url: "/biology/botany/chlorophyll" },
-        { title: "Pollination", url: "/biology/botany/pollination" },
-        { title: "Plant Stress", url: "/biology/botany/plant-stress" },
-      ],
     },
     items: [
       { title: "Bioluminescence", url: "/biology/bioluminescence" },
