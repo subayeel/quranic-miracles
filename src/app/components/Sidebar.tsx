@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import {
   Sidebar,
   SidebarContent,
@@ -31,15 +32,10 @@ import {
 import { scienceCategories } from "@/lib/data";
 
 const SidebarComponent = () => {
-  const [currentPath, setCurrentPath] = useState("");
+  const currentPath = usePathname();
   const [expandedCategories, setExpandedCategories] = useState<
     Record<string, boolean>
   >({});
-
-  // Set the current path when component mounts
-  useEffect(() => {
-    setCurrentPath(window.location.pathname);
-  }, []);
 
   const toggleCategory = (category: string) => {
     setExpandedCategories((prev) => ({
@@ -74,14 +70,14 @@ const SidebarComponent = () => {
               : ""
           }
         >
-          <a href={item.url}>
+          <Link href={item.url}>
             {item.icon &&
               React.createElement(
                 item.icon as React.ComponentType<{ size?: number }>,
                 { size: 16 }
               )}
             <span>{item.title}</span>
-          </a>
+          </Link>
         </SidebarMenuButton>
       </SidebarMenuItem>
     );
@@ -195,10 +191,10 @@ const SidebarComponent = () => {
                       : ""
                   }
                 >
-                  <a href="/">
+                  <Link href="/">
                     <Home size={16} />
                     <span>Home</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>

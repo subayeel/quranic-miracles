@@ -1,0 +1,13 @@
+
+astronomy
+biology
+chemistry
+cosmology
+embroyology
+geology
+history
+math
+meteorology
+physics
+physiology
+zoology
