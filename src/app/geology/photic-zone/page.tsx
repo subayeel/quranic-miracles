@@ -393,8 +393,8 @@ const PhoticZone = () => {
 
                   <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known that light cannot reach deep waters?
+                      How could man who lived 1400 years ago have known that
+                      light cannot reach deep waters?
                     </h3>
                     <p>
                       In 7th century Arabia, a desert region far from major

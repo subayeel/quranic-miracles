@@ -450,8 +450,8 @@ const HistoricalHaman = () => {
 
                   <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about Haman?
+                      How could man who lived 1400 years ago have known about
+                      Haman?
                     </h3>
                     <p>
                       In 7th century Arabia, no one could read Egyptian

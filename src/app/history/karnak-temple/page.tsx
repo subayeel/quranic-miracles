@@ -383,8 +383,8 @@ const KarnakTemple: React.FC = () => {
 
                   <div className="bg-rose-50 dark:bg-rose-900/30 p-6 rounded-lg border border-rose-100 dark:border-rose-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about Karnak Temple's chronology?
+                      How could man who lived 1400 years ago have known about
+                      Karnak Temple's chronology?
                     </h3>
                     <p>
                       The precise attribution of pillars to Pharaohs—a

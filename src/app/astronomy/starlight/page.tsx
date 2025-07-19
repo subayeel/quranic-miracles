@@ -398,12 +398,6 @@ const StarlightEvolution = () => {
                       </a>
                     </div>
                   </div>
-
-                  <p>
-                    These comparative perspectives help us understand how
-                    different ancient texts approached astronomical phenomena
-                    with the knowledge available at the time.
-                  </p>
                 </CardContent>
               </Card>
             </section>
@@ -429,8 +423,8 @@ const StarlightEvolution = () => {
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about starlight?
+                      How could man who lived 1400 years ago have known about
+                      starlight?
                     </h3>
                     <p>
                       This question invites contemplation on the sources of

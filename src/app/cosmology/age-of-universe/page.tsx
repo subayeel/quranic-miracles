@@ -430,8 +430,8 @@ const UniverseAge: React.FC = () => {
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man in the 7th century have known
-                      the universe is three times older than Earth?
+                      How could man in the 7th century have known the universe
+                      is three times older than Earth?
                     </h3>
                     <p>
                       The precise 1:3 ratio between Earth's age and the

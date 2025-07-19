@@ -459,9 +459,9 @@ const MineralsComponent: React.FC = () => {
 
                   <div className="bg-violet-50 dark:bg-violet-900/30 p-6 rounded-lg border border-violet-100 dark:border-violet-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man from 7th Century Arabia have
-                      accurately described rare geological formations existing
-                      in distant lands like Peru?
+                      How could man from 7th Century Arabia have accurately
+                      described rare geological formations existing in distant
+                      lands like Peru?
                     </h3>
                     <p>
                       The specific detail about "streaks" or layers of varying

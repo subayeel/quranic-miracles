@@ -396,8 +396,8 @@ const PorousRocks: React.FC = () => {
                   </p>
                   <div className="bg-yellow-50 dark:bg-yellow-900/30 p-6 rounded-lg border border-yellow-100 dark:border-yellow-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about porous rocks storing and releasing water?
+                      How could man who lived 1400 years ago have known about
+                      porous rocks storing and releasing water?
                     </h3>
                     <p>
                       In the 7th century, people observed water sources like

@@ -384,8 +384,8 @@ const FrostWeathering = () => {
 
                   <div className="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-lg border border-indigo-100 dark:border-indigo-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about frost weathering?
+                      How could man who lived 1400 years ago have known about
+                      frost weathering?
                     </h3>
                     <p>
                       The detailed understanding of how water can crack rocks

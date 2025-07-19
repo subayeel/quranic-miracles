@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   Star,
   ChevronRight,
-  FlaskRound ,
+  FlaskRound,
   BookOpen,
   Quote,
   HelpCircle,
@@ -36,7 +36,7 @@ const HoneyAntibiotics = () => {
       {
         id: "intro",
         title: "Natural Antibiotic",
-        icon: FlaskRound ,
+        icon: FlaskRound,
         color: "bg-amber-100 dark:bg-amber-900",
         iconColor: "text-amber-500",
       },
@@ -119,9 +119,7 @@ const HoneyAntibiotics = () => {
             <Droplet className="text-yellow-200" size={32} />
             <h1 className="text-4xl font-bold">Honey</h1>
           </div>
-          <p className="text-xl max-w-2xl text-amber-100">
-            Biology - Advanced
-          </p>
+          <p className="text-xl max-w-2xl text-amber-100">Biology - Advanced</p>
           <div className="flex gap-4 mt-8">
             <Button
               className="bg-white text-amber-700 hover:bg-amber-50"
@@ -192,14 +190,19 @@ const HoneyAntibiotics = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    Honey is more than just a sweet treat - it's a powerful natural medicine with unique properties that have been used for thousands of years.
+                    Honey is more than just a sweet treat - it's a powerful
+                    natural medicine with unique properties that have been used
+                    for thousands of years.
                   </p>
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-lg mb-3">
                       Ancient Wisdom, Modern Science
                     </h3>
                     <p>
-                      1400 years ago nobody knew that honey is a natural antibiotic, however it was portrayed in the Quran. Today, we know that when honey is applied on wounds or burns it hinders the growth of microbes.
+                      1400 years ago nobody knew that honey is a natural
+                      antibiotic, however it was portrayed in the Quran. Today,
+                      we know that when honey is applied on wounds or burns it
+                      hinders the growth of microbes.
                     </p>
                   </div>
                 </CardContent>
@@ -220,13 +223,26 @@ const HoneyAntibiotics = () => {
                 <CardContent className="pt-4 space-y-4">
                   <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
                     <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Medical Research
+                      <Quote size={16} className="text-blue-500" /> Medical
+                      Research
                     </h3>
                     <p className="italic text-gray-700 dark:text-gray-300">
                       "Honey: Its Medicinal Property And Antibacterial Activity
                       <br />
                       <br />
-                      The healing property of honey is due to the fact that it offers antibacterial activity, maintains a moist wound condition, and its high viscosity helps to provide a protective barrier to prevent infection. Its immunomodulatory property is relevant to wound repair too. The antimicrobial activity in most honeys is due to the enzymatic production of hydrogen peroxide. However, another kind of honey, called non-peroxide honey (viz., manuka honey), displays significant antibacterial effects even when the hydrogen peroxide activity is blocked. Its mechanism may be related to the low pH level of honey and its high sugar content (high osmolarity) that is enough to hinder the growth of microbes."
+                      The healing property of honey is due to the fact that it
+                      offers antibacterial activity, maintains a moist wound
+                      condition, and its high viscosity helps to provide a
+                      protective barrier to prevent infection. Its
+                      immunomodulatory property is relevant to wound repair too.
+                      The antimicrobial activity in most honeys is due to the
+                      enzymatic production of hydrogen peroxide. However,
+                      another kind of honey, called non-peroxide honey (viz.,
+                      manuka honey), displays significant antibacterial effects
+                      even when the hydrogen peroxide activity is blocked. Its
+                      mechanism may be related to the low pH level of honey and
+                      its high sugar content (high osmolarity) that is enough to
+                      hinder the growth of microbes."
                     </p>
                     <div className="mt-3 text-sm">
                       <a
@@ -235,7 +251,8 @@ const HoneyAntibiotics = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        US National Library of Medicine, Honey: Its Medicinal Property And Antibacterial Activity, 2011
+                        US National Library of Medicine, Honey: Its Medicinal
+                        Property And Antibacterial Activity, 2011
                       </a>
                     </div>
                   </div>
@@ -243,24 +260,34 @@ const HoneyAntibiotics = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Sparkles size={16} className="text-yellow-500" /> Antibacterial Properties
+                        <Sparkles size={16} className="text-yellow-500" />{" "}
+                        Antibacterial Properties
                       </h3>
                       <p>
-                        Modern research has confirmed that honey contains enzymes that produce hydrogen peroxide, which kills bacteria. Some special types of honey, like Manuka honey, have additional antibacterial compounds.
+                        Modern research has confirmed that honey contains
+                        enzymes that produce hydrogen peroxide, which kills
+                        bacteria. Some special types of honey, like Manuka
+                        honey, have additional antibacterial compounds.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Star size={16} className="text-amber-500" /> Wound Healing
+                        <Star size={16} className="text-amber-500" /> Wound
+                        Healing
                       </h3>
                       <p>
-                        Honey creates a moist healing environment, provides a protective barrier against infection, and its high sugar content draws water from wounds, helping to clean them.
+                        Honey creates a moist healing environment, provides a
+                        protective barrier against infection, and its high sugar
+                        content draws water from wounds, helping to clean them.
                       </p>
                     </div>
                   </div>
 
                   <p className="font-medium">
-                    Honey hinders the growth of microbes, which leads to faster healing of wounds. This scientific understanding was only confirmed recently, yet it was mentioned in the Quran 1400 years ago.
+                    Honey hinders the growth of microbes, which leads to faster
+                    healing of wounds. This scientific understanding was only
+                    confirmed recently, yet it was mentioned in the Quran 1400
+                    years ago.
                   </p>
                 </CardContent>
               </Card>
@@ -292,13 +319,25 @@ const HoneyAntibiotics = () => {
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "And your Lord (Allah) revealed to the bees: Build your hives in mountains, trees and in what they build. Then eat from every fruit and follow your Lord's enslaved paths, from its bellies exits drink of different colors, in it healing for man. These are signs for those who contemplate."
+                          "And your Lord (Allah) revealed to the bees: Build
+                          your hives in mountains, trees and in what they build.
+                          Then eat from every fruit and follow your Lord's
+                          enslaved paths, from its bellies exits drink of
+                          different colors, in it healing for man. These are
+                          signs for those who contemplate."
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          ٦٨ وَأَوْحَىٰ رَبُّكَ إِلَى النَّحْلِ أَنِ اتَّخِذِي مِنَ الْجِبَالِ بُيُوتًا وَمِنَ الشَّجَرِ وَمِمَّا يَعْرِشُونَ<br />
-                          ٦٩ ثُمَّ كُلِي مِنْ كُلِّ الثَّمَرَاتِ فَاسْلُكِي سُبُلَ رَبِّكِ ذُلُلًا ۚ يَخْرُجُ مِنْ بُطُونِهَا شَرَابٌ مُخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِلنَّاسِ ۗ إِنَّ فِي ذَٰلِكَ لَآيَةً لِقَوْمٍ يَتَفَكَّرُونَ<br />
+                          ٦٨ وَأَوْحَىٰ رَبُّكَ إِلَى النَّحْلِ أَنِ اتَّخِذِي
+                          مِنَ الْجِبَالِ بُيُوتًا وَمِنَ الشَّجَرِ وَمِمَّا
+                          يَعْرِشُونَ
+                          <br />
+                          ٦٩ ثُمَّ كُلِي مِنْ كُلِّ الثَّمَرَاتِ فَاسْلُكِي
+                          سُبُلَ رَبِّكِ ذُلُلًا ۚ يَخْرُجُ مِنْ بُطُونِهَا
+                          شَرَابٌ مُخْتَلِفٌ أَلْوَانُهُ فِيهِ شِفَاءٌ لِلنَّاسِ
+                          ۗ إِنَّ فِي ذَٰلِكَ لَآيَةً لِقَوْمٍ يَتَفَكَّرُونَ
+                          <br />
                         </p>
                       </div>
                     </div>
@@ -309,7 +348,11 @@ const HoneyAntibiotics = () => {
                       Key Point
                     </Badge>
                     <p className="mt-3">
-                      "Shefa شِفَاءٌ" means healing. Here the Quran is specifically referring to the healing properties of honey (not just the nutritious ones). Today we know that honey is a natural antibiotic, confirming what was mentioned 1400 years ago.
+                      "Shefa شِفَاءٌ" means healing. Here the Quran is
+                      specifically referring to the healing properties of honey
+                      (not just the nutritious ones). Today we know that honey
+                      is a natural antibiotic, confirming what was mentioned
+                      1400 years ago.
                     </p>
                   </div>
                 </CardContent>
@@ -329,20 +372,32 @@ const HoneyAntibiotics = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The connection between ancient texts and modern scientific discoveries invites us to reflect on knowledge across time:
+                    The connection between ancient texts and modern scientific
+                    discoveries invites us to reflect on knowledge across time:
                   </p>
 
                   <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have known about honey?
+                      How could man who lived 1400 years ago have known about
+                      honey?
                     </h3>
                     <p>
-                      The Quranic description of honey as having healing properties aligns perfectly with our modern scientific understanding of honey as a natural antibiotic. This specific mention of honey's medicinal qualities, rather than just its nutritional value, raises interesting questions about the source of this knowledge.
+                      The Quranic description of honey as having healing
+                      properties aligns perfectly with our modern scientific
+                      understanding of honey as a natural antibiotic. This
+                      specific mention of honey's medicinal qualities, rather
+                      than just its nutritional value, raises interesting
+                      questions about the source of this knowledge.
                     </p>
                   </div>
 
                   <p>
-                    While honey has been used in traditional medicine across many cultures, the specific understanding of its antibacterial properties is a relatively recent scientific discovery. The alignment between ancient text and modern science offers a fascinating perspective on knowledge, revelation, and the natural world.
+                    While honey has been used in traditional medicine across
+                    many cultures, the specific understanding of its
+                    antibacterial properties is a relatively recent scientific
+                    discovery. The alignment between ancient text and modern
+                    science offers a fascinating perspective on knowledge,
+                    revelation, and the natural world.
                   </p>
                 </CardContent>
               </Card>
@@ -393,7 +448,8 @@ const HoneyAntibiotics = () => {
             <h3 className="text-lg font-medium">Nature's Healing Gift</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The sweet medicine of honey continues to reveal its secrets, connecting ancient wisdom with modern discovery.
+            The sweet medicine of honey continues to reveal its secrets,
+            connecting ancient wisdom with modern discovery.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button

@@ -403,8 +403,8 @@ const MourningPharaoh: React.FC = () => {
 
                   <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about the mourning of Pharaoh?
+                      How could man who lived 1400 years ago have known about
+                      the mourning of Pharaoh?
                     </h3>
                     <p>
                       The reference to heavens not weeping for the Pharaoh

@@ -429,8 +429,8 @@ const PharaohTitle: React.FC = () => {
 
                   <div className="bg-rose-50 dark:bg-rose-900/30 p-6 rounded-lg border border-rose-100 dark:border-rose-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about the correct usage of the title "Pharaoh"?
+                      How could man who lived 1400 years ago have known about
+                      the correct usage of the title "Pharaoh"?
                     </h3>
                     <p>
                       This linguistic precision in the Quran—distinguishing

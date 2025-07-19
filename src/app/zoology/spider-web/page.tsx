@@ -376,8 +376,8 @@ const SpiderWebMiracle = () => {
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man in the 7th century have known
-                      that only female spiders build webs?
+                      How could man in the 7th century have known that only
+                      female spiders build webs?
                     </h3>
                     <p>
                       This precise biological detail—that female spiders are the

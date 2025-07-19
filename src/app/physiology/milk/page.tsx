@@ -359,8 +359,8 @@ const MilkMiracle = () => {
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man in the 7th century have known
-                      about the biological process of milk production?
+                      How could man in the 7th century have known about the
+                      biological process of milk production?
                     </h3>
                     <p>
                       The Quran's precise description of milk originating from

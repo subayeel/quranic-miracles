@@ -420,8 +420,8 @@ const SubductionPage: React.FC = () => {
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about subduction?
+                      How could man who lived 1400 years ago have known about
+                      subduction?
                     </h3>
                     <p>
                       The process of subduction—where rocks sink hundreds of

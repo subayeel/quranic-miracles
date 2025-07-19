@@ -442,8 +442,8 @@ const ExpandingUniverse: React.FC = () => {
 
                   <div className="bg-pink-50 dark:bg-pink-900/30 p-6 rounded-lg border border-pink-100 dark:border-pink-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have
-                      known about the expanding universe?
+                      How could man who lived 1400 years ago have known about
+                      the expanding universe?
                     </h3>
                     <p>
                       The concept of an expanding universe—a phenomenon that

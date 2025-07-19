@@ -162,9 +162,7 @@ const PlanetaryOrbits = () => {
             <Orbit className="text-yellow-200" />
             <h1 className="text-4xl font-bold">Planetary Orbits</h1>
           </div>
-          <p className="text-xl max-w-2xl text-blue-100">
-            Astronomy - Easy
-          </p>
+          <p className="text-xl max-w-2xl text-blue-100">Astronomy - Easy</p>
           <div className="flex gap-4 mt-8">
             <Button
               className="bg-white text-indigo-700 hover:bg-indigo-50"
@@ -201,10 +199,11 @@ const PlanetaryOrbits = () => {
                       <button
                         key={id}
                         onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${activeSection === id
-                          ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                          : ""
-                          }`}
+                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                          activeSection === id
+                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
+                            : ""
+                        }`}
                       >
                         <Icon className={iconColor} size={18} />
                         <span>{title}</span>
@@ -234,17 +233,28 @@ const PlanetaryOrbits = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p className="font-medium">
-                    For centuries, people believed that Earth was fixed in place while the sun, moon, and planets moved around it. This geocentric view dominated astronomy until relatively recently in human history.
+                    For centuries, people believed that Earth was fixed in place
+                    while the sun, moon, and planets moved around it. This
+                    geocentric view dominated astronomy until relatively
+                    recently in human history.
                   </p>
                   <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
                     <h3 className="font-bold text-lg mb-3">
                       The Evolution of Our Understanding
                     </h3>
                     <p>
-                      The idea that Earth remains stationary while everything else revolves around it was the prevailing view for most of human history. It wasn't until the 16th century that Copernicus formally proposed a heliocentric model, and it took even longer for this understanding to become widely accepted.
+                      The idea that Earth remains stationary while everything
+                      else revolves around it was the prevailing view for most
+                      of human history. It wasn't until the 16th century that
+                      Copernicus formally proposed a heliocentric model, and it
+                      took even longer for this understanding to become widely
+                      accepted.
                     </p>
                     <p className="mt-3">
-                      Today, we understand that all celestial bodies, including Earth, follow their own orbital paths. This knowledge that has transformed our understanding of astronomy and our place in the universe.
+                      Today, we understand that all celestial bodies, including
+                      Earth, follow their own orbital paths. This knowledge that
+                      has transformed our understanding of astronomy and our
+                      place in the universe.
                     </p>
                   </div>
                 </CardContent>
@@ -269,20 +279,32 @@ const PlanetaryOrbits = () => {
                       Understanding
                     </h3>
                     <p>
-                      All stars and planets in our universe follow orbital paths. Earth orbits the sun, completing one revolution every 365.25 days, while simultaneously rotating on its axis once every 24 hours, creating the cycle of day and night.
+                      All stars and planets in our universe follow orbital
+                      paths. Earth orbits the sun, completing one revolution
+                      every 365.25 days, while simultaneously rotating on its
+                      axis once every 24 hours, creating the cycle of day and
+                      night.
                     </p>
                     <p className="mt-3">
-                      The planets in our solar system orbit the sun, while the moon orbits Earth. Our entire solar system orbits the center of the Milky Way galaxy, which itself moves through space relative to other galaxies.
+                      The planets in our solar system orbit the sun, while the
+                      moon orbits Earth. Our entire solar system orbits the
+                      center of the Milky Way galaxy, which itself moves through
+                      space relative to other galaxies.
                     </p>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
                       <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Sparkles size={16} className="text-yellow-500" /> Orbital Paths
+                        <Sparkles size={16} className="text-yellow-500" />{" "}
+                        Orbital Paths
                       </h3>
                       <p>
-                        Celestial bodies follow elliptical (oval-shaped) orbits rather than perfect circles. These paths are determined by the gravitational pull between objects, following principles first described by Johannes Kepler and later explained by Isaac Newton's laws of motion.
+                        Celestial bodies follow elliptical (oval-shaped) orbits
+                        rather than perfect circles. These paths are determined
+                        by the gravitational pull between objects, following
+                        principles first described by Johannes Kepler and later
+                        explained by Isaac Newton's laws of motion.
                       </p>
                     </div>
                     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
@@ -290,7 +312,10 @@ const PlanetaryOrbits = () => {
                         <Orbit className="text-blue-500" /> Returning Motion
                       </h3>
                       <p>
-                        One of the defining characteristics of an orbit is that bodies return to the same positions in their paths after completing one revolution. This cyclical, returning nature is a fundamental aspect of planetary motion.
+                        One of the defining characteristics of an orbit is that
+                        bodies return to the same positions in their paths after
+                        completing one revolution. This cyclical, returning
+                        nature is a fundamental aspect of planetary motion.
                       </p>
                     </div>
                   </div>
@@ -311,7 +336,8 @@ const PlanetaryOrbits = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The Quran makes references to celestial movement that align with our modern understanding of planetary orbits:
+                    The Quran makes references to celestial movement that align
+                    with our modern understanding of planetary orbits:
                   </p>
 
                   <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
@@ -328,12 +354,20 @@ const PlanetaryOrbits = () => {
                     <div className="flex flex-col md:flex-row md:space-x-6">
                       <div className="md:w-1/2">
                         <p className="italic mb-4">
-                          "[Allah] Created the heavens and the Earth in truth. He overlaps the night over the day and overlaps the day over the night, and enslaved the sun and the moon, ALL MOVE to a prerecorded destiny. Is He not the Exalted, the Forgiver?"
+                          "[Allah] Created the heavens and the Earth in truth.
+                          He overlaps the night over the day and overlaps the
+                          day over the night, and enslaved the sun and the moon,
+                          ALL MOVE to a prerecorded destiny. Is He not the
+                          Exalted, the Forgiver?"
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
                         <p dir="rtl">
-                          خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ بِالْحَقِّ ۖ يُكَوِّرُ اللَّيْلَ عَلَى النَّهَارِ وَيُكَوِّرُ النَّهَارَ عَلَى اللَّيْلِ ۖ وَسَخَّرَ الشَّمْسَ وَالْقَمَرَ ۖ كُلٌّ يَجْرِي لِأَجَلٍ مُسَمًّى ۗ أَلَا هُوَ الْعَزِيزُ الْغَفَّارُ
+                          خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ بِالْحَقِّ ۖ
+                          يُكَوِّرُ اللَّيْلَ عَلَى النَّهَارِ وَيُكَوِّرُ
+                          النَّهَارَ عَلَى اللَّيْلِ ۖ وَسَخَّرَ الشَّمْسَ
+                          وَالْقَمَرَ ۖ كُلٌّ يَجْرِي لِأَجَلٍ مُسَمًّى ۗ أَلَا
+                          هُوَ الْعَزِيزُ الْغَفَّارُ
                         </p>
                       </div>
                     </div>
@@ -344,7 +378,13 @@ const PlanetaryOrbits = () => {
                       Key Point
                     </Badge>
                     <p className="mt-3">
-                      In Arabic grammar, there's a distinction between singular (one), binary (two), and plural (three or more). The phrase "كُلٌّ يَجْرِي" (kullon yajree) refers to the plural form, indicating that all the mentioned bodies—including Earth—are in motion. This suggests that the Quran was referring not just to the movement of the sun and moon, but also to Earth's movement.
+                      In Arabic grammar, there's a distinction between singular
+                      (one), binary (two), and plural (three or more). The
+                      phrase "كُلٌّ يَجْرِي" (kullon yajree) refers to the
+                      plural form, indicating that all the mentioned
+                      bodies—including Earth—are in motion. This suggests that
+                      the Quran was referring not just to the movement of the
+                      sun and moon, but also to Earth's movement.
                     </p>
                   </div>
 
@@ -366,13 +406,14 @@ const PlanetaryOrbits = () => {
                         </p>
                       </div>
                       <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          وَالسَّمَاءِ ذَاتِ الرَّجْعِ
-                        </p>
+                        <p dir="rtl">وَالسَّمَاءِ ذَاتِ الرَّجْعِ</p>
                       </div>
                     </div>
                     <p className="mt-3">
-                      The term "Al-rajeh الرَّجْعِ" refers to something that returns to the same location. This aligns with our understanding that celestial bodies, including planets, return to the same positions in their orbits.
+                      The term "Al-rajeh الرَّجْعِ" refers to something that
+                      returns to the same location. This aligns with our
+                      understanding that celestial bodies, including planets,
+                      return to the same positions in their orbits.
                     </p>
                   </div>
                 </CardContent>
@@ -392,24 +433,41 @@ const PlanetaryOrbits = () => {
                 </CardHeader>
                 <CardContent className="pt-4 space-y-4">
                   <p>
-                    The alignment between these 1400-year-old Quranic references and our modern scientific understanding invites reflection:
+                    The alignment between these 1400-year-old Quranic references
+                    and our modern scientific understanding invites reflection:
                   </p>
 
                   <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
                     <h3 className="font-bold text-xl mb-3 text-center">
-                      How could an illiterate man who lived 1400 years ago have known about planetary orbits?
+                      How could man who lived 1400 years ago have known about
+                      planetary orbits?
                     </h3>
                     <p>
-                      At a time when the prevailing view held Earth to be stationary and at the center of the universe, these verses appear to describe a different understanding—one that aligns with modern astronomy's knowledge that Earth moves along with other celestial bodies, and that planets follow orbital paths that return them to their starting positions.
+                      At a time when the prevailing view held Earth to be
+                      stationary and at the center of the universe, these verses
+                      appear to describe a different understanding—one that
+                      aligns with modern astronomy's knowledge that Earth moves
+                      along with other celestial bodies, and that planets follow
+                      orbital paths that return them to their starting
+                      positions.
                     </p>
                   </div>
 
                   <p>
-                    The Quranic passages referring to the movement of celestial bodies, including Earth, and the returning nature of their paths present an intriguing historical perspective. These references, made long before telescopes or modern astronomical tools were available, raise questions about the origin of such knowledge in ancient texts.
+                    The Quranic passages referring to the movement of celestial
+                    bodies, including Earth, and the returning nature of their
+                    paths present an intriguing historical perspective. These
+                    references, made long before telescopes or modern
+                    astronomical tools were available, raise questions about the
+                    origin of such knowledge in ancient texts.
                   </p>
 
                   <p>
-                    For many, this connection between ancient text and contemporary science invites contemplation about knowledge, revelation, and our place in the universe. Whether approached from a scientific or spiritual perspective, the heavenly bodies continue to inspire wonder and discovery.
+                    For many, this connection between ancient text and
+                    contemporary science invites contemplation about knowledge,
+                    revelation, and our place in the universe. Whether
+                    approached from a scientific or spiritual perspective, the
+                    heavenly bodies continue to inspire wonder and discovery.
                   </p>
                 </CardContent>
               </Card>
@@ -434,10 +492,11 @@ const PlanetaryOrbits = () => {
                   onClick={() => {
                     scrollToSection(id);
                   }}
-                  className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${activeSection === id
-                    ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                    : ""
-                    }`}
+                  className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                    activeSection === id
+                      ? "bg-gray-100 dark:bg-gray-800 font-medium"
+                      : ""
+                  }`}
                 >
                   <Icon className={iconColor} size={18} />
                   <span>{title}</span>
@@ -459,7 +518,8 @@ const PlanetaryOrbits = () => {
             <h3 className="text-lg font-medium">Exploring the Cosmos</h3>
           </div>
           <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The universe continues to reveal its secrets, connecting ancient wisdom with modern discovery. May we always look up with wonder.
+            The universe continues to reveal its secrets, connecting ancient
+            wisdom with modern discovery. May we always look up with wonder.
           </p>
           <div className="flex justify-center gap-4 mt-6">
             <Button

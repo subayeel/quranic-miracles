@@ -16,48 +16,32 @@ export const scienceCategories = {
   Astronomy: {
     icon: Earth,
     items: [
-      { title: "Axial Tilt", url: "/astronomy/axial-tilt" },
-      { title: "Day", url: "/astronomy/day" },
-      { title: "Exoplanets", url: "/astronomy/exoplanets" },
-      { title: "Full Moon", url: "/astronomy/full-moon" },
-      { title: "Kelvin", url: "/astronomy/kelvin" },
       { title: "Magnetosphere", url: "/astronomy/magnetosphere" },
-      { title: "Meteorites", url: "/astronomy/meteorites" },
+
       { title: "Moonlight", url: "/astronomy/moonlight" },
-      { title: "Multi-Star System", url: "/astronomy/multi-star" },
+
       { title: "Planetary Orbits", url: "/astronomy/planetary-orbits" },
-      { title: "Planets", url: "/astronomy/planets" },
+
       { title: "Red Giant", url: "/astronomy/red-giant" },
       { title: "Sirius", url: "/astronomy/sirius" },
-      { title: "Solar Flare", url: "/astronomy/solar-flare" },
+
       { title: "Starlight", url: "/astronomy/starlight" },
-      { title: "Stars", url: "/astronomy/stars" },
-      { title: "Stars Wobble", url: "/astronomy/stars-wobble" },
-      { title: "Sunlight", url: "/astronomy/sunlight" },
+
       { title: "Tidal Locking", url: "/astronomy/tidal-locking" },
-      { title: "Venus", url: "/astronomy/venus" },
     ],
   },
   Biology: {
     icon: Microscope,
     items: [
-      { title: "Alzheimer's", url: "/biology/alzheimer" },
-      { title: "Antioxidants", url: "/biology/antioxidants" },
-      { title: "Bacteria", url: "/biology/bacteria" },
-      { title: "Bioluminescence", url: "/biology/bioluminescence" },
       { title: "Breastfeeding", url: "/biology/breastfeeding" },
-      { title: "Colors", url: "/biology/colors" },
-      { title: "Evolution", url: "/biology/evolution" },
+
       { title: "Fasting", url: "/biology/fasting" },
-      { title: "Fats", url: "/biology/fats" },
-      { title: "Fear", url: "/biology/fear" },
-      { title: "Fig", url: "/biology/fig" },
-      { title: "Frost", url: "/biology/frost" },
+
       { title: "Gardens", url: "/biology/gardens" },
       { title: "Honey", url: "/biology/honey" },
       { title: "Hypoxia", url: "/biology/hypoxia" },
       { title: "Keraunoparalysis", url: "/biology/keraunoparalysis" },
-      { title: "Nutrient Cycle", url: "/biology/nutrient-cycle" },
+
       { title: "Plant Stress", url: "/biology/plant-stress" },
       { title: "Pollination", url: "/biology/pollination" },
       { title: "White Hair", url: "/biology/white-hair" },
@@ -66,18 +50,13 @@ export const scienceCategories = {
   Chemistry: {
     icon: FlaskConical,
     items: [
-      { title: "Celsius", url: "/chemistry/celsius" },
-      { title: "Chlorophyll", url: "/chemistry/chlorophyll" },
-      { title: "Fluorescence", url: "/chemistry/fluoresence" },
       { title: "Halocline", url: "/chemistry/halocline" },
-      { title: "Hydrogen", url: "/chemistry/hydrogen" },
-      { title: "Hydrogen Peroxide", url: "/chemistry/hydrogen-peroxide" },
+
       { title: "Iron", url: "/chemistry/iron" },
-      { title: "Pyramids", url: "/chemistry/pyramids" },
+
       { title: "Pyritized Fossils", url: "/chemistry/pyritized-fossils" },
-      { title: "Rust", url: "/chemistry/rust" },
+
       { title: "Superionic Water", url: "/chemistry/superionic-water" },
-      { title: "Viscosity", url: "/chemistry/viscosity" },
     ],
   },
   Cosmology: {
@@ -87,22 +66,16 @@ export const scienceCategories = {
       { title: "Big Bang", url: "/cosmology/big-bang" },
       { title: "Big Crunch", url: "/cosmology/big-crunch" },
       { title: "Dark Energy", url: "/cosmology/dark-energy" },
-      {
-        title: "Equivalence Principle",
-        url: "/cosmology/equivalence-principle",
-      },
+
       { title: "Expanding Universe", url: "/cosmology/expanding-universe" },
-      { title: "Galaxy Filaments", url: "/cosmology/galaxy-filaments" },
+
       { title: "Gravitation Waves", url: "/cosmology/gravitation-waves" },
       { title: "Gravity", url: "/cosmology/gravity" },
-      { title: "Isotropy", url: "/cosmology/isotropy" },
+
       { title: "Primordial Smoke", url: "/cosmology/primordial-smoke" },
       { title: "Red Shifting", url: "/cosmology/red-shifting" },
       { title: "Seven Heavens", url: "/cosmology/seven-heavens" },
       { title: "Shape of Universe", url: "/cosmology/shape-of-universe" },
-      { title: "Sound Waves", url: "/cosmology/sound-waves" },
-      { title: "Spacetime", url: "/cosmology/spacetime" },
-      { title: "Time Dilation", url: "/cosmology/time-dilation" },
     ],
   },
   Embryology: {
