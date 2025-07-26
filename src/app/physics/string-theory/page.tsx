@@ -6,7 +6,6 @@ import {
   Sparkles,
   Atom,
   Layers,
-  BookOpen,
   HelpCircle,
   ArrowUp,
   Infinity,

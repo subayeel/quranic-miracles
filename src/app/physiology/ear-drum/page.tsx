@@ -6,9 +6,7 @@ import {
   ChevronRight,
   Activity,
   BookOpen,
-  Quote,
   HelpCircle,
-  RotateCcw,
   ArrowUp,
   Sparkles,
 } from "lucide-react";

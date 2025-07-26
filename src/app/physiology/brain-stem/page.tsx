@@ -5,12 +5,10 @@ import {
   Brain,
   ChevronRight,
   BookOpen,
-  Quote,
   HelpCircle,
   ArrowUp,
   Sparkles,
   MoonStar,
-  Cross,
 } from "lucide-react";
 
 const BrainStem = () => {

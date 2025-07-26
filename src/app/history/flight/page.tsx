@@ -6,7 +6,6 @@ import {
   ChevronRight,
   BookOpen,
   HelpCircle,
-  Sparkles,
   ArrowUp,
   Layers,
 } from "lucide-react";

@@ -7,7 +7,6 @@ import {
   DoorClosed,
   Atom,
   BookOpen,
-  HelpCircle,
   ArrowUp,
   Infinity,
 } from "lucide-react";

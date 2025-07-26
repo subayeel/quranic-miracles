@@ -9,7 +9,6 @@ import {
   BookOpen,
   HelpCircle,
   ArrowUp,
-  Quote,
 } from "lucide-react";
 
 const PulsarNavigation = () => {

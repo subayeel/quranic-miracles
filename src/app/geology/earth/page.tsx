@@ -9,7 +9,6 @@ import {
   PlusSquare,
   HelpCircle,
   ArrowUp,
-  BookOpen,
 } from "lucide-react";
 
 const EarthComponent = () => {

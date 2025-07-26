@@ -131,7 +131,7 @@ const PlanetaryOrbits = () => {
         <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Orbit className="text-blue-600" size={24} />
+              <Orbit className="text-blue-600" />
               <div>
                 <h1 className="text-xl font-bold text-gray-900">
                   Planetary Orbits
