@@ -2,77 +2,50 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Leaf,
   ChevronRight,
+  Leaf,
   Microscope,
   BookOpen,
-  Quote,
   HelpCircle,
-  Users,
   ArrowUp,
-  Sparkles,
-  Bug,
 } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 const AnimalColonies = () => {
   const [activeSection, setActiveSection] = useState("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents = useMemo(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
         title: "Animal Communities",
         icon: Leaf,
-        color: "bg-green-100 dark:bg-green-900",
-        iconColor: "text-green-500",
       },
       {
         id: "science",
-        title: "Scientific Evidence",
+        title: "The Scientific Model",
         icon: Microscope,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
       },
       {
         id: "quran",
-        title: "Quranic Reference",
+        title: "The Quranic Account",
         icon: BookOpen,
-        color: "bg-amber-100 dark:bg-amber-900",
-        iconColor: "text-amber-500",
       },
       {
         id: "reflection",
-        title: "Reflection",
+        title: "A Fascinating Question",
         icon: HelpCircle,
-        color: "bg-purple-100 dark:bg-purple-900",
-        iconColor: "text-purple-500",
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
-  // Set up Intersection Observer to track which section is in view
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -80,10 +53,7 @@ const AnimalColonies = () => {
         }
       });
     }, options);
-
     const currentRefs = sectionRefs.current;
-
-    // Observe all section elements
     contents.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -91,9 +61,7 @@ const AnimalColonies = () => {
         observer.observe(element);
       }
     });
-
     return () => {
-      // Clean up observer
       contents.forEach(({ id }) => {
         const element = currentRefs[id];
         if (element) {
@@ -112,347 +80,292 @@ const AnimalColonies = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-emerald-700 dark:from-green-800 dark:to-emerald-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Users className="text-green-200" size={32} />
-            <h1 className="text-4xl font-bold">Colonies</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-green-100">Zoology - Easy</p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-green-700 hover:bg-green-50"
-              onClick={() => scrollToSection("science")}
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-green-700 hover:text-white border-white hover:bg-green-700"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Explore Animal Social Structures
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Leaf className="text-green-600 dark:text-green-400" size={24} />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Animal Colonies
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Zoology • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-green-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
-                      <Users className="text-green-500" size={24} />
-                    </div>
-                    <CardTitle>Social Colonies</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    In the Quran, land animals and birds are described as living
-                    in communities or colonies. At a time when only insect
-                    colonies were readily observable, the Quran referred to
-                    animals and birds as nations similar to human societies.
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Animal Communities
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  The concept of animals living in organized colonies, where
+                  each member has a specific role and they work together toward
+                  common goals, has fascinated scientists for generations. From
+                  ants building complex underground cities to bees constructing
+                  intricate hives, nature showcases remarkable examples of
+                  social organization.
+                </p>
+                <div className="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    Organized Societies in Nature
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Animal colonies demonstrate sophisticated levels of
+                    cooperation, division of labor, and collective
+                    decision-making that rival even human societies in their
+                    complexity and efficiency. These natural communities have
+                    evolved over millions of years to create some of the most
+                    successful survival strategies on Earth.
                   </p>
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      Animal Social Structures
-                    </h3>
-                    <p>
-                      Modern zoology has confirmed that many species of animals
-                      and birds form complex social structures that could be
-                      compared to human societies. These communities often have
-                      specific roles, communication systems, and social
-                      hierarchies.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+              </section>
 
-            {/* Scientific Evidence */}
-            <section id="science" className="scroll-mt-20">
-              <Card className="border-l-4 border-blue-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Microscope className="text-blue-500" size={24} />
-                    </div>
-                    <CardTitle>Scientific Evidence</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Scientific
-                      Confirmation
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Social Colonies:
-                      <br />
-                      Eusocial insects like ants and honey bees are
-                      multicellular animals that live in colonies with a highly
-                      organized social structure. Colonies of some social
-                      insects may be deemed superorganisms. Animals, such as
-                      humans and rodents, form breeding or nesting colonies,
-                      potentially for more successful mating and to better
-                      protect offspring."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://en.wikipedia.org/wiki/Colony_(biology)"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Wikipedia, Colony (biology), 2019
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Bug size={16} className="text-blue-500" /> Insect
-                        Colonies
+              {/* Scientific Evidence */}
+              <section id="science" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Scientific Model
+                </h2>
+                <blockquote className="border-l-4 border-blue-500 pl-6 py-4 mb-8 bg-blue-50 dark:bg-blue-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "In eusocial insects, colonies are characterized by
+                    reproductive division of labor, overlapping generations, and
+                    cooperative care of young. These societies exhibit
+                    remarkable coordination and efficiency in their collective
+                    behaviors, from foraging and nest construction to defense
+                    and reproduction."
+                  </p>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Modern Entomology Research
+                  </cite>
+                </blockquote>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Scientific research has revealed that animal colonies operate
+                  through complex communication systems, specialized roles, and
+                  collective intelligence that emerges from simple individual
+                  behaviors.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Leaf
+                        size={20}
+                        className="text-green-500 dark:text-green-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Division of Labor
                       </h3>
-                      <p>
-                        Insects like bees, ants, and termites form well-known
-                        colony structures with specialized roles, communication
-                        systems, and collective decision-making processes.
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Different members of the colony specialize in specific
+                      tasks: workers, guards, nurses, and reproductive
+                      individuals, each contributing to the collective success.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Microscope
+                        size={20}
+                        className="text-blue-500 dark:text-blue-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Communication Systems
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Colonies use sophisticated communication methods including
+                      chemical signals, vibrations, and even complex "dances" to
+                      coordinate their activities.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  These discoveries show that animal societies can achieve
+                  remarkable feats through cooperation and organization, often
+                  surpassing what individual animals could accomplish alone.
+                </p>
+              </section>
+
+              {/* Quranic Reference */}
+              <section id="quran" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Quranic Account
+                </h2>
+                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/6/38"
+                      className="text-green-700 dark:text-green-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 6:38
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "And there is no creature on earth or bird that flies
+                        with its wings except [that they are] communities like
+                        you. We have not neglected in the Book a thing. Then
+                        unto their Lord they will be gathered."
                       </p>
                     </div>
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Users size={16} className="text-gray-500" /> Vertebrate
-                        Communities
-                      </h3>
-                      <p>
-                        Many vertebrates, including birds, mammals, and fish,
-                        have now been documented forming complex social
-                        structures with distinct communication patterns and
-                        societal roles.
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ٣٨ وَمَا مِنْ دَابَّةٍ فِي الْأَرْضِ وَلَا طَائِرٍ
+                        يَطِيرُ بِجَنَاحَيْهِ إِلَّا أُمَمٌ أَمْثَالُكُمْ ۚ مَا
+                        فَرَّطْنَا فِي الْكِتَابِ مِنْ شَيْءٍ ۚ ثُمَّ إِلَىٰ
+                        رَبِّهِمْ يُحْشَرُونَ
                       </p>
                     </div>
                   </div>
-
-                  <p>
-                    Modern zoology has progressively discovered the complexity
-                    of animal social structures beyond insect colonies. From
-                    prairie dog towns to bird flocks with sentinel systems, many
-                    vertebrate species exhibit community behaviors that were not
-                    scientifically documented until recent centuries.
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Insight
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The word "أُمَمٌ" (umam) in this verse means "communities"
+                    or "nations." The Quran here describes animals as living in
+                    organized communities "like you" (referring to humans),
+                    suggesting that animals have their own forms of social
+                    organization, cooperation, and collective behavior that
+                    parallel human societies in their complexity and structure.
                   </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <h4 className="font-medium mb-2">
+                    The Comparison to Human Communities
+                  </h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    This verse explicitly compares animal communities to human
+                    societies, suggesting that the organization, cooperation,
+                    and social structures we observe in nature are not random
+                    but represent sophisticated forms of collective intelligence
+                    and social organization.
+                  </p>
+                </div>
+              </section>
 
-            {/* Quranic Reference */}
-            <section id="quran" className="scroll-mt-20">
-              <Card className="border-l-4 border-amber-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
-                      <BookOpen className="text-amber-500" size={24} />
-                    </div>
-                    <CardTitle>Quranic Reference</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/6/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/38"
-                        className="text-amber-600 dark:text-amber-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 6:38
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "There is no land animal nor a bird that flies with
-                          wings who are not nations like you. We didn't miss a
-                          thing in the Book then to their Lord they will be
-                          gathered."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٣٨ وَمَا مِنْ دَابَّةٍ فِي الْأَرْضِ وَلَا طَائِرٍ
-                          يَطِيرُ بِجَنَاحَيْهِ إِلَّا أُمَمٌ أَمْثَالُكُمْ ۚ
-                          مَا فَرَّطْنَا فِي الْكِتَابِ مِنْ شَيْءٍ ۚ ثُمَّ
-                          إِلَىٰ رَبِّهِمْ يُحْشَرُونَ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <Badge className="bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-100">
-                      Key Phrase
-                    </Badge>
-                    <p className="mt-3">
-                      The phrase "umamun amthalukum أُمَمٌ أَمْثَالُكُمْ"
-                      (nations like you) is significant as it compares animal
-                      communities to human societies. In 7th century Arabia, the
-                      concept of complex animal societies beyond bee and ant
-                      colonies was not commonly recognized.
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  A Fascinating Question
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  The recognition that animals live in organized communities
+                  comparable to human societies raises an intriguing question:
+                </p>
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could a 7th-century text accurately describe animals as
+                    living in organized communities "like humans" when the
+                    scientific understanding of complex animal societies was
+                    developed only centuries later?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    In the 7th century, the prevailing view was that only humans
+                    possessed the intelligence and social organization necessary
+                    for complex community structures. The idea that animals
+                    could form sophisticated societies with division of labor,
+                    communication systems, and collective decision-making was
+                    not part of scientific understanding until modern research
+                    revealed these remarkable parallels.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Historical Context</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      In the 7th century, complex social organization was
+                      considered uniquely human. The recognition that animals
+                      form sophisticated communities required centuries of
+                      scientific observation and research.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-purple-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-                      <HelpCircle className="text-purple-500" size={24} />
-                    </div>
-                    <CardTitle>Reflection</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The description of animals living in social communities in
-                    the Quran raises an intriguing question:
-                  </p>
-
-                  <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could man who lived 1400 years ago have known about
-                      colonies?
-                    </h3>
-                    <p>
-                      In 7th century Arabia, ordinary observations might have
-                      revealed insect colonies, but the broader concept that
-                      land animals and birds form communities with social
-                      structures comparable to human societies would not have
-                      been widely understood or documented.
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Modern Validation</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Contemporary science confirms that many animal species
+                      indeed live in complex, organized communities that
+                      parallel human societies in their sophistication and
+                      cooperative behaviors.
                     </p>
                   </div>
-
-                  <p>
-                    The recognition that animals form communities or "nations"
-                    similar to humans represents an interesting correlation
-                    between the Quranic verse and what modern zoology has
-                    confirmed over centuries of scientific study. In the context
-                    of 7th century Arabia, such a comparison between animal and
-                    human societies would have been an unusual perspective.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+                  This connection between ancient wisdom and modern scientific
+                  discovery invites us to reflect on the depth of knowledge
+                  contained within sacred texts and their remarkable alignment
+                  with discoveries made through centuries of scientific
+                  advancement.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-50">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button className="rounded-full h-14 w-14 shadow-lg bg-green-600 hover:bg-green-700">
-              <Users size={24} />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent side="top" className="w-64 p-0 mr-6 mb-2">
-            <nav className="max-h-80 overflow-y-auto">
-              {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                <button
-                  key={id}
-                  onClick={() => {
-                    scrollToSection(id);
-                  }}
-                  className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                    activeSection === id
-                      ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                      : ""
-                  }`}
-                >
-                  <Icon className={iconColor} size={18} />
-                  <span>{title}</span>
-                  {activeSection === id && (
-                    <ChevronRight className="ml-auto" size={16} />
-                  )}
-                </button>
-              ))}
-            </nav>
-          </PopoverContent>
-        </Popover>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-green-500" size={18} />
-            <h3 className="text-lg font-medium">
-              Exploring Natural Communities
-            </h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The complex social structures of the animal kingdom continue to
-            amaze scientists, revealing patterns that connect ancient wisdom
-            with modern discoveries.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Leaf className="text-green-600 dark:text-green-400" size={20} />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Exploring Animal Societies
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              The fascinating world of animal communities continues to reveal
+              parallels with human societies and ancient wisdom.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-green-600 dark:bg-green-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };

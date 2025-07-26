@@ -2,88 +2,58 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Globe,
   ChevronRight,
-  Compass,
-  Orbit,
+  Sparkles,
+  Globe,
+  BookOpen,
   HelpCircle,
   ArrowUp,
-  Sparkles,
   Circle,
-  Quote,
-} from "lucide-react"; // Using Sphere and Compass for cosmic theme
+  Compass,
+  Orbit,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-
-// Define TypeScript type for content sections
-interface ContentSection {
-  id: string;
-  title: string;
-  icon: React.ElementType;
-  color: string;
-  iconColor: string;
-}
-
-const ShapeOfUniverse: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>("intro");
+const ShapeOfUniverse = () => {
+  const [activeSection, setActiveSection] = useState("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents: ContentSection[] = useMemo(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
         title: "Cosmic Shape",
         icon: Globe,
-        color: "bg-purple-100 dark:bg-purple-900",
-        iconColor: "text-purple-500",
       },
       {
         id: "observable",
         title: "The Observable Sphere",
         icon: Circle,
-        color: "bg-indigo-100 dark:bg-indigo-900",
-        iconColor: "text-indigo-500",
       },
       {
         id: "principle",
         title: "Viewed Equally",
-        icon: Compass, // Represents direction/perspective
-        color: "bg-teal-100 dark:bg-teal-900",
-        iconColor: "text-teal-500",
+        icon: Compass,
       },
       {
         id: "curvature",
         title: "Returning Journey",
-        icon: Orbit, // Represents a path returning
-        color: "bg-pink-100 dark:bg-pink-900",
-        iconColor: "text-pink-500",
+        icon: Orbit,
       },
       {
         id: "reflection",
         title: "Contemplation",
         icon: HelpCircle,
-        color: "bg-amber-100 dark:bg-amber-900",
-        iconColor: "text-amber-500",
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
-  // Set up Intersection Observer to track which section is in view
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.3, // Adjust threshold as needed
+      threshold: 0.3,
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -91,10 +61,7 @@ const ShapeOfUniverse: React.FC = () => {
         }
       });
     }, options);
-
     const currentRefs = sectionRefs.current;
-
-    // Observe all section elements
     contents.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -102,9 +69,7 @@ const ShapeOfUniverse: React.FC = () => {
         observer.observe(element);
       }
     });
-
     return () => {
-      // Clean up observer
       contents.forEach(({ id }) => {
         const element = currentRefs[id];
         if (element) {
@@ -123,504 +88,419 @@ const ShapeOfUniverse: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-indigo-800 dark:from-purple-800 dark:to-indigo-950 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Globe className="text-purple-300" size={32} />
-            <h1 className="text-4xl font-bold">Shape of the Universe</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-purple-200">
-            Exploring Cosmic Dimensions
-          </p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-purple-700 hover:bg-purple-50"
-              onClick={() => scrollToSection("observable")}
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-purple-100 border-purple-300 hover:bg-purple-700"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Cosmic Guide</CardTitle>
-                  <CardDescription>
-                    Navigate the universe's form
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Globe
+                className="text-purple-600 dark:text-purple-400"
+                size={24}
+              />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Shape of the Universe
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Cosmology • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-purple-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-                      <Globe className="text-purple-500" size={24} />
-                    </div>
-                    <CardTitle>The Enigma of Cosmic Shape</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    Imagine living 1400 years ago, with no telescopes or space
-                    probes. The shape and scale of the universe were beyond
-                    human comprehension. Yet, the Quran, revealed in the 7th
-                    century, contains verses that astonishingly align with our
-                    modern understanding of the cosmos. Let's explore some of
-                    these fascinating connections.
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Enigma of Cosmic Shape
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Imagine living 1400 years ago, with no telescopes or space
+                  probes. The shape and scale of the universe were beyond human
+                  comprehension. Yet, the Quran, revealed in the 7th century,
+                  contains verses that astonishingly align with our modern
+                  understanding of the cosmos.
+                </p>
+                <div className="bg-purple-50 dark:bg-purple-900/30 border-l-4 border-purple-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    A Look Back at Ancient Knowledge
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    In the 7th century, cosmological views were vastly different
+                    from today. Many cultures believed in a flat Earth with a
+                    solid dome-like sky. The idea of a vast, expanding universe
+                    with a discernible shape was simply not part of human
+                    knowledge or scientific capability.
                   </p>
-                  <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      A Look Back at Ancient Knowledge
-                    </h3>
-                    <p>
-                      In the 7th century, cosmological views were vastly
-                      different from today. Many cultures believed in a flat
-                      Earth with a solid dome-like sky. The idea of a vast,
-                      expanding universe with a discernible shape was simply not
-                      part of human knowledge or scientific capability.
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Circle
+                        size={20}
+                        className="text-purple-500 dark:text-purple-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Observable Sphere
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Modern astronomy reveals that every observer sees the
+                      observable universe as a giant sphere, about 93 billion
+                      light-years in diameter.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-            </section>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Orbit
+                        size={20}
+                        className="text-purple-500 dark:text-purple-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Curved Possibility
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Recent studies suggest the universe might be curved, where
+                      traveling in a straight line could eventually return you
+                      to your starting point.
+                    </p>
+                  </div>
+                </div>
+              </section>
 
-            {/* The Observable Sphere */}
-            <section id="observable" className="scroll-mt-20">
-              <Card className="border-l-4 border-indigo-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900">
-                      <Circle className="text-indigo-500" size={24} />
-                    </div>
-                    <CardTitle>Our Observable Universe: A Sphere</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    Modern astronomy reveals that every observer in the universe
-                    sees the observable universe around them as a giant sphere.
-                    This sphere is estimated to be about 93 billion light-years
-                    in diameter! This is true for *any* observer, no matter
-                    where they are located.
+              {/* Observable Universe */}
+              <section id="observable" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Our Observable Universe: A Sphere
+                </h2>
+                <blockquote className="border-l-4 border-blue-500 pl-6 py-4 mb-8 bg-blue-50 dark:bg-blue-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "Assuming the universe is isotropic, the distance to the
+                    edge of the observable universe is roughly the same in every
+                    direction. That is, the observable universe has a spherical
+                    volume (a ball) centered on the observer. Every location in
+                    the universe has its own observable universe... The radius
+                    of the observable universe is therefore estimated to be
+                    about 46.5 billion light-years and its diameter about 28.5
+                    gigaparsecs (93 billion light-years)."
                   </p>
-                  <div className="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-lg border border-indigo-100 dark:border-indigo-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-indigo-500" /> Modern
-                      Scientific View
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Assuming the universe is isotropic, the distance to the
-                      edge of the observable universe is roughly the same in
-                      every direction. That is, the observable universe has a
-                      spherical volume (a ball) centered on the observer. Every
-                      location in the universe has its own observable universe,
-                      which may or may not overlap with the one centered on
-                      Earth... The radius of the observable universe is
-                      therefore estimated to be about 46.5 billion light-years
-                      and its diameter about 28.5 gigaparsecs (93 billion
-                      light-years...)"
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Wikipedia, Observable Universe, 2020
+                  </cite>
+                </blockquote>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Spherical Shape</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Modern astronomy reveals that every observer in the
+                      universe sees the observable universe around them as a
+                      giant sphere.
                     </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://en.wikipedia.org/wiki/Observable_universe"
-                        className="text-indigo-600 dark:text-indigo-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Wikipedia, Observable Universe, 2020
-                      </a>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Universal Property</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      This spherical observation is true for any observer, no
+                      matter where they are located in the universe.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Vast Scale</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      The observable universe is estimated to be about 93
+                      billion light-years in diameter - a scale beyond ancient
+                      comprehension.
+                    </p>
+                  </div>
+                </div>
+                <div className="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/55/33"
+                      className="text-indigo-700 dark:text-indigo-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 55:33
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "O society of jinn and humans! If you can escape the
+                        diameters of the heavens and the earth, go ahead and
+                        escape. But you will not escape except with
+                        authorization."
+                      </p>
+                    </div>
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ٣٣ يَا مَعْشَرَ الْجِنِّ وَالْإِنْسِ إِنِ اسْتَطَعْتُمْ
+                        أَنْ تَنْفُذُوا مِنْ أَقْطَارِ السَّمَاوَاتِ وَالْأَرْضِ
+                        فَانْفُذُوا ۚ لَا تَنْفُذُونَ إِلَّا بِسُلْطَانٍ
+                      </p>
                     </div>
                   </div>
-                  <p>
-                    This understanding of the observable universe as a sphere is
-                    a recent scientific discovery. However, let's look at a
-                    verse from the Quran:
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Meaning of "Aktar"
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The key Arabic word here is "أَقْطَارِ" (Aktar). This word
+                    literally means 'diameters'. Diameters are a property
+                    specifically associated with circles or spheres. The verse
+                    speaks of the "diameters of the heavens and the earth",
+                    aligning remarkably with the modern scientific understanding
+                    that the observable universe has a spherical shape.
                   </p>
-                  <div className="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-lg border border-indigo-100 dark:border-indigo-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/55/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/33"
-                        className="text-indigo-600 dark:text-indigo-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 55:33
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "O society of jinn and humans! If you can escape the
-                          diameters of the heavens and the earth, go ahead and
-                          escape. But you will not escape except with
-                          authorization."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٣٣ يَا مَعْشَرَ الْجِنِّ وَالْإِنْسِ إِنِ
-                          اسْتَطَعْتُمْ أَنْ تَنْفُذُوا مِنْ أَقْطَارِ
-                          السَّمَاوَاتِ وَالْأَرْضِ فَانْفُذُوا ۚ لَا
-                          تَنْفُذُونَ إِلَّا بِسُلْطَانٍ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+              </section>
 
-                  <div className="mt-6">
-                    <Badge className="bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-100">
-                      Meaning of "Aktar"
-                    </Badge>
-                    <p className="mt-3">
-                      The key Arabic word here is "
-                      <span className="font-arabic">أَقْطَارِ</span>" (Aktar).
-                      This word literally means 'diameters'. Diameters are a
-                      property specifically associated with circles or spheres.
-                      The verse speaks of the "diameters of the heavens and the
-                      earth". Given that the observable universe from Earth is a
-                      sphere, and similarly from any point in the heavens (where
-                      Jinn are mentioned as residing), they too would perceive
-                      their observable universe as a sphere.
-                    </p>
-                    <p className="mt-3">
-                      The Quran mentions "diameters" for both the heavens
-                      (representing the cosmos) and the Earth. This description
-                      aligns remarkably with the modern scientific understanding
-                      that the observable universe has a spherical shape, hence
-                      possessing diameters.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Viewed Equally */}
-            <section id="principle" className="scroll-mt-20">
-              <Card className="border-l-4 border-teal-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-teal-100 dark:bg-teal-900">
-                      <Compass className="text-teal-500" size={24} />
-                    </div>
-                    <CardTitle>The Universe Appears the Same to All</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    Another cornerstone of modern cosmology is the "Cosmological
-                    Principle." It states that, on a large enough scale, the
-                    universe looks the same everywhere and in all directions.
+              {/* Cosmological Principle */}
+              <section id="principle" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Universe Appears the Same to All
+                </h2>
+                <blockquote className="border-l-4 border-teal-500 pl-6 py-4 mb-8 bg-teal-50 dark:bg-teal-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "The cosmological principle is usually stated formally as
+                    'Viewed on a sufficiently large scale, the properties of the
+                    universe are the same for all observers.' This amounts to
+                    the strongly philosophical statement that the part of the
+                    universe which we can see is a fair sample, and that the
+                    same physical laws apply throughout."
                   </p>
-                  <div className="bg-teal-50 dark:bg-teal-900/30 p-6 rounded-lg border border-teal-100 dark:border-teal-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-teal-500" /> The
-                      Cosmological Principle
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "The cosmological principle is usually stated formally as
-                      'Viewed on a sufficiently large scale, the properties of
-                      the universe are the same for all observers.' This amounts
-                      to the strongly philosophical statement that the part of
-                      the universe which we can see is a fair sample, and that
-                      the same physical laws apply throughout. In essence, this
-                      in a sense says that the universe is knowable and is
-                      playing fair with scientists."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://en.wikipedia.org/wiki/Cosmological_principle"
-                        className="text-teal-600 dark:text-teal-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Wikipedia, Observable Universe, 2020 (entry includes
-                        this principle)
-                      </a>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Wikipedia, Cosmological Principle, 2020
+                  </cite>
+                </blockquote>
+                <div className="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/79/27"
+                      className="text-teal-700 dark:text-teal-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 79:27-28
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "Are you more difficult to create, or the heaven? He
+                        constructed it. He raised its thickness, and equalized
+                        it."
+                      </p>
+                    </div>
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ٢٧ أَأَنْتُمْ أَشَدُّ خَلْقًا أَمِ السَّمَاءُ ۚ بَنَاهَا
+                        <br />
+                        ٢٨ رَفَعَ سَمْكَهَا فَسَوَّاهَا
+                      </p>
                     </div>
                   </div>
-                  <p>
-                    This means that observers, whether on Earth or elsewhere,
-                    see the observable universe with the same properties,
-                    including its apparent size or "thickness" (radius). This
-                    principle was unknown 1400 years ago. Now let's look at
-                    another set of verses:
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Phrases
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    "رَفَعَ سَمْكَهَا" (Raafa'a Samkaha) means "He raised its
+                    thickness." Today, we know the universe is expanding,
+                    meaning the radius of the observable universe is increasing
+                    over time. "فَسَوَّاهَا" (Fasawwaha) means "and equalized
+                    it," aligning with the cosmological principle that the
+                    "thickness" or radius appears equal for all observers.
                   </p>
-                  <div className="bg-teal-50 dark:bg-teal-900/30 p-6 rounded-lg border border-teal-100 dark:border-teal-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/79/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/27"
-                        className="text-teal-600 dark:text-teal-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 79:27-28
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "Are you more difficult to create, or the heaven? He
-                          constructed it. He raised its thickness, and equalized
-                          it."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٢٧ أَأَنْتُمْ أَشَدُّ خَلْقًا أَمِ السَّمَاءُ ۚ
-                          بَنَاهَا
-                          <br />
-                          ٢٨ رَفَعَ سَمْكَهَا فَسَوَّاهَا
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                </div>
+              </section>
 
-                  <div className="mt-6">
-                    <Badge className="bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-100">
-                      Key Phrases
-                    </Badge>
-                    <p className="mt-3">
-                      "<span className="font-arabic">رَفَعَ سَمْكَهَا</span>"
-                      (Raafa'a Samkaha) means "He raised its thickness." Today,
-                      we know the universe is expanding, meaning the radius (or
-                      "thickness" from the observer to the edge) of the
-                      observable universe is increasing over time.
-                    </p>
-                    <p className="mt-3">
-                      "<span className="font-arabic">فَسَوَّاهَا</span>"
-                      (Fasawwaha) means "and equalized it" or "made it equal."
-                      This phrase aligns beautifully with the cosmological
-                      principle – that the "thickness" or radius of the
-                      observable universe appears equal for all observers, no
-                      matter their location. This would not be the case if the
-                      universe had a non-uniform shape like a dome over a flat
-                      Earth, where the "height" or thickness would vary
-                      depending on your position.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Returning Journey */}
-            <section id="curvature" className="scroll-mt-20">
-              <Card className="border-l-4 border-pink-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-pink-100 dark:bg-pink-900">
-                      <Orbit className="text-pink-500" size={24} />
-                    </div>
-                    <CardTitle>
-                      Is the Universe Curved? A Returning Path
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    While the observable universe is a sphere from any
-                    viewpoint, the overall shape and topology of the *entire*
-                    universe are subjects of ongoing research. One intriguing
-                    possibility suggested by some studies is that the universe
-                    might be curved, like the surface of a sphere, but in higher
-                    dimensions.
+              {/* Curved Universe */}
+              <section id="curvature" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Is the Universe Curved? A Returning Path
+                </h2>
+                <blockquote className="border-l-4 border-pink-500 pl-6 py-4 mb-8 bg-pink-50 dark:bg-pink-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "Now our new paper, published in Nature Astronomy, has come
+                    to a conclusion that may unleash a crisis in cosmology - if
+                    confirmed. We show that the shape of the universe may
+                    actually be curved rather than flat, as previously thought -
+                    with a probability larger than 99%. In a curved universe, no
+                    matter which direction you travel in, you will end up at the
+                    starting point - just like on a sphere."
                   </p>
-                  <div className="bg-pink-50 dark:bg-pink-900/30 p-6 rounded-lg border border-pink-100 dark:border-pink-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-pink-500" /> The
-                      Possibility of a Curved Universe
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Now our new paper, published in Nature Astronomy, has
-                      come to a conclusion that may unleash a crisis in
-                      cosmology - if confirmed. We show that the shape of the
-                      universe may actually be curved rather than flat, as
-                      previously thought - with a probability larger than 99%.
-                      In a curved universe, no matter which direction you travel
-                      in, you will end up at the starting point - just like on a
-                      sphere. Though the universe has four dimensions, including
-                      time."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://phys.org/news/2019-11-shape-universe-rethink-cosmos.html"
-                        className="text-pink-600 dark:text-pink-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Phys.org, Shape of the universe..., 2019
-                      </a>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Phys.org, Shape of the universe..., 2019
+                  </cite>
+                </blockquote>
+                <div className="bg-pink-50 dark:bg-pink-900/30 border border-pink-200 dark:border-pink-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/86/11"
+                      className="text-pink-700 dark:text-pink-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 86:11
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "And the sky that returns."
+                      </p>
+                    </div>
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ١١ وَالسَّمَاءِ ذَاتِ الرَّجْعِ
+                      </p>
                     </div>
                   </div>
-                  <p>
-                    This concept of eventually returning to your starting point
-                    by traveling in a straight line is a property of a
-                    positively curved, or closed, universe. It suggests the
-                    universe, as a whole, might be finite and has no "exit."
-                    This is a frontier of modern cosmology.
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Meaning of "Al-rajeh"
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The Arabic word "الرَّجْعِ" (Al-rajeh) means 'returns' or
+                    'the return'. While we are familiar with planetary orbits,
+                    applying "returning" to the vast "sky" or universe points
+                    towards a property where a path ultimately returns to its
+                    origin - aligning with the concept of a closed, curved
+                    universe.
                   </p>
-                  <p>Now, consider this verse from the Quran:</p>
-                  <div className="bg-pink-50 dark:bg-pink-900/30 p-6 rounded-lg border border-pink-100 dark:border-pink-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/86/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/11"
-                        className="text-pink-600 dark:text-pink-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 86:11
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "And the sky that returns."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">١١ وَالسَّمَاءِ ذَاتِ الرَّجْعِ</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="mt-6">
-                    <Badge className="bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-100">
-                      Meaning of "Al-rajeh"
-                    </Badge>
-                    <p className="mt-3">
-                      The Arabic word "
-                      <span className="font-arabic">الرَّجْعِ</span>" (Al-rajeh)
-                      means 'returns' or 'the return'. While we are familiar
-                      with the concept of planets returning to their orbital
-                      paths, applying "returning" to the vast "sky" or universe
-                      on a larger scale points towards a property where a path
-                      ultimately returns to its origin. This aligns remarkably
-                      with the concept of a closed, curved universe where such a
-                      return journey is possible.
-                    </p>
-                    <p className="mt-3">
-                      Coupled with verse 55:33 which speaks of not being able to
-                      escape the "diameters" (implying boundaries of a spherical
-                      or closed nature), these verses together can be understood
-                      to portray a universe that is closed, finite, and where
-                      travel in a straight line would eventually bring one back
-                      – concepts astonishingly similar to possibilities being
-                      explored in modern cosmology.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-amber-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
-                      <HelpCircle className="text-amber-500" size={24} />
-                    </div>
-                    <CardTitle>A Point for Contemplation</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The alignment between these Quranic descriptions and
-                    concepts from modern cosmology presents a profound question:
+                </div>
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <h4 className="font-medium mb-2">
+                    The Scientific Connection
+                  </h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    Coupled with verse 55:33 which speaks of not being able to
+                    escape the "diameters," these verses together portray a
+                    universe that is closed, finite, and where travel in a
+                    straight line would eventually bring one back – concepts
+                    being explored in modern cosmology.
                   </p>
+                </div>
+              </section>
 
-                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could a text from the 7th century, revealed to an
-                      illiterate man, contain ideas about the universe's shape
-                      and properties that science is only confirming today?
-                    </h3>
-                    <p>
-                      The detailed properties discussed – the spherical nature
-                      of the observable universe, the idea that it appears the
-                      same from all viewpoints, and the possibility of a curved
-                      structure where paths return – were entirely beyond the
-                      scientific grasp of the 7th century. The tools and
-                      knowledge required to even hypothesize such concepts
-                      simply did not exist.
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  A Point for Contemplation
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  The alignment between these Quranic descriptions and concepts
+                  from modern cosmology presents a profound question:
+                </p>
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could a text from the 7th century, revealed to an
+                    illiterate man, contain ideas about the universe's shape and
+                    properties that science is only confirming today?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The detailed properties discussed – the spherical nature of
+                    the observable universe, the idea that it appears the same
+                    from all viewpoints, and the possibility of a curved
+                    structure where paths return – were entirely beyond the
+                    scientific grasp of the 7th century.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Historical Context</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      In the 7th century, detailed understanding of cosmology
+                      was limited. The precise description of cosmic properties
+                      shows remarkable insight into the universe's fundamental
+                      nature.
                     </p>
                   </div>
-
-                  <p>
-                    This remarkable congruence between ancient revelation and
-                    modern scientific discovery invites us to reflect deeply on
-                    the origin and nature of the Quranic text.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Modern Validation</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Today's cosmological research confirms concepts described
+                      in the Quran: the spherical observable universe, equal
+                      appearance from all points, and possible curved structure.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+                  This remarkable congruence between ancient revelation and
+                  modern scientific discovery invites us to reflect deeply on
+                  the origin and nature of the Quranic text. The universe's
+                  shape and properties continue to amaze, revealing layers of
+                  complexity hinted at in ancient scripture.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-purple-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Cosmic Wonders</h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The universe's shape and properties continue to amaze, revealing
-            layers of complexity hinted at in ancient scripture.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Globe
+                className="text-purple-600 dark:text-purple-400"
+                size={20}
+              />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Exploring Cosmic Wonders
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              The universe's shape and properties continue to amaze, revealing
+              layers of complexity hinted at in ancient scripture.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-purple-600 dark:bg-purple-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };

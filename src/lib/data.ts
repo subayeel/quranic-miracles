@@ -81,43 +81,37 @@ export const scienceCategories = {
   Embryology: {
     icon: Baby,
     items: [
-      { title: "Amniotic Fluids", url: "/embroyology/amniotic-fluid" },
       { title: "Bones", url: "/embroyology/bones" },
       { title: "Fetal Development", url: "/embroyology/fetal-development" },
       { title: "Gender", url: "/embroyology/gender" },
       { title: "Human Embryo", url: "/embroyology/human-embryo" },
       { title: "Human Senses", url: "/embroyology/human-senses" },
-      { title: "Male Fertility", url: "/embroyology/male-fertility" },
-      { title: "Meiosis", url: "/embroyology/meiosis" },
-      { title: "Miscarriage", url: "/embroyology/miscarriage" },
-      { title: "Sperm", url: "/embroyology/sperm" },
-      { title: "Womb", url: "/embroyology/womb" },
     ],
   },
   Geology: {
     icon: Mountain,
     items: [
-      { title: "Aftershocks", url: "/geology/aftershocks" },
       { title: "Asthenosphere", url: "/geology/asthenosphere" },
       { title: "Coal", url: "/geology/coal" },
-      { title: "Dead Sea", url: "/geology/dead-sea" },
+
       { title: "Earth", url: "/geology/earth" },
       { title: "Earthquake", url: "/geology/earthquake" },
       { title: "Fault Lines", url: "/geology/fault-lines" },
-      { title: "Hydrothermal Vents", url: "/geology/hydrothermal-vents" },
+
       { title: "Internal Mountains", url: "/geology/internal-mountains" },
       { title: "Internal Waves", url: "/geology/internal-waves" },
       { title: "Landslides", url: "/geology/landslides" },
-      { title: "Minerals", url: "/geology/minerals" },
+
       { title: "Mountain", url: "/geology/mountain" },
       { title: "Photic Zone", url: "/geology/photic-zone" },
       { title: "Porous Rocks", url: "/geology/porous-rocks" },
       { title: "Pumice", url: "/geology/pumice" },
       { title: "Sinkhole", url: "/geology/sinkhole" },
       { title: "Soil Expansion", url: "/geology/soil-expansion" },
+
       { title: "Steam Explosions", url: "/geology/steam-explosions" },
       { title: "Subduction", url: "/geology/subduction" },
-      { title: "Subductions", url: "/geology/subductions" },
+
       { title: "Tectonics", url: "/geology/tectonics" },
       { title: "Volcano", url: "/geology/volcano" },
       { title: "Weathering & Erosions", url: "/geology/weathering-erosions" },
@@ -126,10 +120,9 @@ export const scienceCategories = {
   History: {
     icon: Book,
     items: [
-      { title: "Calendar", url: "/history/calendar" },
       { title: "Crucifixtion", url: "/history/crucifixtion" },
       { title: "Deities", url: "/history/deities" },
-      { title: "Door Locks", url: "/history/door-locks" },
+
       { title: "Dried River", url: "/history/dried-river" },
       { title: "Flight", url: "/history/flight" },
       { title: "Haman", url: "/history/haman" },
@@ -137,14 +130,11 @@ export const scienceCategories = {
       { title: "Moses", url: "/history/moses" },
       { title: "Mourning of Pharoah", url: "/history/mourning-of-pharoah" },
       { title: "Noah", url: "/history/noah" },
-      { title: "North", url: "/history/north" },
-      { title: "Paper Money", url: "/history/paper-money" },
+
       { title: "Petra", url: "/history/petra" },
       { title: "Pharoah", url: "/history/pharoah" },
       { title: "Pharoah Mummy", url: "/history/pharoah-mummy" },
-      { title: "Pompie", url: "/history/pompie" },
-      { title: "Prostrations", url: "/history/prostrations" },
-      { title: "Skydiving", url: "/history/skydiving" },
+
       { title: "Ubar", url: "/history/ubar" },
     ],
   },
@@ -153,9 +143,9 @@ export const scienceCategories = {
     items: [
       { title: "Abjad Numerals", url: "/math/abjad-numerals" },
       { title: "Base 19", url: "/math/base-19" },
-      { title: "Digital Books", url: "/math/digital-books" },
+
       { title: "Encoding", url: "/math/encoding" },
-      { title: "Euler", url: "/math/euler" },
+
       { title: "Hypersonic", url: "/math/hypersonic" },
       { title: "Kilometer", url: "/math/kilometer" },
       { title: "Light Year", url: "/math/light-year" },
@@ -169,46 +159,32 @@ export const scienceCategories = {
   Meteorology: {
     icon: Cloud,
     items: [
-      { title: "Acid Rain", url: "/meteorology/acid-rain" },
       { title: "Atmosphere", url: "/meteorology/atmosphere" },
       {
         title: "Atmospheric Pressure",
         url: "/meteorology/atmospheric-pressure",
       },
-      { title: "Cloud Seeding", url: "/meteorology/cloud-seeding" },
+
       { title: "Desertification", url: "/meteorology/desertifiction" },
-      { title: "Dew", url: "/meteorology/dew" },
-      { title: "Fire Whirl", url: "/meteorology/fire-whirl" },
-      { title: "Flash Flood", url: "/meteorology/flash-flood" },
-      { title: "Fresh Water", url: "/meteorology/freshwater" },
-      { title: "Frost Weathering", url: "/meteorology/frost-weathering" },
-      { title: "Microburst", url: "/meteorology/microburst" },
-      { title: "Orographic Effect", url: "/meteorology/orographic-effect" },
-      { title: "Sea Breeze", url: "/meteorology/sea-breeze" },
-      { title: "Shoreline", url: "/meteorology/shorline" },
+
       { title: "Water", url: "/meteorology/water" },
       { title: "Water Cycle", url: "/meteorology/water-cycle" },
       { title: "Weight of Clouds", url: "/meteorology/weight-of-clouds" },
-      { title: "Wind", url: "/meteorology/wind" },
     ],
   },
   Physics: {
     icon: Settings,
     items: [
-      { title: "Armor Piercing", url: "/physics/armor-piercing" },
       { title: "Atom", url: "/physics/atom" },
-      { title: "Cold Plasma", url: "/physics/cold-plasma" },
-      { title: "Light", url: "/physics/light" },
-      { title: "Mass", url: "/physics/mass" },
+
       { title: "Pairs", url: "/physics/pairs" },
       { title: "Pulsar", url: "/physics/pulsar" },
-      { title: "Rayleigh Scattering", url: "/physics/rayleigh-scattering" },
-      { title: "Singularity", url: "/physics/singularity" },
+
       { title: "Solar Energy", url: "/physics/solar-energy" },
       { title: "Sonic Weapons", url: "/physics/sonic-weapons" },
-      { title: "Speed of Light", url: "/physics/speed-of-light" },
+
       { title: "String Theory", url: "/physics/string-theory" },
-      { title: "Terminal Velocity", url: "/physics/terminal-velocity" },
+
       { title: "Work", url: "/physics/work" },
       { title: "Wormhole", url: "/physics/wormhole" },
     ],
@@ -216,25 +192,17 @@ export const scienceCategories = {
   Physiology: {
     icon: Microscope,
     items: [
-      { title: "AMD", url: "/physiology/amd" },
-      { title: "Bedsores", url: "/physiology/bedsores" },
-      { title: "Brain Cells", url: "/physiology/brain-cells" },
       { title: "Brain Function", url: "/physiology/brain-function" },
       { title: "Brain Stem", url: "/physiology/brain-stem" },
-      { title: "Brainstem", url: "/physiology/brainstem" },
-      { title: "Cataracts", url: "/physiology/cataracts" },
-      { title: "Cholesterol", url: "/physiology/cholesterol" },
-      { title: "Cholestrol", url: "/physiology/cholestrol" },
+
       { title: "Ear Drum", url: "/physiology/ear-drum" },
       { title: "Finger Prints", url: "/physiology/fingerprints" },
       { title: "Flash Blindness", url: "/physiology/flash-blindness" },
-      { title: "Inner Ear", url: "/physiology/inner-ear" },
+
       { title: "Milk", url: "/physiology/milk" },
       { title: "Neurons", url: "/physiology/neurons" },
-      { title: "Pupils", url: "/physiology/pupils" },
-      { title: "Reading", url: "/physiology/reading-wisdom" },
+
       { title: "Skin Nerves", url: "/physiology/skin-nerves" },
-      { title: "Vision Space", url: "/physiology/vision-space" },
     ],
   },
   Zoology: {
@@ -246,11 +214,10 @@ export const scienceCategories = {
       { title: "Colonies", url: "/zoology/colonies" },
       { title: "Crow", url: "/zoology/crow" },
       { title: "Exoskeleton", url: "/zoology/exoskeleton" },
-      { title: "Exskeleton", url: "/zoology/exskeleton" },
-      { title: "Fossils", url: "/zoology/fossils" },
+
       { title: "Honey Bees", url: "/zoology/honey-bees" },
       { title: "Housefly", url: "/zoology/housefly" },
-      { title: "Magnetoreception", url: "/zoology/magnetoreception" },
+
       { title: "Mosquito", url: "/zoology/mosquito" },
       { title: "Raptor", url: "/zoology/raptor" },
       { title: "Spider Web", url: "/zoology/spider-web" },

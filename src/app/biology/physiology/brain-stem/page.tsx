@@ -347,7 +347,7 @@ const BrainStem = () => {
                     {/* Changed colors */}
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/39/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/42"
+                        href="https://quran.com/en/39/42"
                         className="text-teal-700 dark:text-teal-400 hover:underline" // Changed link color
                         target="_blank"
                         rel="noopener noreferrer"

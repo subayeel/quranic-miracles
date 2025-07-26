@@ -316,7 +316,7 @@ const PupilsComponent = () => {
                   <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/40/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/19"
+                        href="https://quran.com/en/40/19"
                         className="text-purple-600 dark:text-purple-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"

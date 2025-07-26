@@ -315,7 +315,7 @@ const VisionIron = () => {
                   <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/50/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/22"
+                        href="https://quran.com/en/50/22"
                         className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"

@@ -2,89 +2,50 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Droplets,
   ChevronRight,
+  Droplets,
   ExternalLink,
   BookOpen,
-  Quote,
   HelpCircle,
-  CloudRain,
   ArrowUp,
-  Sparkles,
 } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
-// Define types for our component
-type SectionContent = {
-  id: string;
-  title: string;
-  icon: React.ElementType;
-  color: string;
-  iconColor: string;
-};
+const WaterMeterology = () => {
+  const [activeSection, setActiveSection] = useState("intro");
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-type SectionRefs = {
-  [key: string]: HTMLElement | null;
-};
-
-const WaterMeterology: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>("intro");
-  const sectionRefs = useRef<SectionRefs>({});
-
-  const contents = useMemo<SectionContent[]>(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
-        title: "Water from Space",
+        title: "Cosmic Origins",
         icon: Droplets,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
       },
       {
         id: "science",
-        title: "Scientific Evidence",
+        title: "The Scientific Evidence",
         icon: ExternalLink,
-        color: "bg-teal-100 dark:bg-teal-900",
-        iconColor: "text-teal-500",
       },
       {
         id: "quran",
-        title: "Quranic References",
+        title: "The Quranic Account",
         icon: BookOpen,
-        color: "bg-green-100 dark:bg-green-900",
-        iconColor: "text-green-500",
       },
       {
         id: "reflection",
-        title: "Reflection",
+        title: "A Cosmic Inquiry",
         icon: HelpCircle,
-        color: "bg-amber-100 dark:bg-amber-900",
-        iconColor: "text-amber-500",
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
-  // Set up Intersection Observer to track which section is in view
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -92,10 +53,7 @@ const WaterMeterology: React.FC = () => {
         }
       });
     }, options);
-
     const currentRefs = sectionRefs.current;
-
-    // Observe all section elements
     contents.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -103,9 +61,7 @@ const WaterMeterology: React.FC = () => {
         observer.observe(element);
       }
     });
-
     return () => {
-      // Clean up observer
       contents.forEach(({ id }) => {
         const element = currentRefs[id];
         if (element) {
@@ -124,442 +80,346 @@ const WaterMeterology: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-cyan-700 dark:from-blue-700 dark:to-cyan-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Droplets className="text-blue-200" size={32} />
-            <h1 className="text-4xl font-bold">Water</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-blue-100">
-            Meteorology - Intermediate
-          </p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-blue-700 hover:bg-blue-50"
-              onClick={() => scrollToSection("science")}
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-white border-white hover:bg-blue-600"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Explore the cosmic origins of Earth's water
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Droplets
+                className="text-blue-600 dark:text-blue-400"
+                size={24}
+              />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Water
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Meteorology • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-blue-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Droplets className="text-blue-500" size={24} />
-                    </div>
-                    <CardTitle>Water from Space</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    In the Quran, water is described as coming from outer space.
-                    Skeptics claim that whoever wrote the Quran made a mistake,
-                    believing water forms underground. Today, scientists confirm
-                    that water indeed came from outer space.
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Cosmic Origins
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  In the Quran, water is described as coming from outer space.
+                  Skeptics claim that whoever wrote the Quran made a mistake,
+                  believing water forms underground. Today, scientists confirm
+                  that water indeed came from outer space.
+                </p>
+                <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    The Cosmic Journey
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Modern scientific evidence suggests that Earth's water was
+                    delivered by comets and asteroids from the outer reaches of
+                    our solar system. When these celestial bodies enter our
+                    atmosphere, the heat generated on entry vaporizes their ice
+                    into the atmosphere, gradually accumulating to form Earth's
+                    vast oceans.
                   </p>
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      The Cosmic Origin of Earth's Water
-                    </h3>
-                    <p>
-                      Modern scientific evidence suggests that Earth's water was
-                      delivered by comets and asteroids from the outer reaches
-                      of our solar system. When these celestial bodies enter our
-                      atmosphere, the heat generated on entry vaporizes their
-                      ice into the atmosphere, gradually accumulating to form
-                      Earth's vast oceans.
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Droplets
+                        size={20}
+                        className="text-blue-500 dark:text-blue-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Ice-Bearing Objects
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Comets and asteroids containing ice brought water to Earth
+                      during the early formation of the solar system.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Scientific Evidence */}
-            <section id="science" className="scroll-mt-20">
-              <Card className="border-l-4 border-teal-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-teal-100 dark:bg-teal-900">
-                      <ExternalLink className="text-teal-500" size={24} />
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <ExternalLink
+                        size={20}
+                        className="text-blue-500 dark:text-blue-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Perfect Coverage
+                      </h3>
                     </div>
-                    <CardTitle>Scientific Evidence</CardTitle>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Water covers 71% of Earth's surface—remarkably, the same
+                      ratio as "Sea" (32) to "Land" (13) mentions in the Quran.
+                    </p>
                   </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-teal-50 dark:bg-teal-900/30 p-6 rounded-lg border border-teal-100 dark:border-teal-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-teal-500" /> Scientific
-                      Confirmation
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Origin of water on Earth:
-                      <br />
-                      Comets, trans-Neptunian objects, or water-rich meteoroids
-                      (protoplanets) from the outer reaches of the asteroid belt
-                      colliding with Earth may have brought water to the world's
-                      oceans. Asteroids may have been primarily responsible
-                      based on several studies, including measurements of the
-                      ratio of the hydrogen isotopes deuterium and protium,
-                      since similar percentage impurities as in carbon-rich
-                      chondrites were found in oceanic water, whereas previous
-                      measurement of the isotopes' concentrations in comets and
-                      trans-Neptunian objects correspond only slightly to water
-                      on Earth. In January 2018, researchers reported that two
+                </div>
+              </section>
+
+              {/* Scientific Evidence */}
+              <section id="science" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Scientific Evidence
+                </h2>
+                <blockquote className="border-l-4 border-teal-500 pl-6 py-4 mb-8 bg-teal-50 dark:bg-teal-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "Origin of water on Earth: Comets, trans-Neptunian objects,
+                    or water-rich meteoroids (protoplanets) from the outer
+                    reaches of the asteroid belt colliding with Earth may have
+                    brought water to the world's oceans. In January 2018,
+                    researchers reported that two 4.5 billion-year-old
+                    meteorites found on Earth contained liquid water alongside a
+                    wide diversity of deuterium-poor organic matter."
+                  </p>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Wikipedia, Origin of water on Earth, 2019
+                  </cite>
+                </blockquote>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Comets & Asteroids</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Research suggests water was delivered to Earth by
+                      ice-bearing celestial objects billions of years ago.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Isotope Evidence</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Similar isotope ratios found in oceanic water and
+                      carbon-rich chondrites support the cosmic origin theory.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Ancient Meteorites</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
                       4.5 billion-year-old meteorites found on Earth contained
-                      liquid water alongside a wide diversity of deuterium-poor
-                      organic matter."
+                      liquid water and organic matter.
                     </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://en.wikipedia.org/wiki/Origin_of_water_on_Earth#Internal_sources"
-                        className="text-teal-600 dark:text-teal-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Wikipedia, Origin of water on Earth, 2019
-                      </a>
-                    </div>
                   </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  While other creation accounts suggest God created water
+                  directly on Earth, the Quran presents a different
+                  narrative—one that aligns with modern scientific understanding
+                  that water originated from space and was made to dwell on
+                  Earth.
+                </p>
+              </section>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <CloudRain size={16} className="text-teal-500" /> Comets
-                        and Asteroids
-                      </h3>
-                      <p>
-                        Research suggests that water was delivered to Earth by
-                        comets and asteroids billions of years ago. These
-                        celestial objects, containing ice, brought water to our
-                        planet during the early formation of the solar system.
+              {/* Quranic References */}
+              <section id="quran" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Quranic Account
+                </h2>
+                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/23/18"
+                      className="text-green-700 dark:text-green-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 23:18
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "And We sent down water from the heaven in proper
+                        quantity, and we made Earth its dwelling, and We are
+                        Able to take it away."
                       </p>
                     </div>
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Droplets size={16} className="text-gray-500" /> Earth's
-                        Water Coverage
-                      </h3>
-                      <p>
-                        Water covers approximately 71% of Earth's surface.
-                        Remarkably, this is the same ratio that the words "Sea"
-                        (32 times) and "Land" (13 times) appear in the Quran:
-                        32/(32+13) = 71%.
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ١و وَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ
+                        فَأَسْكَنَّاهُ فِي الْأَرْضِ ۖ وَإِنَّا عَلَىٰ ذَهَابٍ
+                        بِهِ لَقَادِرُونَ
                       </p>
                     </div>
                   </div>
+                </div>
 
-                  <p>
-                    While the Christian Bible suggests God created water
-                    directly on Earth, the Quran presents a different narrative
-                    - one that aligns with modern scientific understanding that
-                    water originated from space and was made to dwell on Earth.
+                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/24/43"
+                      className="text-green-700 dark:text-green-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 24:43
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "Can't you see that Allah makes the clouds move gently,
+                        then joins them together, then makes them into a pile?
+                        Then you see rain come out from within? And He sends
+                        down from heaven mountains with ice inside them; that
+                        strike whomever He wishes or miss whoever He wishes; Its
+                        flash almost blinds you."
+                      </p>
+                    </div>
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ٤٣ أَلَمْ تَرَ أَنَّ اللَّهَ يُزْجِي سَحَابًا ثُمَّ
+                        يُؤَلِّفُ بَيْنَهُ ثُمَّ يَجْعَلُهُ رُكَامًا فَتَرَى
+                        الْوَدْقَ يَخْرُجُ مِنْ خِلَالِهِ وَيُنَزِّلُ مِنَ
+                        السَّمَاءِ مِنْ جِبَالٍ فِيهَا مِنْ بَرَدٍ فَيُصِيبُ
+                        بِهِ مَنْ يَشَاءُ وَيَصْرِفُهُ عَنْ مَنْ يَشَاءُ ۖ
+                        يَكَادُ سَنَا بَرْقِهِ يَذْهَبُ بِالْأَبْصَارِ
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Insight
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The phrase "We sent down water from the heaven... and we
+                    made Earth its dwelling" (وَأَنْزَلْنَا مِنَ السَّمَاءِ
+                    مَاءً بِقَدَرٍ فَأَسْكَنَّاهُ فِي الْأَرْضِ) indicates that
+                    water formed in space and was then established on Earth. The
+                    mention of "mountains with ice inside them" that create
+                    bright flashes when they strike is remarkably similar to
+                    modern descriptions of ice-bearing comets and meteors
+                    entering Earth's atmosphere.
                   </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <h4 className="font-medium mb-2">
+                    The Scientific Connection
+                  </h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    The Quranic descriptions align precisely with modern
+                    understanding: water originated from space through
+                    ice-bearing objects that created brilliant flashes when
+                    entering Earth's atmosphere.
+                  </p>
+                </div>
+              </section>
 
-            {/* Quranic References */}
-            <section id="quran" className="scroll-mt-20">
-              <Card className="border-l-4 border-green-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
-                      <BookOpen className="text-green-500" size={24} />
-                    </div>
-                    <CardTitle>Quranic References</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800 mb-6">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/23/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/18"
-                        className="text-green-600 dark:text-green-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 23:18
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "And We sent down water from the heaven in proper
-                          quantity, and we made Earth its dwelling, and We are
-                          Able to take it away."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ١٨ وَأَنْزَلْنَا مِنَ السَّمَاءِ مَاءً بِقَدَرٍ
-                          فَأَسْكَنَّاهُ فِي الْأَرْضِ ۖ وَإِنَّا عَلَىٰ ذَهَابٍ
-                          بِهِ لَقَادِرُونَ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800 mb-6">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/2/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/164"
-                        className="text-green-600 dark:text-green-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 2:164
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "In the creation of the heavens and the earth; in the
-                          alternation of night and day; in the ships that sail
-                          the oceans for the benefit of mankind; In the water
-                          which Allah sent down from the Heavens and brought
-                          with it life to Earth after being dead and gave life
-                          in it to every kind of land animal; And in directing
-                          the winds; And in the clouds that are enslaved between
-                          the Heavens and the Earth; [All these] are Signs for a
-                          people who comprehend."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ١٦٤ إِنَّ فِي خَلْقِ السَّمَاوَاتِ وَالْأَرْضِ
-                          وَاخْتِلَافِ اللَّيْلِ وَالنَّهَارِ وَالْفُلْكِ
-                          الَّتِي تَجْرِي فِي الْبَحْرِ بِمَا يَنْفَعُ النَّاسَ
-                          وَمَا أَنْزَلَ اللَّهُ مِنَ السَّمَاءِ مِنْ مَاءٍ
-                          فَأَحْيَا بِهِ الْأَرْضَ بَعْدَ مَوْتِهَا وَبَثَّ
-                          فِيهَا مِنْ كُلِّ دَابَّةٍ وَتَصْرِيفِ الرِّيَاحِ
-                          وَالسَّحَابِ الْمُسَخَّرِ بَيْنَ السَّمَاءِ
-                          وَالْأَرْضِ لَآيَاتٍ لِقَوْمٍ يَعْقِلُونَ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/24/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/43"
-                        className="text-green-600 dark:text-green-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 24:43
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "Can't you see that Allah makes the clouds move
-                          gently, then joins them together, then makes them into
-                          a pile? Then you see rain come out from within? And He
-                          sends down from heaven mountains with ice inside them;
-                          that strike whomever He wishes or miss whoever He
-                          wishes; Its flash almost blinds you."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٤٣ أَلَمْ تَرَ أَنَّ اللَّهَ يُزْجِي سَحَابًا ثُمَّ
-                          يُؤَلِّفُ بَيْنَهُ ثُمَّ يَجْعَلُهُ رُكَامًا فَتَرَى
-                          الْوَدْقَ يَخْرُجُ مِنْ خِلَالِهِ وَيُنَزِّلُ مِنَ
-                          السَّمَاءِ مِنْ جِبَالٍ فِيهَا مِنْ بَرَدٍ فَيُصِيبُ
-                          بِهِ مَنْ يَشَاءُ وَيَصْرِفُهُ عَنْ مَنْ يَشَاءُ ۖ
-                          يَكَادُ سَنَا بَرْقِهِ يَذْهَبُ بِالْأَبْصَارِ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                      Key Insight
-                    </Badge>
-                    <p className="mt-3">
-                      The phrase "We sent down water from the heaven... and we
-                      made Earth its dwelling" (وَأَنْزَلْنَا مِنَ السَّمَاءِ
-                      مَاءً بِقَدَرٍ فَأَسْكَنَّاهُ فِي الْأَرْضِ) indicates
-                      that water formed in space and was then established on
-                      Earth. The mention of "mountains with ice inside them"
-                      that create bright flashes when they strike is remarkably
-                      similar to modern descriptions of ice-bearing comets and
-                      meteors entering Earth's atmosphere.
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  A Cosmic Inquiry
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  The correlation between modern scientific findings and the
+                  Quranic verses raises an intriguing question that invites
+                  reflection on the sources of ancient knowledge.
+                </p>
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could someone 1400 years ago have known about water's
+                    cosmic origins?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The concept that Earth's water came from outer space—
+                    specifically from ice-bearing celestial bodies—is a
+                    relatively recent scientific discovery. Yet, the Quran
+                    appears to describe this phenomenon with remarkable
+                    accuracy, centuries before modern astronomy and planetary
+                    science could confirm it.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Historical Context</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      In the 7th century, the prevailing belief was that water
+                      originated from underground sources or was created
+                      directly on Earth.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-amber-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
-                      <HelpCircle className="text-amber-500" size={24} />
-                    </div>
-                    <CardTitle>Reflection</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The correlation between modern scientific findings and the
-                    Quranic verses raises an intriguing question:
-                  </p>
-
-                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could man who lived 1400 years ago have known about
-                      water's cosmic origins?
-                    </h3>
-                    <p>
-                      The concept that Earth's water came from outer space -
-                      specifically from ice-bearing celestial bodies - is a
-                      relatively recent scientific discovery. Yet, the Quran
-                      appears to describe this phenomenon with remarkable
-                      accuracy, centuries before modern astronomy and planetary
-                      science could confirm it.
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Precise Alignment</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      The 71% ratio of Earth's water coverage matches exactly
+                      the 71% ratio of "Sea" to "Land" mentions in the Quran.
                     </p>
                   </div>
-
-                  <p>
-                    In the 7th century, the prevailing belief was that water
-                    originated from underground sources or was created directly
-                    on Earth. The Quranic description of water coming from
-                    space, particularly in the form of ice in "mountains" that
-                    create bright flashes (similar to comets), presents a
-                    scientific understanding that would have been impossible to
-                    know through the observational means available at that time.
-                  </p>
-
-                  <p>
-                    Furthermore, the precise alignment between the 71% water
-                    coverage of Earth's surface and the 71% ratio of "Sea" to
-                    "Land" mentions in the Quran adds another layer to this
-                    remarkable correspondence between ancient text and modern
-                    scientific knowledge.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+                  The Quranic description of water coming from space,
+                  particularly in the form of ice in "mountains" that create
+                  bright flashes (similar to comets), presents a scientific
+                  understanding that would have been impossible to know through
+                  the observational means available at that time. This
+                  remarkable correspondence between ancient text and modern
+                  scientific knowledge continues to inspire contemplation.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-50">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button className="rounded-full h-14 w-14 shadow-lg bg-blue-600 hover:bg-blue-700">
-              <Droplets size={24} />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent side="top" className="w-64 p-0 mr-6 mb-2">
-            <nav className="max-h-80 overflow-y-auto">
-              {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                <button
-                  key={id}
-                  onClick={() => {
-                    scrollToSection(id);
-                  }}
-                  className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                    activeSection === id
-                      ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                      : ""
-                  }`}
-                >
-                  <Icon className={iconColor} size={18} />
-                  <span>{title}</span>
-                  {activeSection === id && (
-                    <ChevronRight className="ml-auto" size={16} />
-                  )}
-                </button>
-              ))}
-            </nav>
-          </PopoverContent>
-        </Popover>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-blue-500" size={18} />
-            <h3 className="text-lg font-medium">
-              Cosmic Origins of Earth's Water
-            </h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            Exploring the connections between ancient wisdom and modern
-            scientific discoveries about our planet's most precious resource.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Droplets
+                className="text-blue-600 dark:text-blue-400"
+                size={20}
+              />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Cosmic Origins of Earth's Water
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              Exploring the connections between ancient wisdom and modern
+              scientific discoveries about our planet's most precious resource.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-blue-600 dark:bg-blue-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };

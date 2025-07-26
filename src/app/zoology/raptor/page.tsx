@@ -5,27 +5,11 @@ import {
   Bird,
   ChevronRight,
   BookOpen,
-  Quote,
   HelpCircle,
   Footprints,
   Microscope,
   ArrowUp,
-  Sparkles,
 } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 const RaptorsPage = () => {
   const [activeSection, setActiveSection] = useState("intro");
@@ -37,29 +21,21 @@ const RaptorsPage = () => {
         id: "intro",
         title: "Flesh Eating Birds",
         icon: Bird,
-        color: "bg-amber-100 dark:bg-amber-900",
-        iconColor: "text-amber-500",
       },
       {
         id: "science",
-        title: "Scientific Evidence",
+        title: "The Scientific Model",
         icon: Microscope,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
       },
       {
         id: "quran",
-        title: "Quranic Reference",
+        title: "The Quranic Account",
         icon: BookOpen,
-        color: "bg-green-100 dark:bg-green-900",
-        iconColor: "text-green-500",
       },
       {
         id: "reflection",
-        title: "Reflection",
+        title: "A Fascinating Question",
         icon: HelpCircle,
-        color: "bg-purple-100 dark:bg-purple-900",
-        iconColor: "text-purple-500",
       },
     ];
   }, []);
@@ -110,366 +86,273 @@ const RaptorsPage = () => {
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-amber-600 to-amber-800 dark:from-amber-700 dark:to-amber-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Bird className="text-amber-200" size={32} />
-            <h1 className="text-4xl font-bold">Raptors</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-amber-100">
-            Zoology - Intermediate
-          </p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-amber-700 hover:bg-amber-50"
-              onClick={() => scrollToSection("science")}
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-amber-50 border-amber-50 hover:bg-amber-700"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
+  const getNextSectionId = () => {
+    const currentIndex = contents.findIndex(
+      (section) => section.id === activeSection
+    );
+    if (currentIndex < contents.length - 1) {
+      return contents[currentIndex + 1].id;
+    }
+    return contents[0].id; // Loop back to first section
+  };
 
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Explore birds of prey hunting methods
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+  return (
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Bird className="text-blue-600 dark:text-blue-400" size={24} />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Raptors
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Zoology • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
-
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-amber-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
-                      <Bird className="text-amber-500" size={24} />
-                    </div>
-                    <CardTitle>Flesh Eating Birds</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    In the Quran some birds catch prey with their feet. Skeptics
-                    claim that whoever wrote the Quran made a mistake; birds
-                    catch prey with their bills, not their feet. Today
-                    Zoologists confirm that raptors, the flesh eating birds,
-                    catch prey with their feet.
-                  </p>
-                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      How Birds Hunt Their Prey
-                    </h3>
-                    <p>
-                      Most birds catch prey with their bills. However, raptors
-                      (birds of prey) are special - they use powerful feet
-                      equipped with talons to catch and kill their prey,
-                      contrary to common perception in ancient times.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Scientific Evidence */}
-            <section id="science" className="scroll-mt-20">
-              <Card className="border-l-4 border-blue-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Microscope className="text-blue-500" size={24} />
-                    </div>
-                    <CardTitle>Scientific Evidence</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Modern
-                      Zoological Understanding
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Bird of Prey:
-                      <br />
-                      Birds of prey, or raptors, include species of bird that
-                      primarily hunt and feed on vertebrates that are large
-                      relative to the hunter. Additionally, they have keen
-                      eyesight for detecting food at a distance or during
-                      flight, strong feet equipped with talons for grasping or
-                      killing prey, and powerful, curved beaks for tearing
-                      flesh."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://en.wikipedia.org/wiki/Bird_of_prey"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Wikipedia, Bird of Prey, 2019
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Footprints size={16} className="text-blue-500" />{" "}
-                        Talons, Not Bills
-                      </h3>
-                      <p>
-                        Unlike most birds, raptors use their powerful feet and
-                        sharp talons to catch, kill, and carry their prey. The
-                        bill is primarily used for tearing flesh after the prey
-                        is caught.
-                      </p>
-                    </div>
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Bird size={16} className="text-gray-500" /> Hawking is
-                        Different
-                      </h3>
-                      <p>
-                        "Hawking" refers to how birds catch flying insects with
-                        their bills. This term comes from the visual similarity
-                        to how hawks hunt, though the actual mechanism is quite
-                        different.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 flex justify-center">
-                    <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg overflow-hidden max-w-md">
-                      <div className="p-4 text-center">
-                        <p className="font-medium">
-                          Raptors catch prey with their feet
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Quranic Reference */}
-            <section id="quran" className="scroll-mt-20">
-              <Card className="border-l-4 border-green-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
-                      <BookOpen className="text-green-500" size={24} />
-                    </div>
-                    <CardTitle>Quranic Reference</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/22/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/31"
-                        className="text-green-600 dark:text-green-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 22:31
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "Being true to Allah, without associating anything
-                          with Him. Whoever associates anything with Allah it is
-                          as though he has fallen from the sky, and was snatched
-                          by the birds, or was taken down by the wind to a deep
-                          place."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٣١ حُنَفَاءَ لِلَّهِ غَيْرَ مُشْرِكِينَ بِهِ ۚ وَمَنْ
-                          يُشْرِكْ بِاللَّهِ فَكَأَنَّمَا خَرَّ مِنَ السَّمَاءِ
-                          فَتَخْطَفُهُ الطَّيْرُ أَوْ تَهْوِي بِهِ الرِّيحُ فِي
-                          مَكَانٍ سَحِيقٍ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                      Key Phrase
-                    </Badge>
-                    <p className="mt-3">
-                      The phrase "was snatched by the birds" (فَتَخْطَفُهُ
-                      الطَّيْرُ) is significant. Since these birds attack
-                      humans, they would be flesh-eating raptors. The Quran
-                      describes them as snatching humans in mid-air without
-                      eating them immediately - implying the use of feet rather
-                      than bills for the capture.
-                    </p>
-                  </div>
-
-                  <div className="mt-6 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
-                    <h4 className="font-medium mb-2">Historical Context</h4>
-                    <p>
-                      In 7th century Arabia, detailed zoological knowledge about
-                      the hunting methods of different bird species would have
-                      been limited. Most people would have observed common birds
-                      catching insects or small prey with their bills. The
-                      specific hunting method of raptors using their feet would
-                      not have been widely documented or studied.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-purple-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-                      <HelpCircle className="text-purple-500" size={24} />
-                    </div>
-                    <CardTitle>Reflection</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The distinction between how most birds catch prey (with
-                    their bills) versus how raptors hunt (with their feet)
-                    presents an interesting consideration:
-                  </p>
-
-                  <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could man who lived 1400 years ago have known about
-                      raptors?
-                    </h3>
-                    <p>
-                      The specific description in the Quran of birds snatching
-                      prey (in this case, metaphorically a human) aligns with
-                      modern zoological understanding that raptors use their
-                      feet, not their bills, to catch prey. This specific
-                      hunting behavior wasn't systematically documented until
-                      modern zoological studies.
-                    </p>
-                  </div>
-
-                  <p>
-                    While people in ancient times would have observed birds of
-                    prey hunting, the specific understanding that raptors catch
-                    with their feet while most other birds use their bills
-                    represents a zoological detail that seems to be accurately
-                    reflected in the Quranic text. This subtle distinction in
-                    bird hunting behavior appears in a metaphorical passage that
-                    aligns with what modern science has confirmed about raptor
-                    hunting techniques.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
-          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile Navigation */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-50">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button className="rounded-full h-14 w-14 shadow-lg bg-amber-600 hover:bg-amber-700">
-              <Bird size={24} />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent side="top" className="w-64 p-0 mr-6 mb-2">
-            <nav className="max-h-80 overflow-y-auto">
-              {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                <button
-                  key={id}
-                  onClick={() => {
-                    scrollToSection(id);
-                  }}
-                  className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                    activeSection === id
-                      ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                      : ""
-                  }`}
+      {/* Main Content */}
+      <main className="max-w-4xl mx-auto px-6 py-8">
+        <div className="prose prose-lg max-w-none dark:prose-invert">
+          {/* Introduction */}
+          <section id="intro" className="scroll-mt-24 mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+              Flesh Eating Birds
+            </h2>
+            <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+              In the Quran some birds catch prey with their feet. Skeptics claim
+              that whoever wrote the Quran made a mistake; birds catch prey with
+              their bills, not their feet. Today Zoologists confirm that
+              raptors, the flesh eating birds, catch prey with their feet.
+            </p>
+            <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 pl-6 py-4 mb-8">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                How Birds Hunt Their Prey
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                Most birds catch prey with their bills. However, raptors (birds
+                of prey) are special - they use powerful feet equipped with
+                talons to catch and kill their prey, contrary to common
+                perception in ancient times.
+              </p>
+            </div>
+          </section>
+
+          {/* Scientific Evidence */}
+          <section id="science" className="scroll-mt-24 mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+              The Scientific Model
+            </h2>
+            <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 pl-6 py-4 mb-8">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                Modern Zoological Understanding
+              </h3>
+              <blockquote className="text-gray-700 dark:text-gray-300 italic leading-relaxed mb-4">
+                "Bird of Prey: Birds of prey, or raptors, include species of
+                bird that primarily hunt and feed on vertebrates that are large
+                relative to the hunter. Additionally, they have keen eyesight
+                for detecting food at a distance or during flight, strong feet
+                equipped with talons for grasping or killing prey, and powerful,
+                curved beaks for tearing flesh."
+              </blockquote>
+              <div className="text-sm">
+                <a
+                  href="https://en.wikipedia.org/wiki/Bird_of_prey"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Icon className={iconColor} size={18} />
-                  <span>{title}</span>
-                  {activeSection === id && (
-                    <ChevronRight className="ml-auto" size={16} />
-                  )}
-                </button>
-              ))}
-            </nav>
-          </PopoverContent>
-        </Popover>
+                  Wikipedia, Bird of Prey, 2019
+                </a>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3 flex items-center gap-2">
+                  <Footprints size={18} className="text-blue-500" />
+                  Talons, Not Bills
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Unlike most birds, raptors use their powerful feet and sharp
+                  talons to catch, kill, and carry their prey. The bill is
+                  primarily used for tearing flesh after the prey is caught.
+                </p>
+              </div>
+              <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h3 className="font-bold text-gray-900 dark:text-gray-100 mb-3 flex items-center gap-2">
+                  <Bird size={18} className="text-blue-500" />
+                  Hawking is Different
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  "Hawking" refers to how birds catch flying insects with their
+                  bills. This term comes from the visual similarity to how hawks
+                  hunt, though the actual mechanism is quite different.
+                </p>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 inline-block">
+                <p className="font-bold text-gray-900 dark:text-gray-100">
+                  <span className="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm font-medium">
+                    Key Insight
+                  </span>
+                </p>
+                <p className="mt-3 text-gray-700 dark:text-gray-300">
+                  Raptors catch prey with their feet
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Quranic Reference */}
+          <section id="quran" className="scroll-mt-24 mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+              The Quranic Account
+            </h2>
+            <div className="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 pl-6 py-4 mb-8">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                <a
+                  href="https://quran.com/en/22/31"
+                  className="text-green-600 dark:text-green-400 hover:underline"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Quran 22:31
+                </a>
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <blockquote className="text-gray-700 dark:text-gray-300 italic leading-relaxed">
+                    "Being true to Allah, without associating anything with Him.
+                    Whoever associates anything with Allah it is as though he
+                    has fallen from the sky, and was snatched by the birds, or
+                    was taken down by the wind to a deep place."
+                  </blockquote>
+                </div>
+                <div className="font-arabic text-right text-lg">
+                  <p dir="rtl" className="text-gray-700 dark:text-gray-300">
+                    ٣١ حُنَفَاءَ لِلَّهِ غَيْرَ مُشْرِكِينَ بِهِ ۚ وَمَنْ
+                    يُشْرِكْ بِاللَّهِ فَكَأَنَّمَا خَرَّ مِنَ السَّمَاءِ
+                    فَتَخْطَفُهُ الطَّيْرُ أَوْ تَهْوِي بِهِ الرِّيحُ فِي
+                    مَكَانٍ سَحِيقٍ
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <span className="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-100 px-3 py-1 rounded-full text-sm font-medium">
+                Key Phrase
+              </span>
+              <p className="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">
+                The phrase "was snatched by the birds" (فَتَخْطَفُهُ الطَّيْرُ)
+                is significant. Since these birds attack humans, they would be
+                flesh-eating raptors. The Quran describes them as snatching
+                humans in mid-air without eating them immediately - implying the
+                use of feet rather than bills for the capture.
+              </p>
+            </div>
+
+            <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg">
+              <h4 className="font-bold text-gray-900 dark:text-gray-100 mb-3">
+                Historical Context
+              </h4>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                In 7th century Arabia, detailed zoological knowledge about the
+                hunting methods of different bird species would have been
+                limited. Most people would have observed common birds catching
+                insects or small prey with their bills. The specific hunting
+                method of raptors using their feet would not have been widely
+                documented or studied.
+              </p>
+            </div>
+          </section>
+
+          {/* Reflection */}
+          <section id="reflection" className="scroll-mt-24 mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+              A Fascinating Question
+            </h2>
+            <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+              The distinction between how most birds catch prey (with their
+              bills) versus how raptors hunt (with their feet) presents an
+              interesting consideration:
+            </p>
+
+            <div className="bg-purple-50 dark:bg-purple-900/30 border-l-4 border-purple-500 pl-6 py-4 mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                How could man who lived 1400 years ago have known about raptors?
+              </h3>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                The specific description in the Quran of birds snatching prey
+                (in this case, metaphorically a human) aligns with modern
+                zoological understanding that raptors use their feet, not their
+                bills, to catch prey. This specific hunting behavior wasn't
+                systematically documented until modern zoological studies.
+              </p>
+            </div>
+
+            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+              While people in ancient times would have observed birds of prey
+              hunting, the specific understanding that raptors catch with their
+              feet while most other birds use their bills represents a
+              zoological detail that seems to be accurately reflected in the
+              Quranic text. This subtle distinction in bird hunting behavior
+              appears in a metaphorical passage that aligns with what modern
+              science has confirmed about raptor hunting techniques.
+            </p>
+          </section>
+        </div>
+      </main>
+
+      {/* Medium-style Mobile Navigation */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => scrollToSection(getNextSectionId())}
+          className="bg-blue-600 dark:bg-blue-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+        >
+          <ChevronRight size={20} />
+        </button>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-amber-500" size={18} />
-            <h3 className="text-lg font-medium">Wonders of Nature</h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            Discovering connections between ancient texts and modern zoological
-            knowledge invites us to reflect on the origins of scientific
-            understanding.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Bird className="text-blue-600 dark:text-blue-400" size={20} />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Wonders of Nature
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              Discovering connections between ancient texts and modern
+              zoological knowledge invites us to reflect on the origins of
+              scientific understanding.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto transition-colors"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>

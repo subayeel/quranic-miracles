@@ -2,84 +2,50 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Baby, // Changed from Sun
   ChevronRight,
-  Microscope, // Changed from Clock
+  Dna,
+  Microscope,
   BookOpen,
-  Quote,
-  Sparkles, // Changed from HelpCircle for Reflection, kept for Footer
+  HelpCircle,
   ArrowUp,
-  Dna, // New icon for header
-  Users, // Alternative icon if needed
+  Users,
 } from "lucide-react";
-
-import { Button } from "@/components/ui/button"; // Assuming these paths are correct
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { LucideIcon } from "lucide-react"; // Import LucideIcon type
-
-// Define TypeScript type for content sections
-interface ContentSection {
-  id: string;
-  title: string;
-  icon: LucideIcon;
-  color: string; // Tailwind class for background in sidebar/card accents
-  iconColor: string; // Tailwind class for icon color
-  borderColor: string; // Tailwind class for card border
-}
 
 const GenderDeterminationQuran = () => {
   const [activeSection, setActiveSection] = useState<string>("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents: ContentSection[] = useMemo(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
         title: "The Mystery of Gender",
-        icon: Baby,
-        color: "bg-sky-100 dark:bg-sky-900",
-        iconColor: "text-sky-500",
-        borderColor: "border-sky-500",
+        icon: Dna,
       },
       {
         id: "science",
-        title: "Scientific Understanding",
+        title: "The Scientific Understanding",
         icon: Microscope,
-        color: "bg-indigo-100 dark:bg-indigo-900",
-        iconColor: "text-indigo-500",
-        borderColor: "border-indigo-500",
       },
       {
         id: "quran",
-        title: "Quranic Perspective",
+        title: "The Quranic Account",
         icon: BookOpen,
-        color: "bg-emerald-100 dark:bg-emerald-900",
-        iconColor: "text-emerald-500",
-        borderColor: "border-emerald-500",
       },
       {
         id: "reflection",
         title: "A 7th Century Insight",
-        icon: Sparkles,
-        color: "bg-rose-100 dark:bg-rose-900",
-        iconColor: "text-rose-500",
-        borderColor: "border-rose-500",
+        icon: HelpCircle,
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.3, // When 30% of the section is visible
+      threshold: 0.3,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -119,333 +85,306 @@ const GenderDeterminationQuran = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-sky-600 to-indigo-800 dark:from-sky-700 dark:to-indigo-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Dna className="text-sky-200" size={32} />
-            <h1 className="text-4xl font-bold">Gender</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-sky-100">
-            Genetics & The Quran - Unveiling Ancient Wisdom
-          </p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-sky-700 hover:bg-sky-50 dark:bg-gray-100 dark:text-sky-800 dark:hover:bg-sky-100"
-              onClick={() => scrollToSection("science")}
-            >
-              Explore Science <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="border-sky-200 text-sky-100 hover:bg-sky-700 hover:text-white dark:border-sky-300 dark:text-sky-200 dark:hover:bg-sky-800"
-              onClick={() => scrollToSection("intro")}
-            >
-              Discover More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Understanding Gender Determination
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Dna className="text-sky-600 dark:text-sky-400" size={24} />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Gender Determination
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Genetics • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className={`border-l-4 ${contents[0].borderColor}`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${contents[0].color}`}>
-                      <Baby className={contents[0].iconColor} size={24} />
-                    </div>
-                    <CardTitle>{contents[0].title}</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    The determination of a baby's gender is a fundamental aspect
-                    of life. For centuries, its mechanisms were a mystery. It
-                    was only recently in human history that science unveiled the
-                    role of chromosomes.
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Mystery of Gender
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  What determines whether a baby will be born male or female?
+                  For centuries, this fundamental question remained a mystery.
+                  Modern genetics has revealed the answer lies in the father's
+                  contribution, but remarkably, this insight was pointed to in
+                  the Quran over 1400 years ago.
+                </p>
+                <div className="bg-sky-50 dark:bg-sky-900/30 border-l-4 border-sky-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    A Question of Origin
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Throughout history, different cultures had various theories
+                    about what determined a baby's gender. Some blamed the
+                    mother, others believed it was purely random. The scientific
+                    truth about chromosomal determination would not be
+                    discovered until the 20th century.
                   </p>
-                  <div
-                    className={`${contents[0].color}/30 p-6 rounded-lg border ${contents[0].borderColor} border-opacity-30`}
-                  >
-                    <h3 className="font-bold text-lg mb-3">
-                      A Question of Origin
-                    </h3>
-                    <p>
-                      Remarkably, insights pointing to the male's role in gender
-                      determination were present in the Quran over 1400 years
-                      ago, a time when such biological knowledge was not
-                      available. This exploration delves into both modern
-                      scientific understanding and these ancient Quranic
-                      references.
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Users
+                        size={20}
+                        className="text-sky-500 dark:text-sky-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Historical Beliefs
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Ancient civilizations had various incorrect theories about
+                      gender determination, often attributing it to factors like
+                      diet, moon phases, or maternal behavior.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Scientific Understanding */}
-            <section id="science" className="scroll-mt-20">
-              <Card className={`border-l-4 ${contents[1].borderColor}`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${contents[1].color}`}>
-                      <Microscope className={contents[1].iconColor} size={24} />
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Dna
+                        size={20}
+                        className="text-sky-500 dark:text-sky-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Modern Discovery
+                      </h3>
                     </div>
-                    <CardTitle>{contents[1].title}</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div
-                    className={`${contents[1].color}/30 p-6 rounded-lg border ${contents[1].borderColor} border-opacity-30`}
-                  >
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className={contents[1].iconColor} /> The
-                      Genetic Basis of Gender
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "In humans, gender is determined by sex chromosomes.
-                      Females typically have two X chromosomes (XX) and can only
-                      pass on an X chromosome to their offspring. Males have one
-                      X and one Y chromosome (XY), and can pass on either an X
-                      or a Y chromosome through their sperm."
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Only in the 20th century did science discover that the
+                      father's sperm determines gender through X and Y
+                      chromosomes.
                     </p>
-                    <div className="mt-3 text-sm">
-                      <span className="text-indigo-600 dark:text-indigo-400">
-                        Basic Human Genetics
-                      </span>
-                    </div>
                   </div>
+                </div>
+              </section>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Users size={16} className={contents[1].iconColor} />{" "}
-                        Parental Contributions
-                      </h3>
-                      <p>
-                        The mother always contributes an X chromosome. The
-                        father's sperm, carrying either an X or a Y chromosome,
-                        determines the baby's gender. An XX combination results
-                        in a female, and an XY combination results in a male.
-                      </p>
-                    </div>
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Dna size={16} className="text-gray-500" /> Chromosomal
-                        Count
-                      </h3>
-                      <p>
-                        Humans have a total of 46 chromosomes, arranged in 23
-                        pairs. Each parent contributes 23 chromosomes to their
-                        child, carrying the genetic blueprint for life.
-                      </p>
-                    </div>
-                  </div>
-
-                  <p>
-                    Therefore, modern science confirms that it is the genetic
-                    contribution from the male (the sperm) that determines the
-                    sex of the baby. This understanding is relatively recent in
-                    the timeline of human knowledge.
+              {/* Scientific Understanding */}
+              <section id="science" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Scientific Understanding
+                </h2>
+                <blockquote className="border-l-4 border-blue-500 pl-6 py-4 mb-8 bg-blue-50 dark:bg-blue-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "In humans, gender is determined by sex chromosomes. Females
+                    typically have two X chromosomes (XX) and can only pass on
+                    an X chromosome to their offspring. Males have one X and one
+                    Y chromosome (XY), and can pass on either an X or a Y
+                    chromosome through their sperm."
                   </p>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Quranic Perspective */}
-            <section id="quran" className="scroll-mt-20">
-              <Card className={`border-l-4 ${contents[2].borderColor}`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${contents[2].color}`}>
-                      <BookOpen className={contents[2].iconColor} size={24} />
-                    </div>
-                    <CardTitle>{contents[2].title}</CardTitle>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Basic Human Genetics
+                  </cite>
+                </blockquote>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Mother's Contribution</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Females have XX chromosomes and can only contribute an X
+                      chromosome to their offspring, regardless of the child's
+                      gender.
+                    </p>
                   </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div
-                    className={`${contents[2].color}/30 p-6 rounded-lg border ${contents[2].borderColor} border-opacity-30`}
-                  >
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://quran.com/53/45-46" // Example link, verify for accuracy
-                        className="text-emerald-600 dark:text-emerald-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 53:45-46
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4 text-gray-700 dark:text-gray-300">
-                          "And He (Allah) creates the two spouses, the male and
-                          the female, from a Nutfah (drop of sperm) when it is
-                          emitted."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg md:text-xl text-gray-800 dark:text-gray-200">
-                        {/* Ensure you have a font that supports Arabic characters well, e.g., via Tailwind config or global CSS */}
-                        <p dir="rtl">
-                          ٤٥ وَأَنَّهُ خَلَقَ الزَّوْجَيْنِ الذَّكَرَ
-                          وَالْأُنْثَىٰ
-                        </p>
-                        <p dir="rtl">٤٦ مِنْ نُطْفَةٍ إِذَا تُمْنَىٰ</p>
-                      </div>
-                    </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Father's Contribution</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Males have XY chromosomes and their sperm carries either
+                      an X or Y chromosome, which determines the baby's gender.
+                    </p>
                   </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Final Determination</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      XX combination results in a female child, while XY
+                      combination results in a male child.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  This fundamental understanding of chromosomal inheritance and
+                  gender determination is a relatively recent scientific
+                  discovery, established long after the Quran was revealed.
+                </p>
+              </section>
 
-                  <div className="mt-6">
-                    <Badge
-                      className={`bg-emerald-100 text-emerald-800 dark:bg-emerald-700 dark:text-emerald-100`}
+              {/* Quranic Reference */}
+              <section id="quran" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Quranic Account
+                </h2>
+                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/53/45-46"
+                      className="text-green-700 dark:text-green-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      Key Term: Nutfah (نُطْفَةٍ)
-                    </Badge>
-                    <p className="mt-3">
-                      The Arabic word "Nutfah" (نُطْفَةٍ) specifically refers to
-                      a small quantity of fluid, interpreted in this context as
-                      sperm or the male gamete. The Quran states that gender
-                      (male or female) is determined from this "Nutfah" when it
-                      is emitted. Since sperm originates exclusively from the
-                      male, this implies that the male's contribution is what
-                      determines the baby's sex.
-                    </p>
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                      Interestingly, the verse number concluding this statement
-                      is 46, which is the total number of chromosomes in a human
-                      somatic cell. This observation is considered significant
-                      by many.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className={`border-l-4 ${contents[3].borderColor}`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${contents[3].color}`}>
-                      <Sparkles className={contents[3].iconColor} size={24} />
+                      Quran 53:45-46
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "And He (Allah) creates the two spouses, the male and
+                        the female, from a Nutfah (drop of sperm) when it is
+                        emitted."
+                      </p>
                     </div>
-                    <CardTitle>{contents[3].title}</CardTitle>
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p
+                        dir="rtl"
+                        className="text-gray-800 dark:text-gray-100 mb-4"
+                      >
+                        ٤٥ وَأَنَّهُ خَلَقَ الزَّوْجَيْنِ الذَّكَرَ
+                        وَالْأُنْثَىٰ
+                      </p>
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ٤٦ مِنْ نُطْفَةٍ إِذَا تُمْنَىٰ
+                      </p>
+                    </div>
                   </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The Quranic statement regarding gender determination, when
-                    viewed against the backdrop of 7th-century knowledge,
-                    presents a compelling point for reflection.
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Arabic Term
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The Arabic word "Nutfah" (نُطْفَةٍ) specifically refers to a
+                    small quantity of fluid, interpreted as sperm or the male
+                    gamete. The verse states that gender (male or female) is
+                    determined from this "Nutfah" when it is emitted. Since
+                    sperm originates exclusively from the male, this implies
+                    that the male's contribution determines the baby's sex.
                   </p>
+                </div>
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <h4 className="font-medium mb-2">A Remarkable Detail</h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    Interestingly, this statement concludes at verse 46, which
+                    corresponds to the total number of chromosomes in a human
+                    somatic cell—a numerical coincidence that many find
+                    significant.
+                  </p>
+                </div>
+              </section>
 
-                  <div
-                    className={`${contents[3].color}/30 p-6 rounded-lg border ${contents[3].borderColor} border-opacity-30`}
-                  >
-                    <h3 className="font-bold text-xl mb-3 text-center text-rose-700 dark:text-rose-300">
-                      How could it be known 1400 years ago that the male's
-                      contribution determines gender?
-                    </h3>
-                    <p className="text-gray-700 dark:text-gray-300">
-                      The scientific understanding that the male's sperm
-                      (carrying either an X or Y chromosome) is the determinant
-                      factor for a baby's sex is a relatively modern discovery,
-                      established long after the Quran was revealed. At a time
-                      when there were no microscopes, genetic science, or
-                      understanding of chromosomes, the Quran pointed to the
-                      "Nutfah" (sperm) as the source from which male and female
-                      are created.
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  A 7th Century Insight
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Considering the scientific evidence that the male's sperm
+                  determines gender through chromosomal inheritance, the Quranic
+                  statement presents a remarkable point for reflection:
+                </p>
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could it be known 1400 years ago that the male's
+                    contribution determines gender?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The scientific understanding that the male's sperm (carrying
+                    either an X or Y chromosome) determines a baby's sex is a
+                    modern discovery, established long after the Quran was
+                    revealed. At a time when there were no microscopes, no
+                    genetic science, and no understanding of chromosomes, the
+                    Quran pointed to the "Nutfah" (sperm) as the source from
+                    which male and female are created.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Historical Context</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Various ancient cultures held different, often incorrect
+                      beliefs about gender determination. Some blamed the
+                      mother, others attributed it to environmental factors or
+                      divine whim.
                     </p>
                   </div>
-
-                  <p>
-                    This alignment between a statement in a 1400-year-old text
-                    and a fundamental concept in modern biology encourages
-                    contemplation on the source of this knowledge. For
-                    believers, such instances are seen as affirmations of the
-                    Quran's divine origin, containing wisdom that predates human
-                    scientific discovery.
-                  </p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
-                    It's noteworthy that various historical beliefs and even
-                    some other ancient texts held different, often incorrect,
-                    notions about reproduction and inheritance. The precision of
-                    the Quranic statement in this regard stands out.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Modern Validation</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Contemporary genetics confirms exactly what the Quran
+                      indicated: the male gamete (sperm) contains the
+                      determining factor for offspring gender through X and Y
+                      chromosomes.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+                  This alignment between a 1400-year-old text and fundamental
+                  concepts in modern biology encourages contemplation on the
+                  source of such precise knowledge, demonstrating how ancient
+                  wisdom can remarkably anticipate scientific discoveries.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-sky-500" size={18} />
-            <h3 className="text-lg font-medium">
-              Contemplating Creation's Blueprint
-            </h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The intricate details of life, from genetics to the cosmos, often
-            echo wisdom found in ancient revelations, inviting us to explore and
-            reflect.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Dna className="text-sky-600 dark:text-sky-400" size={20} />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Contemplating Creation's Blueprint
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              The intricate details of life, from genetics to human development,
+              continue to reveal remarkable connections between ancient wisdom
+              and modern science.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-sky-600 dark:bg-sky-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };

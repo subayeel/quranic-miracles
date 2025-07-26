@@ -2,80 +2,51 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Waves,
   ChevronRight,
+  Waves,
   Globe,
   BookOpen,
-  Quote,
   HelpCircle,
-  Mountain,
   ArrowUp,
-  Sparkles,
+  Mountain,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-
-interface ContentSection {
-  id: string;
-  title: string;
-  icon: React.ElementType;
-  color: string;
-  iconColor: string;
-}
-
 const EarthquakeScience = () => {
-  const [activeSection, setActiveSection] = useState<string>("intro");
+  const [activeSection, setActiveSection] = useState("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents = useMemo<ContentSection[]>(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
         title: "Earthquake Origins",
         icon: Waves,
-        color: "bg-red-100 dark:bg-red-900",
-        iconColor: "text-red-500",
       },
       {
         id: "science",
         title: "Scientific Evidence",
         icon: Globe,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
       },
       {
         id: "quran",
         title: "Quranic Reference",
         icon: BookOpen,
-        color: "bg-green-100 dark:bg-green-900",
-        iconColor: "text-green-500",
       },
       {
         id: "reflection",
         title: "Reflection",
         icon: HelpCircle,
-        color: "bg-amber-100 dark:bg-amber-900",
-        iconColor: "text-amber-500",
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
-  // Set up Intersection Observer to track which section is in view
   useEffect(() => {
-    const options: IntersectionObserverInit = {
+    const options = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -83,10 +54,7 @@ const EarthquakeScience = () => {
         }
       });
     }, options);
-
     const currentRefs = sectionRefs.current;
-
-    // Observe all section elements
     contents.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -94,9 +62,7 @@ const EarthquakeScience = () => {
         observer.observe(element);
       }
     });
-
     return () => {
-      // Clean up observer
       contents.forEach(({ id }) => {
         const element = currentRefs[id];
         if (element) {
@@ -106,7 +72,7 @@ const EarthquakeScience = () => {
     };
   }, [contents]);
 
-  const scrollToSection = (id: string): void => {
+  const scrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
@@ -115,313 +81,283 @@ const EarthquakeScience = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-red-500 to-orange-700 dark:from-red-700 dark:to-orange-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Waves className="text-yellow-200" size={32} />
-            <h1 className="text-4xl font-bold">Earthquakes</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-amber-100">Geology - Advanced</p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-red-700 hover:bg-red-50"
-              onClick={() => scrollToSection("science")}
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-white border-white hover:bg-red-600"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>Explore earthquake science</CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Waves className="text-red-600 dark:text-red-400" size={24} />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Earthquakes
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Geology • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-red-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900">
-                      <Waves className="text-red-500" size={24} />
-                    </div>
-                    <CardTitle>Displacement of Land</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    In the Quran, earthquakes are described as vibrations caused
-                    by displacement of land. Skeptics might wonder how a text
-                    from the 7th century could contain such specific geological
-                    knowledge, as the understanding of earthquakes' true causes
-                    is a relatively modern scientific discovery.
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Displacement of Land
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  In the Quran, earthquakes are described as vibrations caused
+                  by displacement of land. Skeptics might wonder how a text from
+                  the 7th century could contain such specific geological
+                  knowledge, as the understanding of earthquakes' true causes is
+                  a relatively modern scientific discovery.
+                </p>
+                <div className="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    Understanding Earthquake Mechanics
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Modern science has determined that earthquakes are
+                    vibrations that travel through the earth's crust, caused by
+                    sudden movements and shifts of land masses along fault
+                    lines. These movements release tremendous energy that
+                    travels in waves through the earth's surface.
                   </p>
-                  <div className="bg-red-50 dark:bg-red-900/30 p-6 rounded-lg border border-red-100 dark:border-red-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      Understanding Earthquake Mechanics
-                    </h3>
-                    <p>
-                      Modern science has determined that earthquakes are
-                      vibrations that travel through the earth's crust, caused
-                      by sudden movements and shifts of land masses along fault
-                      lines. These movements release tremendous energy that
-                      travels in waves through the earth's surface.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+              </section>
 
-            {/* Scientific Evidence */}
-            <section id="science" className="scroll-mt-20">
-              <Card className="border-l-4 border-blue-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Globe className="text-blue-500" size={24} />
-                    </div>
-                    <CardTitle>Scientific Evidence</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> Scientific
-                      Confirmation
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Earthquake fault types:
-                      <br />
-                      There are three main types of fault, all of which may
-                      cause an interplate earthquake: normal, reverse (thrust),
-                      and strike-slip. Normal and reverse faulting are examples
-                      of dip-slip, where the displacement along the fault is in
-                      the direction of dip and where movement on them involves a
-                      vertical component. Normal faults occur mainly in areas
-                      where the crust is being extended such as a divergent
-                      boundary."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://en.wikipedia.org/wiki/Earthquake"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Wikipedia, Earthquake, 2021
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Mountain size={16} className="text-blue-500" /> Land
-                        Displacement
+              {/* Scientific Evidence */}
+              <section id="science" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Scientific Evidence
+                </h2>
+                <blockquote className="border-l-4 border-blue-500 pl-6 py-4 mb-8 bg-blue-50 dark:bg-blue-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "Earthquake fault types: There are three main types of
+                    fault, all of which may cause an interplate earthquake:
+                    normal, reverse (thrust), and strike-slip. Normal and
+                    reverse faulting are examples of dip-slip, where the
+                    displacement along the fault is in the direction of dip and
+                    where movement on them involves a vertical component. Normal
+                    faults occur mainly in areas where the crust is being
+                    extended such as a divergent boundary."
+                  </p>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Wikipedia, Earthquake, 2021
+                  </cite>
+                </blockquote>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Mountain
+                        size={20}
+                        className="text-blue-500 dark:text-blue-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Land Displacement
                       </h3>
-                      <p>
-                        Earthquakes occur when there is sudden displacement of
-                        land along fault lines. This movement releases energy in
-                        the form of seismic waves that travel through the earth.
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Earthquakes occur when there is sudden displacement of
+                      land along fault lines. This movement releases energy in
+                      the form of seismic waves that travel through the earth.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Waves
+                        size={20}
+                        className="text-gray-500 dark:text-gray-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Seismic Vibrations
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      The vibrations we feel during an earthquake are these
+                      seismic waves that radiate outward from the focus of the
+                      earthquake through the surrounding rock.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  The scientific understanding that earthquakes are vibrations
+                  caused by the displacement of land was only firmly established
+                  in modern times. This connection between land movement and
+                  earthquake vibrations required advanced tools and
+                  methodologies to verify, making it remarkable that such a
+                  connection appears in a 7th-century text.
+                </p>
+              </section>
+
+              {/* Quranic Reference */}
+              <section id="quran" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Quranic Reference
+                </h2>
+                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/67/16"
+                      className="text-green-700 dark:text-green-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 67:16
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "Are you confident that the One in heaven will not cause
+                        the earth to collapse beneath you as it vibrates?"
                       </p>
                     </div>
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Waves size={16} className="text-gray-500" /> Seismic
-                        Vibrations
-                      </h3>
-                      <p>
-                        The vibrations we feel during an earthquake are these
-                        seismic waves that radiate outward from the focus of the
-                        earthquake through the surrounding rock.
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        أَأَمِنْتُمْ مَنْ فِي السَّمَاءِ أَنْ يَخْسِفَ بِكُمُ
+                        الْأَرْضَ فَإِذَا هِيَ تَمُورُ
                       </p>
                     </div>
                   </div>
-
-                  <p>
-                    The scientific understanding that earthquakes are vibrations
-                    caused by the displacement of land was only firmly
-                    established in modern times. This connection between land
-                    movement and earthquake vibrations required advanced tools
-                    and methodologies to verify, making it remarkable that such
-                    a connection appears in a 7th-century text.
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Phrase Analysis
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The Arabic word "Yakhasif (يَخْسِفَ)" refers to a downward
+                    collapse or sinking of the earth. Meanwhile, "Tamur
+                    (تَمُورُ)" describes a vibrating or shaking motion.
+                    Together, these terms accurately describe the process where
+                    land displacement (collapse) causes vibrations (earthquake).
                   </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <h4 className="font-medium mb-2">
+                    The Scientific Connection
+                  </h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    The Quranic description precisely links land displacement
+                    with vibrations, which matches our modern understanding of
+                    how earthquakes work through fault movement and seismic
+                    waves.
+                  </p>
+                </div>
+              </section>
 
-            {/* Quranic Reference */}
-            <section id="quran" className="scroll-mt-20">
-              <Card className="border-l-4 border-green-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
-                      <BookOpen className="text-green-500" size={24} />
-                    </div>
-                    <CardTitle>Quranic Reference</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://quran.com/67/16"
-                        className="text-green-600 dark:text-green-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 67:16
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "Are you confident that the One in heaven will not
-                          cause the earth to collapse beneath you as it
-                          vibrates?"
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          أَأَمِنْتُمْ مَنْ فِي السَّمَاءِ أَنْ يَخْسِفَ بِكُمُ
-                          الْأَرْضَ فَإِذَا هِيَ تَمُورُ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                      Key Phrase Analysis
-                    </Badge>
-                    <p className="mt-3">
-                      The Arabic word "Yakhasif (يَخْسِفَ)" refers to a downward
-                      collapse or sinking of the earth. Meanwhile, "Tamur
-                      (تَمُورُ)" describes a vibrating or shaking motion.
-                      Together, these terms accurately describe the process
-                      where land displacement (collapse) causes vibrations
-                      (earthquake).
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Reflection
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  The correlation between the Quranic description and modern
+                  scientific understanding of earthquakes raises a
+                  thought-provoking question:
+                </p>
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could man who lived 1400 years ago have known about
+                    earthquakes' true causes?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    In the 7th century, the scientific understanding of
+                    earthquakes was limited at best. Common explanations
+                    included myths about giant creatures moving beneath the
+                    earth or divine punishment. The accurate description in the
+                    Quran of the relationship between land displacement and
+                    vibrations—a connection that would only be scientifically
+                    established centuries later—presents an intriguing
+                    historical anomaly.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Historical Context</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Ancient explanations for earthquakes included mythological
+                      creatures or divine intervention, lacking the scientific
+                      understanding of geological processes.
                     </p>
                   </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-amber-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
-                      <HelpCircle className="text-amber-500" size={24} />
-                    </div>
-                    <CardTitle>Reflection</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The correlation between the Quranic description and modern
-                    scientific understanding of earthquakes raises a
-                    thought-provoking question:
-                  </p>
-
-                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could man who lived 1400 years ago have known about
-                      earthquakes' true causes?
-                    </h3>
-                    <p>
-                      In the 7th century, the scientific understanding of
-                      earthquakes was limited at best. Common explanations
-                      included myths about giant creatures moving beneath the
-                      earth or divine punishment. The accurate description in
-                      the Quran of the relationship between land displacement
-                      and vibrations—a connection that would only be
-                      scientifically established centuries later—presents an
-                      intriguing historical anomaly.
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Modern Validation</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Contemporary seismology confirms that earthquakes result
+                      from land displacement along faults, creating vibrations
+                      that travel through the Earth's crust.
                     </p>
                   </div>
-
-                  <p>
-                    The understanding that earthquakes are vibrations resulting
-                    from the displacement of land along fault lines is knowledge
-                    that required sophisticated scientific tools to confirm. The
-                    presence of this concept in the Quran—linking land collapse
-                    with vibrations in precise terms—predates modern geological
-                    understanding by over a millennium, inviting reflection on
-                    the origins of such knowledge.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+                  The understanding that earthquakes are vibrations resulting
+                  from the displacement of land along fault lines is knowledge
+                  that required sophisticated scientific tools to confirm. The
+                  presence of this concept in the Quran—linking land collapse
+                  with vibrations in precise terms—predates modern geological
+                  understanding by over a millennium, inviting reflection on the
+                  origins of such knowledge.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-red-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Earth Sciences</h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            The wonders of our planet continue to unfold, connecting ancient
-            wisdom with modern scientific discoveries.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Waves className="text-red-600 dark:text-red-400" size={20} />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Exploring Earth Sciences
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              The wonders of our planet continue to unfold, connecting ancient
+              wisdom with modern scientific discoveries.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-red-600 dark:bg-red-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };

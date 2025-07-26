@@ -223,7 +223,7 @@ const Magnetosphere = () => {
                 <div className="bg-green-50 border border-green-200 p-8 rounded-lg mb-8">
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
                     <a
-                      href="https://www.quranwow.com/#/ch/21/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/32"
+                      href="https://quran.com/en/21/32"
                       className="text-green-700 hover:underline"
                       target="_blank"
                       rel="noopener noreferrer"

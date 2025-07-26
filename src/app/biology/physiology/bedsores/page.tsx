@@ -335,7 +335,7 @@ const BedsoresMiracle = () => {
                     {/* Using green */}
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/18/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/18"
+                        href="https://quran.com/en/18/18"
                         className="text-green-600 dark:text-green-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"

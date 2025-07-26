@@ -2,83 +2,51 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Droplets, // Represents water
-  Mountain, // Represents rocks/geology
-  BookOpen, // Represents Quran
-  HelpCircle, // Represents reflection/questions
-  ChevronRight, // Navigation icon
-  ArrowUp, // Back to Top icon
-  Quote, // Quote icon
-  Layers, // Represents layers/structure of rocks
-  Search, // Represents discovery/evidence
-  Sparkles, // Footer icon
+  ChevronRight,
+  Droplets,
+  Mountain,
+  BookOpen,
+  HelpCircle,
+  ArrowUp,
+  Search,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-
-// Define types for content sections
-interface ContentSection {
-  id: string;
-  title: string;
-  icon: React.ElementType;
-  color: string; // Tailwind color class for background
-  iconColor: string; // Tailwind color class for icon text
-}
-
-const PorousRocks: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>("intro");
-  // Using a more specific type for sectionRefs
+const PorousRocks = () => {
+  const [activeSection, setActiveSection] = useState("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents: ContentSection[] = useMemo(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
-        title: "Rocks Can Store Water",
+        title: "Rocks Store Water",
         icon: Mountain,
-        color: "bg-stone-100 dark:bg-stone-900",
-        iconColor: "text-stone-500",
       },
       {
         id: "geology",
         title: "Geological Evidence",
-        icon: Layers,
-        color: "bg-emerald-100 dark:bg-emerald-900",
-        iconColor: "text-emerald-500",
+        icon: Search,
       },
       {
         id: "quran",
-        title: "Quranic Reference",
+        title: "The Quranic Account",
         icon: BookOpen,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
       },
       {
         id: "reflection",
-        title: "Reflection & 7th Century Context",
+        title: "A Point to Ponder",
         icon: HelpCircle,
-        color: "bg-yellow-100 dark:bg-yellow-900",
-        iconColor: "text-yellow-500",
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
-  // Set up Intersection Observer to track which section is in view
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -86,10 +54,7 @@ const PorousRocks: React.FC = () => {
         }
       });
     }, options);
-
     const currentRefs = sectionRefs.current;
-
-    // Observe all section elements
     contents.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -97,9 +62,7 @@ const PorousRocks: React.FC = () => {
         observer.observe(element);
       }
     });
-
     return () => {
-      // Clean up observer
       contents.forEach(({ id }) => {
         const element = currentRefs[id];
         if (element) {
@@ -118,339 +81,310 @@ const PorousRocks: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-stone-600 to-gray-800 dark:from-stone-800 dark:to-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Droplets className="text-cyan-300" size={32} />
-            <h1 className="text-4xl font-bold">Porous Rocks</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-stone-200">
-            Geology - Earth's Natural Storage
-          </p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-stone-700 hover:bg-stone-100"
-              onClick={() => scrollToSection("geology")}
-            >
-              Explore Discovery <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-stone-100 border-stone-100 hover:bg-stone-100 hover:text-stone-700"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Uncover the secrets of rocks and water
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Droplets
+                className="text-blue-600 dark:text-blue-400"
+                size={24}
+              />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Porous Rocks
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Geology • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-stone-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-stone-100 dark:bg-stone-900">
-                      <Mountain className="text-stone-500" size={24} />
-                    </div>
-                    <CardTitle>Rocks Can Store Water</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    Did you know that some rocks can actually hold water? This
-                    might sound surprising at first!
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Rocks Store Water
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Did you know that some rocks can actually hold water? This
+                  might sound surprising at first! Historically, skeptics
+                  claimed that the idea of rocks storing water was incorrect,
+                  suggesting it was a mistake in ancient texts.
+                </p>
+                <div className="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    The Hidden Spaces in Rocks
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Modern geology has confirmed that certain types of rocks,
+                    known as porous rocks, are capable of holding significant
+                    amounts of water and other fluids within their structure.
+                    The ability of rocks to store water depends on their
+                    porosity – the amount of empty space (pores) within the rock
+                    structure.
                   </p>
-                  <p>
-                    Historically, skeptics claimed that the idea of rocks
-                    storing water was incorrect, suggesting it was a mistake in
-                    ancient texts. However, modern geology has since confirmed
-                    that certain types of rocks, known as porous rocks, are
-                    capable of holding significant amounts of water and other
-                    fluids within their structure.
-                  </p>
-                  <div className="bg-stone-50 dark:bg-stone-900/30 p-6 rounded-lg border border-stone-100 dark:border-stone-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      The Hidden Spaces in Rocks
-                    </h3>
-                    <p>
-                      The ability of rocks to store water depends on their
-                      porosity – the amount of empty space (pores) within the
-                      rock structure. These interconnected pores can act like
-                      tiny storage containers for liquids and gases.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Geological Evidence */}
-            <section id="geology" className="scroll-mt-20">
-              <Card className="border-l-4 border-emerald-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-emerald-100 dark:bg-emerald-900">
-                      <Layers className="text-emerald-500" size={24} />
-                    </div>
-                    <CardTitle>Geological Evidence</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    Geologists have extensively studied the Earth's crust and
-                    discovered various types of rocks with porous structures.
-                    These rocks play a crucial role in the storage and movement
-                    of groundwater, oil, and natural gas.
-                  </p>
-
-                  <div className="bg-emerald-50 dark:bg-emerald-900/30 p-6 rounded-lg border border-emerald-100 dark:border-emerald-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-emerald-500" />{" "}
-                      Scientific Definition
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Reservoir rocks are rocks that have the ability to store
-                      fluids inside their pores, so that the fluids (water, oil,
-                      and gas) can be accumulated."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://wiki.aapg.org/Reservoir"
-                        className="text-emerald-600 dark:text-emerald-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        American Association of Petroleum Geologists Wiki,
-                        Reservoir, 2019
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Search size={16} className="text-emerald-500" />
-                        Modern Discovery
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Mountain
+                        size={20}
+                        className="text-blue-500 dark:text-blue-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Rock Structure
                       </h3>
-                      <p>
-                        Our understanding of how fluids are stored within the
-                        Earth's crust has greatly advanced with modern
-                        geological techniques and technologies developed
-                        relatively recently.
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      These interconnected pores can act like tiny storage
+                      containers for liquids and gases within the rock
+                      formation.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Droplets
+                        size={20}
+                        className="text-blue-500 dark:text-blue-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Water Storage
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Groundwater is a vital resource, primarily stored in these
+                      porous rock formations beneath the surface.
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Geological Evidence */}
+              <section id="geology" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Geological Evidence
+                </h2>
+                <blockquote className="border-l-4 border-emerald-500 pl-6 py-4 mb-8 bg-emerald-50 dark:bg-emerald-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "Reservoir rocks are rocks that have the ability to store
+                    fluids inside their pores, so that the fluids (water, oil,
+                    and gas) can be accumulated."
+                  </p>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — American Association of Petroleum Geologists Wiki,
+                    Reservoir, 2019
+                  </cite>
+                </blockquote>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Porosity</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      The amount of empty space within rocks that can store
+                      fluids, measured as a percentage of total rock volume.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Storage Capacity</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      These porous formations can hold vast amounts of
+                      groundwater, oil, and natural gas in their interconnected
+                      pore spaces.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Modern Understanding</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Our detailed knowledge of fluid storage in rocks is a
+                      product of recent scientific advancement, not available
+                      1400 years ago.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Geologists have extensively studied the Earth's crust and
+                  discovered various types of rocks with porous structures.
+                  These rocks play a crucial role in the storage and movement of
+                  groundwater, oil, and natural gas.
+                </p>
+              </section>
+
+              {/* Quranic Reference */}
+              <section id="quran" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  The Quranic Account
+                </h2>
+                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/2/74"
+                      className="text-green-700 dark:text-green-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 2:74
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "Then after that your hearts hardened like rocks, or
+                        even harder. For there are some rocks from which rivers
+                        gush out, and others that crack and water comes out from
+                        them, and others that descend in awe of Allah. Allah is
+                        not unaware of what you do."
                       </p>
                     </div>
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Droplets size={16} className="text-blue-500" /> Water
-                        Storage
-                      </h3>
-                      <p>
-                        Groundwater is a vital resource, and it is primarily
-                        stored in these porous rock formations beneath the
-                        surface.
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ٧٤ ثُمَّ قَسَتْ قُلُوبُكُمْ مِنْ بَعْدِ ذَٰلِكَ فَهِيَ
+                        كَالْحِجَارَةِ أَوْ أَشَدُّ قَسْوَةً ۚ وَإِنَّ مِنَ
+                        الْحِجَارَةِ لَمَا يَتَفَجَّرُ مِنْهُ الْأَنْهَارُ ۚ
+                        وَإِنَّ مِنْهَا لَمَا يَشَّقَّقُ فَيَخْرُجُ مِنْهُ
+                        الْمَاءُ ۚ وَإِنَّ مِنْهَا لَمَا يَهْبِطُ مِنْ خَشْيَةِ
+                        اللَّهِ ۗ وَمَا اللَّهُ بِغَافِلٍ عَمَّا تَعْمَلُونَ
                       </p>
                     </div>
                   </div>
-
-                  <p>
-                    The concept of porous rocks holding and releasing water is a
-                    fundamental principle in hydrology and petroleum geology
-                    today. However, the detailed scientific understanding of
-                    this phenomenon is a product of relatively recent scientific
-                    advancement, not common knowledge 1400 years ago.
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Insight
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The verse mentions "others that crack and water comes out
+                    from them" (وَإِنَّ مِنْهَا لَمَا يَشَّقَّقُ فَيَخْرُجُ
+                    مِنْهُ الْمَاءُ). This beautifully describes how water,
+                    stored within the rock's structure (perhaps in pores or
+                    fractures), can be released when rocks crack or break.
                   </p>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Quranic Reference */}
-            <section id="quran" className="scroll-mt-20">
-              <Card className="border-l-4 border-blue-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <BookOpen className="text-blue-500" size={24} />
-                    </div>
-                    <CardTitle>Quranic Reference</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/2/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/none/v/74"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 2:74
-                      </a>
-                    </h3>
-                    <div className="flex flex-col md:flex-row md:space-x-6">
-                      <div className="md:w-1/2">
-                        <p className="italic mb-4">
-                          "Then after that your hearts hardened like rocks, or
-                          even harder. For there are some rocks from which
-                          rivers gush out, and others that crack and water comes
-                          out from them, and others that descend in awe of
-                          Allah. Allah is not unaware of what you do."
-                        </p>
-                      </div>
-                      <div className="md:w-1/2 font-arabic text-right text-lg">
-                        <p dir="rtl">
-                          ٧٤ ثُمَّ قَسَتْ قُلُوبُكُمْ مِنْ بَعْدِ ذَٰلِكَ فَهِيَ
-                          كَالْحِجَارَةِ أَوْ أَشَدُّ قَسْوَةً ۚ وَإِنَّ مِنَ
-                          الْحِجَارَةِ لَمَا يَتَفَجَّرُ مِنْهُ الْأَنْهَارُ ۚ
-                          وَإِنَّ مِنْهَا لَمَا يَشَّقَّقُ فَيَخْرُجُ مِنْهُ
-                          الْمَاءُ ۚ وَإِنَّ مِنْهَا لَمَا يَهْبِطُ مِنْ
-                          خَشْيَةِ اللَّهِ ۗ وَمَا اللَّهُ بِغَافِلٍ عَمَّا
-                          تَعْمَلُونَ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <Badge className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
-                      Relevant Phrase
-                    </Badge>
-                    <p className="mt-3">
-                      The verse mentions different types of rocks, including{" "}
-                      <span className="font-medium italic">
-                        "others that crack and water comes out from them"
-                        (وَإِنَّ مِنْهَا لَمَا يَشَّقَّقُ فَيَخْرُجُ مِنْهُ
-                        الْمَاءُ)
-                      </span>
-                      . This beautifully describes how water, stored within the
-                      rock's structure (perhaps in pores or fractures), can be
-                      released, sometimes by cracking or breaking.
-                    </p>
-                    <p className="mt-3">
-                      This aligns remarkably with the modern geological
-                      understanding of how porous rocks store and release water,
-                      whether through natural fractures or extraction.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-yellow-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-yellow-100 dark:bg-yellow-900">
-                      <HelpCircle className="text-yellow-500" size={24} />
-                    </div>
-                    <CardTitle>Reflection & 7th Century Context</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    Considering the scientific knowledge available in the 7th
-                    century, the detailed understanding of rock porosity and its
-                    role in storing and releasing water was not a known
-                    scientific fact.
+                </div>
+                <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-100 dark:border-blue-800">
+                  <h4 className="font-medium mb-2">
+                    The Scientific Connection
+                  </h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    This aligns remarkably with the modern geological
+                    understanding of how porous rocks store and release water,
+                    whether through natural fractures or extraction. The Quranic
+                    description precisely captures this geological phenomenon.
                   </p>
-                  <div className="bg-yellow-50 dark:bg-yellow-900/30 p-6 rounded-lg border border-yellow-100 dark:border-yellow-800">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could man who lived 1400 years ago have known about
-                      porous rocks storing and releasing water?
-                    </h3>
-                    <p>
-                      In the 7th century, people observed water sources like
-                      springs and wells, but the scientific explanation for
-                      *how* rocks held and released this water at a structural
-                      level wasn't understood. The detailed mechanisms of
-                      porosity and fluid mechanics within rock formations were
-                      beyond the scientific grasp of the time.
-                    </p>
-                    <p className="mt-3">
-                      Yet, the Quranic verse precisely describes rocks from
-                      which water emerges when they crack. This observation,
-                      which aligns with the behavior of porous or fractured
-                      rocks, is presented without the benefit of modern
-                      geological science.
+                </div>
+              </section>
+
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  A Point to Ponder
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Considering the scientific knowledge available in the 7th
+                  century, the detailed understanding of rock porosity and its
+                  role in storing and releasing water was not a known scientific
+                  fact:
+                </p>
+                <div className="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could someone living 1400 years ago have known about
+                    porous rocks storing and releasing water?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    In the 7th century, people observed water sources like
+                    springs and wells, but the scientific explanation for how
+                    rocks held and released this water at a structural level
+                    wasn't understood. The detailed mechanisms of porosity and
+                    fluid mechanics within rock formations were beyond the
+                    scientific grasp of the time.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Historical Context</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      While people observed springs and wells, the scientific
+                      mechanisms of rock porosity and fluid storage were unknown
+                      concepts in the 7th century.
                     </p>
                   </div>
-
-                  <p>
-                    This intriguing parallel between the ancient text and modern
-                    geological discovery invites us to reflect on the source of
-                    such knowledge, especially considering the context of the
-                    time in which the Quran was revealed.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Modern Validation</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Today's geological research confirms exactly what the
+                      Quran described: rocks that store water and release it
+                      when fractured or accessed.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+                  This intriguing parallel between the ancient text and modern
+                  geological discovery invites us to reflect on the source of
+                  such knowledge, especially considering the context of the time
+                  in which the Quran was revealed.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-emerald-500" size={18} />
-            <h3 className="text-lg font-medium">Exploring Earth's Design</h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            Discoveries in geology reveal the intricate ways nature works,
-            echoing descriptions found in ancient scriptures.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Droplets
+                className="text-blue-600 dark:text-blue-400"
+                size={20}
+              />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Exploring Earth's Hidden Reservoirs
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              Discovering how ancient wisdom aligns with modern geological
+              understanding.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-blue-600 dark:bg-blue-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };

@@ -2,90 +2,53 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Heart,
   ChevronRight,
   Baby,
+  FlaskRound,
   BookOpen,
-  Quote,
   HelpCircle,
-  Users,
   ArrowUp,
   Sparkles,
+  Heart,
+  Clock,
 } from "lucide-react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
-const BreastfeedingComponent = () => {
+const Breastfeeding = () => {
   const [activeSection, setActiveSection] = useState("intro");
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-  const contents = useMemo(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
-        title: "Social Bonding",
-        icon: Heart,
-        color: "bg-pink-100 dark:bg-pink-900",
-        iconColor: "text-pink-500",
-      },
-      {
-        id: "nutrition",
-        title: "Nutritional Science",
+        title: "Breastfeeding Duration",
         icon: Baby,
-        color: "bg-blue-100 dark:bg-blue-900",
-        iconColor: "text-blue-500",
       },
       {
-        id: "quran-duration",
-        title: "Quranic Guidance",
+        id: "science",
+        title: "Scientific Evidence",
+        icon: FlaskRound,
+      },
+      {
+        id: "quran",
+        title: "Quranic Reference",
         icon: BookOpen,
-        color: "bg-green-100 dark:bg-green-900",
-        iconColor: "text-green-500",
-      },
-      {
-        id: "bonding-science",
-        title: "Bonding Research",
-        icon: Users,
-        color: "bg-purple-100 dark:bg-purple-900",
-        iconColor: "text-purple-500",
-      },
-      {
-        id: "quran-bond",
-        title: "Breaking of Bonds",
-        icon: Quote,
-        color: "bg-orange-100 dark:bg-orange-900",
-        iconColor: "text-orange-500",
       },
       {
         id: "reflection",
         title: "Reflection",
         icon: HelpCircle,
-        color: "bg-indigo-100 dark:bg-indigo-900",
-        iconColor: "text-indigo-500",
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
-  // Set up Intersection Observer to track which section is in view
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -93,10 +56,7 @@ const BreastfeedingComponent = () => {
         }
       });
     }, options);
-
     const currentRefs = sectionRefs.current;
-
-    // Observe all section elements
     contents.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -104,9 +64,7 @@ const BreastfeedingComponent = () => {
         observer.observe(element);
       }
     });
-
     return () => {
-      // Clean up observer
       contents.forEach(({ id }) => {
         const element = currentRefs[id];
         if (element) {
@@ -125,511 +83,316 @@ const BreastfeedingComponent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-pink-500 to-rose-700 dark:from-pink-600 dark:to-rose-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Heart className="text-pink-200" size={32} />
-            <h1 className="text-4xl font-bold">Breastfeeding</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-pink-100">Biology - Advanced</p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-pink-700 hover:bg-pink-50"
-              onClick={() => scrollToSection("nutrition")}
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-pink-700 border-white hover:bg-pink-600"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Explore breastfeeding's profound significance
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Baby className="text-pink-600 dark:text-pink-400" size={24} />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  Breastfeeding
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  Biology • Easy
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className={`border-l-4 border-pink-500`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-pink-100 dark:bg-pink-900">
-                      <Heart className="text-pink-500" size={24} />
-                    </div>
-                    <CardTitle>Social Bonding Through Breastfeeding</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    Breastfeeding is far more than just nourishment - it creates
-                    the strongest social bond known to humanity, connecting
-                    mother and child in ways that modern science is only
-                    beginning to understand.
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Breastfeeding Duration
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Breastfeeding is a natural process that provides essential
+                  nutrition and immunity to infants. Understanding the optimal
+                  duration for breastfeeding helps ensure the best health
+                  outcomes for both mother and child.
+                </p>
+                <div className="bg-pink-50 dark:bg-pink-900/30 border-l-4 border-pink-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    Ancient Wisdom, Modern Science
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    1400 years ago, the Quran specified the duration of
+                    breastfeeding as two complete years. Today, the World Health
+                    Organization (WHO) recommends exclusive breastfeeding for
+                    the first 6 months, followed by continued breastfeeding with
+                    complementary foods for up to 2 years or beyond—a remarkable
+                    alignment between ancient guidance and modern medical
+                    recommendations.
                   </p>
-                  <div className="bg-pink-50 dark:bg-pink-900/30 p-6 rounded-lg border border-pink-100 dark:border-pink-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      Ancient Wisdom Meets Modern Discovery
-                    </h3>
-                    <p>
-                      1400 years ago, nobody understood the deep psychological
-                      and social connections formed through breastfeeding. Yet
-                      the Quran spoke of this profound bond and its importance,
-                      long before modern science could explain why it matters so
-                      much for both mother and child.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Nutritional Science */}
-            <section id="nutrition" className="scroll-mt-20">
-              <Card className={`border-l-4 border-blue-500`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900">
-                      <Baby className="text-blue-500" size={24} />
-                    </div>
-                    <CardTitle>Nutritional Science</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-lg border border-blue-100 dark:border-blue-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-blue-500" /> World Health
-                      Organization
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "Breast milk is the natural first food for babies, it
-                      provides all the energy and nutrients that the infant
-                      needs for the first months of life, and it continues to
-                      provide up to half or more of a child's nutritional needs
-                      during the second half of the first year, and up to
-                      one-third during the second year of life."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="http://www.who.int/nutrition/topics/exclusive_breastfeeding/en/"
-                        className="text-blue-600 dark:text-blue-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        World Health Organization, Breastfeeding, 2018
-                      </a>
-                    </div>
-                  </div>
-
-                  <p>
-                    As babies grow and their nutritional needs increase, breast
-                    milk alone becomes insufficient. By the second year of life,
-                    breast milk can only provide about one-third of the
-                    nutrients the growing child needs. This natural progression
-                    explains why additional foods become necessary around this
-                    time.
-                  </p>
-
-                  <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Sparkles size={16} className="text-blue-500" /> The
-                      Perfect Timeline
-                    </h3>
-                    <p>
-                      Modern nutritional science has revealed the precise
-                      timeline of breastfeeding benefits - exactly matching what
-                      was described 1400 years ago in the Quran.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Quranic Guidance on Duration */}
-            <section id="quran-duration" className="scroll-mt-20">
-              <Card className={`border-l-4 border-green-500`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
-                      <BookOpen className="text-green-500" size={24} />
-                    </div>
-                    <CardTitle>
-                      Quranic Guidance on Breastfeeding Duration
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/2/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/233"
-                        className="text-green-600 dark:text-green-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 2:233
-                      </a>
-                    </h3>
-                    <div className="space-y-4">
-                      <p className="italic">
-                        "Mothers may nurse their infants for two whole years,
-                        for those who desire to complete the nursing-period. It
-                        is the duty of the father to provide for them and clothe
-                        them in a proper manner. No soul shall be burdened
-                        beyond its capacity. No mother shall be harmed on
-                        account of her child, and no father shall be harmed on
-                        account of his child. The same duty rests upon the heir.
-                        If the couple desire weaning, by mutual consent and
-                        consultation, they commit no error by doing so. You
-                        commit no error by hiring nursing-mothers, as long as
-                        you pay them fairly. And be wary of Allah, and know that
-                        Allah is Seeing of what you do."
-                      </p>
-                      <div className="font-arabic text-right text-lg" dir="rtl">
-                        <p>
-                          ٢٣٣ وَالْوَالِدَاتُ يُرْضِعْنَ أَوْلَادَهُنَّ
-                          حَوْلَيْنِ كَامِلَيْنِ ۖ لِمَنْ أَرَادَ أَنْ يُتِمَّ
-                          الرَّضَاعَةَ ۚ وَعَلَى الْمَوْلُودِ لَهُ رِزْقُهُنَّ
-                          وَكِسْوَتُهُنَّ بِالْمَعْرُوفِ ۚ لَا تُكَلَّفُ نَفْسٌ
-                          إِلَّا وُسْعَهَا ۚ لَا تُضَارَّ وَالِدَةٌ بِوَلَدِهَا
-                          وَلَا مَوْلُودٌ لَهُ بِوَلَدِهِ ۚ وَعَلَى الْوَارِثِ
-                          مِثْلُ ذَٰلِكَ ۗ فَإِنْ أَرَادَا فِصَالًا عَنْ تَرَاضٍ
-                          مِنْهُمَا وَتَشَاوُرٍ فَلَا جُنَاحَ عَلَيْهِمَا ۗ
-                          وَإِنْ أَرَدْتُمْ أَنْ تَسْتَرْضِعُوا أَوْلَادَكُمْ
-                          فَلَا جُنَاحَ عَلَيْكُمْ إِذَا سَلَّمْتُمْ مَا
-                          آتَيْتُمْ بِالْمَعْرُوفِ ۗ وَاتَّقُوا اللَّهَ
-                          وَاعْلَمُوا أَنَّ اللَّهَ بِمَا تَعْمَلُونَ بَصِيرٌ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                      Key Insight
-                    </Badge>
-                    <p className="mt-3">
-                      The Quran specifically mentions "two whole years"
-                      (حَوْلَيْنِ كَامِلَيْنِ) as the optimal duration for
-                      breastfeeding - a timeframe that perfectly aligns with
-                      modern nutritional science and WHO recommendations.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Bonding Research */}
-            <section id="bonding-science" className="scroll-mt-20">
-              <Card className={`border-l-4 border-purple-500`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900">
-                      <Users className="text-purple-500" size={24} />
-                    </div>
-                    <CardTitle>
-                      Scientific Research on Mother-Baby Bonding
-                    </CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    While nutritional benefits were somewhat understood
-                    historically, the profound psychological and social bonding
-                    aspects of breastfeeding were completely unknown until very
-                    recently.
-                  </p>
-
-                  <div className="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg border border-purple-100 dark:border-purple-800">
-                    <h3 className="font-medium mb-3 flex items-center gap-2">
-                      <Quote size={16} className="text-purple-500" />{" "}
-                      Breakthrough Research
-                    </h3>
-                    <h4 className="font-bold mb-2">
-                      Is Breast Milk the Key to Mother-Baby Bonding?
-                    </h4>
-                    <p className="italic text-gray-700 dark:text-gray-300 mb-3">
-                      "The secret to mother-baby bonding might be breast milk,
-                      according to new research that determines that
-                      breast-feeding mothers are more likely than
-                      formula-feeding moms to bond with their infants in the
-                      months after they are born. They also demonstrate stronger
-                      brain responses when they hear their baby cry, according
-                      to a study published in the May issue of the Journal of
-                      Child Psychology and Psychiatry...
-                    </p>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      While participants lay in a scanner and listened to clips
-                      of their own baby and an unknown child crying, researchers
-                      tracked what areas of their brains lit up. All mother's
-                      brains were more active when listening to their own baby's
-                      cry, but the changes in the breast-feeding mothers'
-                      relevant brain regions were far more significant."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="http://healthland.time.com/2011/05/20/is-breast-milk-the-key-to-mother-baby-bonding/"
-                        className="text-purple-600 dark:text-purple-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Time, Is Breast Milk the Key to Mother-Baby Bonding?,
-                        2011
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Heart size={16} className="text-pink-500" /> The
-                      Strongest Social Bond
-                    </h3>
-                    <p>
-                      Modern neuroimaging studies reveal that breastfeeding
-                      creates the most powerful social bond known to science -
-                      stronger brain responses, deeper emotional connections,
-                      and more intense maternal instincts than any other human
-                      relationship.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Breaking of Bonds - Final Hour */}
-            <section id="quran-bond" className="scroll-mt-20">
-              <Card className={`border-l-4 border-orange-500`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900">
-                      <Quote className="text-orange-500" size={24} />
-                    </div>
-                    <CardTitle>The Breaking of the Strongest Bond</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The Quran describes a time when even the strongest social
-                    bond - that between a nursing mother and her infant - will
-                    be broken due to the severity of the final Hour.
-                  </p>
-
-                  <div className="bg-orange-50 dark:bg-orange-900/30 p-6 rounded-lg border border-orange-100 dark:border-orange-800">
-                    <h3 className="font-medium mb-3">
-                      <a
-                        href="https://www.quranwow.com/#/ch/22/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/2"
-                        className="text-orange-600 dark:text-orange-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Quran 22:2
-                      </a>
-                    </h3>
-                    <div className="space-y-4">
-                      <p className="italic">
-                        "When you will see it [final Hour] every nursing mother
-                        will discard her infant, and every pregnant woman will
-                        miscarry, and you will see the people drunk, even though
-                        they are not drunk. But the punishment of Allah is
-                        severe."
-                      </p>
-                      <div className="font-arabic text-right text-lg" dir="rtl">
-                        <p>
-                          ٢ يَوْمَ تَرَوْنَهَا تَذْهَلُ كُلُّ مُرْضِعَةٍ عَمَّا
-                          أَرْضَعَتْ وَتَضَعُ كُلُّ ذَاتِ حَمْلٍ حَمْلَهَا
-                          وَتَرَى النَّاسَ سُكَارَىٰ وَمَا هُمْ بِسُكَارَىٰ
-                          وَلَٰكِنَّ عَذَابَ اللَّهِ شَدِيدٌ
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <Badge className="bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-100">
-                      Profound Insight
-                    </Badge>
-                    <p className="mt-3">
-                      <strong>
-                        "Every nursing mother will discard her infant"
-                      </strong>{" "}
-                      - This verse powerfully emphasizes just how severe the
-                      final Hour will be by referencing the breaking of the
-                      strongest known social bond. Only now do we understand
-                      through neuroscience that this is indeed the most powerful
-                      emotional connection in human experience.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className={`border-l-4 border-indigo-500`}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900">
-                      <HelpCircle className="text-indigo-500" size={24} />
-                    </div>
-                    <CardTitle>Reflection</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The intersection of ancient text and modern discovery
-                    reveals profound insights about human nature and the bonds
-                    that define us:
-                  </p>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg border border-indigo-100 dark:border-indigo-800">
-                      <h3 className="font-bold mb-2">
-                        Two Years: Perfect Timing
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Heart
+                        size={20}
+                        className="text-red-500 dark:text-red-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Health Benefits
                       </h3>
-                      <p className="text-sm">
-                        The Quran's specific mention of "two whole years"
-                        perfectly aligns with WHO recommendations and scientific
-                        understanding of when breast milk becomes nutritionally
-                        insufficient.
-                      </p>
                     </div>
-                    <div className="bg-indigo-50 dark:bg-indigo-900/30 p-4 rounded-lg border border-indigo-100 dark:border-indigo-800">
-                      <h3 className="font-bold mb-2">The Strongest Bond</h3>
-                      <p className="text-sm">
-                        Only in 2011 did neuroscience discover that
-                        breastfeeding creates the most powerful social bond. The
-                        Quran referenced this strength 1400 years earlier.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could man who lived 1400 years ago have known about
-                      breastfeeding's profound effects?
-                    </h3>
-                    <p>
-                      The Quranic descriptions of breastfeeding encompass both
-                      its optimal duration and its role in creating the
-                      strongest human social bond - knowledge that modern
-                      science has only recently uncovered through advanced
-                      neuroimaging and longitudinal studies.
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Breastfeeding provides optimal nutrition, strengthens the
+                      immune system, and creates a unique bond between mother
+                      and child that supports emotional development.
                     </p>
                   </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Clock
+                        size={20}
+                        className="text-blue-500 dark:text-blue-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Optimal Duration
+                      </h3>
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      The recommended duration balances the nutritional needs of
+                      the child with the practical considerations of modern
+                      life, ensuring the best possible start for every child.
+                    </p>
+                  </div>
+                </div>
+              </section>
 
-                  <p>
-                    The precision with which the Quran describes both the
-                    nutritional timeline and the psychological significance of
-                    breastfeeding offers a remarkable example of ancient text
-                    aligning with cutting-edge scientific understanding.
+              {/* Scientific Evidence */}
+              <section id="science" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Scientific Evidence
+                </h2>
+                <blockquote className="border-l-4 border-green-500 pl-6 py-4 mb-8 bg-green-50 dark:bg-green-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "WHO recommends exclusive breastfeeding for the first 6
+                    months of life, followed by continued breastfeeding with
+                    appropriate complementary foods for up to 2 years and
+                    beyond. This recommendation is based on evidence that
+                    breastfeeding provides optimal nutrition and health benefits
+                    for both mother and child."
                   </p>
-                </CardContent>
-              </Card>
-            </section>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    —{" "}
+                    <a
+                      href="https://www.who.int/news-room/fact-sheets/detail/infant-and-young-child-feeding"
+                      className="text-green-600 dark:text-green-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      World Health Organization, Infant and young child feeding,
+                      2020
+                    </a>
+                  </cite>
+                </blockquote>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">First 6 Months</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Exclusive breastfeeding provides all the nutrients and
+                      antibodies a baby needs for optimal growth and
+                      development.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">6-24 Months</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Continued breastfeeding with complementary foods ensures
+                      ongoing nutrition and immune support as the child grows.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h3 className="font-medium mb-2">Beyond 2 Years</h3>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Extended breastfeeding can continue to provide comfort and
+                      additional nutrition as long as mutually desired.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  This scientific understanding of optimal breastfeeding
+                  duration was only fully established in recent decades, yet it
+                  was mentioned in the Quran 1400 years ago.
+                </p>
+              </section>
+
+              {/* Quranic Reference */}
+              <section id="quran" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Quranic Reference
+                </h2>
+                <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    <a
+                      href="https://quran.com/en/2/233"
+                      className="text-blue-700 dark:text-blue-400 hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Quran 2:233
+                    </a>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "Mothers may breastfeed their children two complete
+                        years for whoever wishes to complete the nursing
+                        period."
+                      </p>
+                    </div>
+                    <div className="font-arabic text-right text-xl leading-relaxed">
+                      <p dir="rtl" className="text-gray-800 dark:text-gray-100">
+                        ٢٣٣ وَالْوَالِدَاتُ يُرْضِعْنَ أَوْلَادَهُنَّ حَوْلَيْنِ
+                        كَامِلَيْنِ لِمَنْ أَرَادَ أَنْ يُتِمَّ الرَّضَاعَةَ
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Insight
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The verse specifies "حَوْلَيْنِ كَامِلَيْنِ" (two complete
+                    years) for breastfeeding. This precise duration aligns
+                    remarkably with modern medical recommendations that suggest
+                    breastfeeding for up to 2 years or beyond for optimal child
+                    health and development.
+                  </p>
+                </div>
+                <div className="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg border border-green-100 dark:border-green-800">
+                  <h4 className="font-medium mb-2">
+                    The Scientific Connection
+                  </h4>
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
+                    The Quranic guidance of two complete years for breastfeeding
+                    perfectly matches what modern medical science recommends.
+                    This alignment between ancient wisdom and contemporary
+                    healthcare guidelines demonstrates the Quran's accurate
+                    understanding of human development and nutrition.
+                  </p>
+                </div>
+              </section>
+
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Reflection
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  The correspondence between ancient texts and modern medical
+                  recommendations invites deeper reflection:
+                </p>
+                <div className="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could man who lived 1400 years ago have known about
+                    optimal breastfeeding duration?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    The Quranic specification of two complete years for
+                    breastfeeding shows remarkable accuracy. While basic
+                    observation might show that children can be breastfed for
+                    varying periods, the specific recommendation of two complete
+                    years aligns perfectly with modern medical understanding of
+                    optimal child development and nutrition.
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Historical Context</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      In the 7th century, detailed understanding of child
+                      nutrition and development was limited. The precise
+                      recommendation of two complete years shows remarkable
+                      insight into optimal child care practices.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                    <h4 className="font-medium mb-2">Modern Validation</h4>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Today's medical research confirms exactly what the Quran
+                      recommended: breastfeeding for up to 2 years provides
+                      optimal nutrition and health benefits for child
+                      development.
+                    </p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mt-8">
+                  This example demonstrates how ancient wisdom and modern
+                  medical science can illuminate each other, encouraging us to
+                  approach both traditional texts and scientific discoveries
+                  with curiosity and respect.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-50">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button className="rounded-full h-14 w-14 shadow-lg bg-pink-600 hover:bg-pink-700">
-              <Heart size={24} />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent side="top" className="w-64 p-0 mr-6 mb-2">
-            <nav className="max-h-80 overflow-y-auto">
-              {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                <button
-                  key={id}
-                  onClick={() => {
-                    scrollToSection(id);
-                  }}
-                  className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                    activeSection === id
-                      ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                      : ""
-                  }`}
-                >
-                  <Icon className={iconColor} size={18} />
-                  <span>{title}</span>
-                  {activeSection === id && (
-                    <ChevronRight className="ml-auto" size={16} />
-                  )}
-                </button>
-              ))}
-            </nav>
-          </PopoverContent>
-        </Popover>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Heart className="text-pink-600" size={18} />
-            <h3 className="text-lg font-medium">The Bond That Defines Us</h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            From the first moments of life, the connection between mother and
-            child through breastfeeding shapes our understanding of love, care,
-            and human bonds.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Sparkles
+                className="text-pink-600 dark:text-pink-400"
+                size={20}
+              />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Nurturing the Next Generation
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              The wisdom of breastfeeding duration bridges ancient guidance with
+              modern medical understanding, ensuring the best start for every
+              child.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-pink-600 dark:bg-pink-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };
 
-export default BreastfeedingComponent;
+export default Breastfeeding;

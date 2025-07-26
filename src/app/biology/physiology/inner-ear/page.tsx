@@ -287,7 +287,7 @@ const InnerEar = () => {
                   <div className="bg-emerald-50 dark:bg-emerald-900/30 p-6 rounded-lg border border-emerald-100 dark:border-emerald-800">
                     <h3 className="font-medium mb-3">
                       <a
-                        href="https://www.quranwow.com/#/ch/18/t1/ar-allah/t2/en-itania/a1/alafasy-64/a2/itania-48-b/v/11"
+                        href="https://quran.com/en/18/11"
                         className="text-emerald-600 dark:text-emerald-400 hover:underline"
                         target="_blank"
                         rel="noopener noreferrer"

@@ -2,86 +2,51 @@
 "use client";
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
-  Crown,
   ChevronRight,
+  Crown,
   History,
   BookOpen,
-  Quote,
-  HelpCircle,
-  Scroll,
-  ArrowUp,
   Sparkles,
+  ArrowUp,
   Clock,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+const PharaohTitle = () => {
+  const [activeSection, setActiveSection] = useState("intro");
+  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-// TypeScript interfaces
-interface ContentSection {
-  id: string;
-  title: string;
-  icon: React.ElementType;
-  color: string;
-  iconColor: string;
-}
-
-interface SectionRefs {
-  [key: string]: HTMLElement | null;
-}
-
-const PharaohTitle: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<string>("intro");
-  const sectionRefs = useRef<SectionRefs>({});
-
-  const contents = useMemo<ContentSection[]>(() => {
-    return [
+  const contents = useMemo(
+    () => [
       {
         id: "intro",
         title: "Title of Pharaoh",
         icon: Crown,
-        color: "bg-amber-100 dark:bg-amber-900",
-        iconColor: "text-amber-500",
       },
       {
         id: "history",
         title: "Historical Evidence",
         icon: History,
-        color: "bg-indigo-100 dark:bg-indigo-900",
-        iconColor: "text-indigo-500",
       },
       {
         id: "quran",
         title: "Quranic Accuracy",
         icon: BookOpen,
-        color: "bg-green-100 dark:bg-green-900",
-        iconColor: "text-green-500",
       },
       {
         id: "reflection",
         title: "Reflection",
-        icon: HelpCircle,
-        color: "bg-rose-100 dark:bg-rose-900",
-        iconColor: "text-rose-500",
+        icon: Sparkles,
       },
-    ];
-  }, []);
+    ],
+    []
+  );
 
-  // Set up Intersection Observer to track which section is in view
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
       threshold: 0.3,
     };
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -89,10 +54,7 @@ const PharaohTitle: React.FC = () => {
         }
       });
     }, options);
-
     const currentRefs = sectionRefs.current;
-
-    // Observe all section elements
     contents.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
@@ -100,9 +62,7 @@ const PharaohTitle: React.FC = () => {
         observer.observe(element);
       }
     });
-
     return () => {
-      // Clean up observer
       contents.forEach(({ id }) => {
         const element = currentRefs[id];
         if (element) {
@@ -112,7 +72,7 @@ const PharaohTitle: React.FC = () => {
     };
   }, [contents]);
 
-  const scrollToSection = (id: string): void => {
+  const scrollToSection = (id: string) => {
     setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
@@ -121,375 +81,313 @@ const PharaohTitle: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-700 dark:to-blue-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-3 mb-4">
-            <Crown className="text-blue-200" size={32} />
-            <h1 className="text-4xl font-bold">The Title of Pharaoh</h1>
-          </div>
-          <p className="text-xl max-w-2xl text-blue-100">
-            Historical Linguistics - Advanced
-          </p>
-          <div className="flex gap-4 mt-8">
-            <Button
-              className="bg-white text-blue-700 hover:bg-blue-50"
-              onClick={() => scrollToSection("history")}
-            >
-              Continue <ChevronRight size={16} />
-            </Button>
-            <Button
-              variant="outline"
-              className="text-blue-50 border-blue-200 hover:bg-blue-800/50"
-              onClick={() => scrollToSection("intro")}
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Navigation Sidebar */}
-          <div className="hidden lg:block col-span-1">
-            <div className="sticky top-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-lg">Topic Guide</CardTitle>
-                  <CardDescription>
-                    Explore the evolution of the Pharaoh title
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <nav className="space-y-1">
-                    {contents.map(({ id, title, icon: Icon, iconColor }) => (
-                      <button
-                        key={id}
-                        onClick={() => scrollToSection(id)}
-                        className={`flex items-center gap-3 p-3 w-full text-left transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 ${
-                          activeSection === id
-                            ? "bg-gray-100 dark:bg-gray-800 font-medium"
-                            : ""
-                        }`}
-                      >
-                        <Icon className={iconColor} size={18} />
-                        <span>{title}</span>
-                        {activeSection === id && (
-                          <ChevronRight className="ml-auto" size={16} />
-                        )}
-                      </button>
-                    ))}
-                  </nav>
-                </CardContent>
-              </Card>
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+      {/* Medium-style Header */}
+      <header className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 sticky top-0 z-50">
+        <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Crown className="text-amber-600 dark:text-amber-400" size={24} />
+              <div>
+                <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                  The Title of Pharaoh
+                </h1>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  History • Medium
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Share
+              </button>
+              <button className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm">
+                Bookmark
+              </button>
             </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Content */}
-          <div className="lg:col-span-3 space-y-12">
-            {/* Introduction */}
-            <section id="intro" className="scroll-mt-20">
-              <Card className="border-l-4 border-amber-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-amber-100 dark:bg-amber-900">
-                      <Crown className="text-amber-500" size={24} />
-                    </div>
-                    <CardTitle>The Royal Title of Pharaoh</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p className="font-medium">
-                    For centuries, many believed that all Egyptian rulers were
-                    called "Pharaohs" throughout Egyptian history. However,
-                    modern archaeological discoveries reveal a different
-                    picture—one that the Quran correctly portrayed 1400 years
-                    ago.
+      <div className="max-w-4xl mx-auto px-6 py-8">
+        <div className="grid">
+          {/* Main Content - Medium Style */}
+          <div className="lg:col-span-3">
+            <article className="prose prose-lg max-w-none dark:prose-invert">
+              {/* Introduction */}
+              <section id="intro" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Title of Pharaoh
+                </h2>
+                <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  For centuries, many believed that all Egyptian rulers were
+                  called "Pharaohs" throughout Egyptian history. However, modern
+                  archaeological discoveries reveal a different picture—one that
+                  the Quran correctly portrayed 1400 years ago.
+                </p>
+                <div className="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 pl-6 py-4 mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">
+                    Common Historical Misconception
+                  </h3>
+                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Many ancient and modern texts incorrectly apply the title
+                    "Pharaoh" to Egyptian rulers across all time periods. This
+                    includes instances in the Bible where the rulers of Egypt
+                    during the time of Abraham and Joseph are called Pharaohs.
+                    Modern Egyptology has revealed this to be historically
+                    inaccurate.
                   </p>
-                  <div className="bg-amber-50 dark:bg-amber-900/30 p-6 rounded-lg border border-amber-100 dark:border-amber-800">
-                    <h3 className="font-bold text-lg mb-3">
-                      Common Historical Misconception
-                    </h3>
-                    <p>
-                      Many ancient and modern texts incorrectly apply the title
-                      "Pharaoh" to Egyptian rulers across all time periods. This
-                      includes instances in the Bible where the rulers of Egypt
-                      during the time of Abraham and Joseph are called Pharaohs.
-                      Modern Egyptology has revealed this to be historically
-                      inaccurate.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Let's explore what modern archaeology has revealed about when
+                  this title was actually used.
+                </p>
+              </section>
 
-            {/* Historical Evidence */}
-            <section id="history" className="scroll-mt-20">
-              <Card className="border-l-4 border-indigo-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-indigo-100 dark:bg-indigo-900">
-                      <History className="text-indigo-500" size={24} />
-                    </div>
-                    <CardTitle>Historical Evidence</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <div className="bg-indigo-50 dark:bg-indigo-900/30 p-6 rounded-lg border border-indigo-100 dark:border-indigo-800">
-                    <h3 className="font-medium mb-2 flex items-center gap-2">
-                      <Quote size={16} className="text-indigo-500" />{" "}
-                      Archaeological Findings
-                    </h3>
-                    <p className="italic text-gray-700 dark:text-gray-300">
-                      "From the Twelfth Dynasty onward, the word appears in a
-                      wish formula 'Great House, May it Live, Prosper, and be in
-                      Health', but again only with reference to the royal palace
-                      and not the person. Sometime during the era of the New
-                      Kingdom, Second Intermediate Period, pharaoh became the
-                      form of address for a person who was king."
-                    </p>
-                    <div className="mt-3 text-sm">
-                      <a
-                        href="https://en.wikipedia.org/wiki/Pharaoh"
-                        className="text-indigo-600 dark:text-indigo-400 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Wikipedia, Pharaoh, 2019
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Scroll size={16} className="text-indigo-500" />{" "}
+              {/* Historical Evidence */}
+              <section id="history" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Historical Evidence
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Modern archaeological research has conclusively shown that the
+                  rulers of Egypt were simply called "kings" during earlier
+                  periods, including the time traditionally associated with
+                  Joseph. Only later did the title "Pharaoh" come to designate
+                  the ruler.
+                </p>
+                <blockquote className="border-l-4 border-indigo-500 pl-6 py-4 mb-8 bg-indigo-50 dark:bg-indigo-900/30">
+                  <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                    "From the Twelfth Dynasty onward, the word appears in a wish
+                    formula 'Great House, May it Live, Prosper, and be in
+                    Health', but again only with reference to the royal palace
+                    and not the person. Sometime during the era of the New
+                    Kingdom, Second Intermediate Period, pharaoh became the form
+                    of address for a person who was king."
+                  </p>
+                  <cite className="text-sm text-gray-600 dark:text-gray-400">
+                    — Wikipedia, Pharaoh, 2019
+                  </cite>
+                </blockquote>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <History
+                        size={20}
+                        className="text-indigo-500 dark:text-indigo-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
                         Original Meaning
                       </h3>
-                      <p>
-                        Before the New Kingdom period (c. 1570-1069 BCE), the
-                        word "Pharaoh" (pr-ꜥꜣ) meant "Great House" and referred
-                        only to the royal palace or court, not to the ruler
-                        himself.
-                      </p>
                     </div>
-                    <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-                      <h3 className="font-medium mb-2 flex items-center gap-2">
-                        <Clock size={16} className="text-amber-500" /> Evolution
-                        of the Title
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Before the New Kingdom period (c. 1570-1069 BCE), the word
+                      "Pharaoh" (pr-ꜥꜣ) meant "Great House" and referred only to
+                      the royal palace or court, not to the ruler himself.
+                    </p>
+                  </div>
+                  <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                    <div className="flex items-center space-x-2 mb-3">
+                      <Clock
+                        size={20}
+                        className="text-amber-500 dark:text-amber-400"
+                      />
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+                        Evolution of the Title
                       </h3>
-                      <p>
-                        Only during the New Kingdom period did "Pharaoh" evolve
-                        to become a title used to directly address the Egyptian
-                        ruler, coinciding with the time of Moses according to
-                        historical timelines.
-                      </p>
                     </div>
+                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                      Only during the New Kingdom period did "Pharaoh" evolve to
+                      become a title used to directly address the Egyptian
+                      ruler, coinciding with the time of Moses according to
+                      historical timelines.
+                    </p>
                   </div>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  This archaeological evidence shows that the distinction
+                  between "king" and "Pharaoh" as titles for Egyptian rulers is
+                  historically significant and chronologically specific.
+                </p>
+              </section>
 
-                  <p>
-                    Modern archaeological research conclusively shows that the
-                    rulers of Egypt were simply called "kings" during earlier
-                    periods, including the time traditionally associated with
-                    Joseph. Only later, during the New Kingdom (the era
-                    associated with Moses), did the title "Pharaoh" come to
-                    designate the ruler.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
-
-            {/* Quranic Reference */}
-            <section id="quran" className="scroll-mt-20">
-              <Card className="border-l-4 border-green-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900">
-                      <BookOpen className="text-green-500" size={24} />
-                    </div>
-                    <CardTitle>Quranic Accuracy</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    Remarkably, the Quran makes the correct historical
-                    distinction in its terminology, despite being revealed in
-                    7th century Arabia, long before modern archaeological
-                    discoveries confirmed this historical detail.
-                  </p>
-
+              {/* Quranic Reference */}
+              <section id="quran" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Quranic Accuracy
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  Remarkably, the Quran makes the correct historical distinction
+                  in its terminology, despite being revealed in 7th century
+                  Arabia, long before modern archaeological discoveries
+                  confirmed this historical detail.
+                </p>
+                <div className="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                    Joseph's Time vs. Moses' Time
+                  </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
-                      <h3 className="font-medium mb-3">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-green-100 dark:border-green-700">
+                      <h4 className="font-bold mb-3">
                         <a
                           href="https://quran.com/12/54"
-                          className="text-green-600 dark:text-green-400 hover:underline"
+                          className="text-green-700 dark:text-green-400 hover:underline"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           Quran 12:54 - Joseph's Time
                         </a>
-                      </h3>
-                      <div className="space-y-4">
-                        <div>
-                          <p className="italic mb-2">
-                            "The king said, 'Bring him to me, and I will reserve
-                            him for myself.' And when he spoke to him, he said,
-                            'This day you are with us established and secure.'"
-                          </p>
-                        </div>
-                        <div className="font-arabic text-right text-lg">
-                          <p dir="rtl">
-                            وَقَالَ الْمَلِكُ ائْتُونِي بِهِ أَسْتَخْلِصْهُ
-                            لِنَفْسِي ۖ فَلَمَّا كَلَّمَهُ قَالَ إِنَّكَ
-                            الْيَوْمَ لَدَيْنَا مَكِينٌ أَمِينٌ
-                          </p>
-                        </div>
-                      </div>
-                      <div className="mt-4 text-sm">
-                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                          Key Term
-                        </Badge>
-                        <p className="mt-2">
-                          "al-malik الْمَلِكُ" means "the king" - correctly used
-                          for the pre-New Kingdom ruler
+                      </h4>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "The king said, 'Bring him to me, and I will reserve him
+                        for myself.' And when he spoke to him, he said, 'This
+                        day you are with us established and secure.'"
+                      </p>
+                      <div className="font-arabic text-right text-lg mb-4">
+                        <p
+                          dir="rtl"
+                          className="text-gray-800 dark:text-gray-100"
+                        >
+                          وَقَالَ الْمَلِكُ ائْتُونِي بِهِ أَسْتَخْلِصْهُ
+                          لِنَفْسِي ۖ فَلَمَّا كَلَّمَهُ قَالَ إِنَّكَ الْيَوْمَ
+                          لَدَيْنَا مَكِينٌ أَمِينٌ
                         </p>
                       </div>
+                      <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full">
+                        "al-malik الْمَلِكُ" - the king
+                      </span>
                     </div>
-
-                    <div className="bg-green-50 dark:bg-green-900/30 p-6 rounded-lg border border-green-100 dark:border-green-800">
-                      <h3 className="font-medium mb-3">
+                    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-green-100 dark:border-green-700">
+                      <h4 className="font-bold mb-3">
                         <a
                           href="https://quran.com/40/26"
-                          className="text-green-600 dark:text-green-400 hover:underline"
+                          className="text-green-700 dark:text-green-400 hover:underline"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           Quran 40:26 - Moses' Time
                         </a>
-                      </h3>
-                      <div className="space-y-4">
-                        <div>
-                          <p className="italic mb-2">
-                            "Pharaoh said, 'Let me kill Moses, and let him
-                            appeal to his Lord. I fear he may change your
-                            religion, or spread disorder in the land.'"
-                          </p>
-                        </div>
-                        <div className="font-arabic text-right text-lg">
-                          <p dir="rtl">
-                            وَقَالَ فِرْعَوْنُ ذَرُونِي أَقْتُلْ مُوسَىٰ
-                            وَلْيَدْعُ رَبَّهُ ۖ إِنِّي أَخَافُ أَنْ يُبَدِّلَ
-                            دِينَكُمْ أَوْ أَنْ يُظْهِرَ فِي الْأَرْضِ
-                            الْفَسَادَ
-                          </p>
-                        </div>
-                      </div>
-                      <div className="mt-4 text-sm">
-                        <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100">
-                          Key Term
-                        </Badge>
-                        <p className="mt-2">
-                          "fir'awn فِرْعَوْنُ" means "Pharaoh" - correctly used
-                          for the New Kingdom ruler
+                      </h4>
+                      <p className="text-lg italic text-gray-700 dark:text-gray-300 mb-4">
+                        "Pharaoh said, 'Let me kill Moses, and let him appeal to
+                        his Lord. I fear he may change your religion, or spread
+                        disorder in the land.'"
+                      </p>
+                      <div className="font-arabic text-right text-lg mb-4">
+                        <p
+                          dir="rtl"
+                          className="text-gray-800 dark:text-gray-100"
+                        >
+                          وَقَالَ فِرْعَوْنُ ذَرُونِي أَقْتُلْ مُوسَىٰ
+                          وَلْيَدْعُ رَبَّهُ ۖ إِنِّي أَخَافُ أَنْ يُبَدِّلَ
+                          دِينَكُمْ أَوْ أَنْ يُظْهِرَ فِي الْأَرْضِ الْفَسَادَ
                         </p>
                       </div>
+                      <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full">
+                        "fir'awn فِرْعَوْنُ" - Pharaoh
+                      </span>
                     </div>
                   </div>
-
-                  <p className="mt-6">
+                </div>
+                <div className="mb-8">
+                  <span className="inline-block bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100 text-sm font-medium px-3 py-1 rounded-full mb-4">
+                    Key Point
+                  </span>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
                     The Quran's precise terminology—consistently using "king"
                     for the ruler in Joseph's story and "Pharaoh" for the ruler
                     in Moses' time—perfectly aligns with modern archaeological
                     findings about when this title came into use, despite this
                     knowledge not being available in the 7th century.
                   </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+              </section>
 
-            {/* Reflection */}
-            <section id="reflection" className="scroll-mt-20">
-              <Card className="border-l-4 border-rose-500">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-rose-100 dark:bg-rose-900">
-                      <HelpCircle className="text-rose-500" size={24} />
-                    </div>
-                    <CardTitle>Reflection</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4 space-y-4">
-                  <p>
-                    The historical accuracy of the Quran's terminology for
-                    Egyptian rulers raises a profound question:
+              {/* Reflection */}
+              <section id="reflection" className="scroll-mt-24 mb-16">
+                <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                  Reflection
+                </h2>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                  The historical accuracy of the Quran's terminology for
+                  Egyptian rulers raises a profound question about the source of
+                  this knowledge.
+                </p>
+                <div className="bg-rose-50 dark:bg-rose-900/30 border border-rose-200 dark:border-rose-800 p-8 rounded-lg mb-8">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 text-center">
+                    How could someone who lived 1400 years ago have known about
+                    the correct usage of the title "Pharaoh"?
+                  </h3>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    This linguistic precision in the Quran—distinguishing
+                    between "king" and "Pharaoh" in exactly the historically
+                    correct periods—was only confirmed by archaeologists and
+                    linguists in the modern era. This level of historical
+                    accuracy would have been impossible to know in 7th century
+                    Arabia, which had no access to Egyptian hieroglyphic
+                    translations or archaeological evidence about ancient
+                    Egyptian royal titles.
                   </p>
-
-                  <div className="bg-rose-50 dark:bg-rose-900/30 p-6 rounded-lg border border-rose-100 dark:border-rose-800">
-                    <h3 className="font-bold text-xl mb-3 text-center">
-                      How could man who lived 1400 years ago have known about
-                      the correct usage of the title "Pharaoh"?
-                    </h3>
-                    <p>
-                      This linguistic precision in the Quran—distinguishing
-                      between "king" and "Pharaoh" in exactly the historically
-                      correct periods—was only confirmed by archaeologists and
-                      linguists in the modern era. This level of historical
-                      accuracy would have been impossible to know in 7th century
-                      Arabia, which had no access to Egyptian hieroglyphic
-                      translations or archaeological evidence about ancient
-                      Egyptian royal titles.
-                    </p>
-                  </div>
-
-                  <p>
-                    This historical precision stands in contrast to other
-                    ancient texts which often anachronistically use "Pharaoh"
-                    for all Egyptian rulers. Unlike these texts, the Quran makes
-                    the correct distinction despite being revealed centuries
-                    before modern archaeological discoveries confirmed these
-                    linguistic details about ancient Egypt.
-                  </p>
-
-                  <p>
-                    The accuracy of such a specific historical detail—one that
-                    was unknown to the scholars of the 7th century—invites
-                    contemplation about the origins of the knowledge contained
-                    in the Quranic text.
-                  </p>
-                </CardContent>
-              </Card>
-            </section>
+                </div>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  This historical precision stands in contrast to other ancient
+                  texts which often anachronistically use "Pharaoh" for all
+                  Egyptian rulers. Unlike these texts, the Quran makes the
+                  correct distinction despite being revealed centuries before
+                  modern archaeological discoveries confirmed these linguistic
+                  details about ancient Egypt. The accuracy of such a specific
+                  historical detail—one that was unknown to the scholars of the
+                  7th century—invites contemplation about the origins of the
+                  knowledge contained in the Quranic text.
+                </p>
+              </section>
+            </article>
           </div>
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 dark:bg-gray-800 py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="text-blue-500" size={18} />
-            <h3 className="text-lg font-medium">
-              Exploring Historical Linguistics
-            </h3>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 max-w-lg mx-auto">
-            Discovering connections between ancient texts and archaeological
-            findings reveals the depth of historical knowledge across time.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <Button
-              variant="outline"
-              size="sm"
+      {/* Medium-style Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 py-12 mt-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center">
+            <div className="flex justify-center items-center space-x-2 mb-4">
+              <Sparkles
+                className="text-amber-600 dark:text-amber-400"
+                size={20}
+              />
+              <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                Exploring Historical Linguistics
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-6">
+              Discovering connections between ancient texts and archaeological
+              findings reveals the depth of historical knowledge across time.
+            </p>
+            <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm flex items-center space-x-1 mx-auto"
             >
-              Back to Top <ArrowUp size={14} className="ml-2" />
-            </Button>
+              <ArrowUp size={16} />
+              <span>Back to top</span>
+            </button>
           </div>
         </div>
       </footer>
+
+      {/* Mobile Navigation - Medium Style */}
+      <div className="lg:hidden fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => {
+            const nextIndex =
+              (contents.findIndex((c) => c.id === activeSection) + 1) %
+              contents.length;
+            scrollToSection(contents[nextIndex].id);
+          }}
+          className="bg-amber-600 dark:bg-amber-700 text-white rounded-full h-12 w-12 shadow-lg flex items-center justify-center"
+        >
+          <ChevronRight size={20} />
+        </button>
+      </div>
     </div>
   );
 };
