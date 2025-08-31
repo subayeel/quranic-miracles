@@ -146,7 +146,6 @@ export const scienceCategories = {
 
       { title: "Encoding", url: "/math/encoding" },
 
-      { title: "Hypersonic", url: "/math/hypersonic" },
       { title: "Kilometer", url: "/math/kilometer" },
       { title: "Light Year", url: "/math/light-year" },
       { title: "Meter", url: "/math/meter" },
