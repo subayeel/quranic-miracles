@@ -184,7 +184,6 @@ export const scienceCategories = {
 
       { title: "String Theory", url: "/physics/string-theory" },
 
-      { title: "Work", url: "/physics/work" },
       { title: "Wormhole", url: "/physics/wormhole" },
     ],
   },
